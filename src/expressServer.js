@@ -1,0 +1,87 @@
+/* eslint-disable no-console */
+'use strict';
+const express = require('express');
+const fs = require('fs');
+const https = require('https');
+const http = require('http');
+const request = require('request');
+const apikey = require('./middleware/apikey');
+const error = require('./middleware/error');
+const compression = require('compression');
+
+class expressServer {
+
+	/**
+	 * @class
+	 * @param {Object} config - Server configuration values.
+	 */
+	constructor(config = {}) {
+
+		this.config = config;
+		// Setup our express instance
+		this.app = express();
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @function configureMiddleware
+	 * @author Frazer Smith
+	 * @version 1.0.0
+	 * @summary Sets middleware options for Express server.
+	 */
+	configureMiddleware() {
+		// Add compression
+		this.app.use(compression({ level: 9 }));
+		// Check for matching API key
+		this.app.use(apikey(this.config.apikey));
+		// Error handling
+		this.app.use(error());
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @function configureRoute
+	 * @author Frazer Smith
+	 * @version 1.0.0
+	 * @summary Sets routing options for Express server.
+	 */
+	configureRoute() {
+		this.app.get('*', function(req, res) {
+			request.get('http://localhost:443/r3' + req.originalUrl).pipe(res);
+		});
+	}
+
+	/**
+	 * @function listen
+	 * @author Frazer Smith
+	 * @version 1.0.0
+	 * @summary Start the server.
+	 * @param {string} port - Port for server to listen on. 
+	 */
+	listen(port, callback) {
+
+		const server = this.config;
+		let protocol;
+		// Update the express app to be an instance of createServer
+		if(server.USE_HTTPS == true) {
+			this.app = https.createServer({
+				key: fs.readFileSync(server.ssl.key),
+				cert: fs.readFileSync(server.ssl.cert)
+			}, this.app);
+			protocol = 'https';
+
+		} else {
+			protocol = 'http';
+			this.app = http.createServer(this.app);
+		}
+
+		// Start the app
+		this.app.listen(port, callback);
+		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
+	}
+}
+
+
+module.exports = expressServer;
