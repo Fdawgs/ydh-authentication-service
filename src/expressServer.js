@@ -46,10 +46,11 @@ class expressServer {
 	 * @author Frazer Smith
 	 * @version 1.0.0
 	 * @summary Sets routing options for Express server.
+	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 */
-	configureRoute() {
+	configureRoute(listenerUrl) {
 		this.app.get('*', function(req, res) {
-			request.get('http://localhost:443/r3' + req.originalUrl).pipe(res);
+			request.get(listenerUrl + req.originalUrl).pipe(res);
 		});
 	}
 
