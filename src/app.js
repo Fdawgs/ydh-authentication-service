@@ -8,5 +8,5 @@ const serverConfig = JSON.parse(rawData);
 
 var server = new expressServer(serverConfig);
 server.configureMiddleware();
-server.configureRoute();
+server.configureRoute(serverConfig.listener_url);
 server.listen(serverConfig.port);
