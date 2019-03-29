@@ -19,4 +19,4 @@ SSL support is not available out of the box so this service has been created to 
 6. Run `npm run install-windows-service` to set up as a Windows Service
 
 ## License
-`ydh-mirth-connect-sider-router` is licensed under the [MIT](https://github.com/Fdawgs/ydh-mirth-connect-sider-router/blob/master/LICENSE) license.
+`ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-mirth-connect-sider-router/blob/master/LICENSE) license.
