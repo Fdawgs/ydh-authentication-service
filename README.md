@@ -15,7 +15,7 @@ SSL support is not available out of the box so this service has been created to 
 1. Download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
 3. Set up the config of the service in `src/config.json`
-4. Ensure the port of the service is the same as the FHIR Listener channel in Mirth Connect
+4. Ensure the port of the service is different from the FHIR Listener channel in Mirth Connect
 5. Run `npm install`
 6. Run `npm run install-windows-service` to set up as a Windows Service
 
