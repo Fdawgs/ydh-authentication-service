@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
     "nodemon": "nodemon src/app.js",
-    "install-windows-service": "winser -i -s -c -a -n \"SIDeR Authenticator\"",
-    "uninstall-windows-service": "winser -r -x -s -n \"SIDeR Authenticator\""
+    "install-windows-service": "winser -i -s -c -a -n \"SIDeR Authentication Service\"",
+    "uninstall-windows-service": "winser -r -x -s -n \"SIDeR Authentication Service\""
   },
   "author": "Frazer Smith",
   "license": "MIT",
