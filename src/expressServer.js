@@ -27,7 +27,6 @@ class expressServer {
 	/**
 	 * @function configureMiddleware
 	 * @author Frazer Smith
-	 * @version 1.0.0
 	 * @summary Sets middleware options for Express server.
 	 */
 	configureMiddleware() {
@@ -44,7 +43,6 @@ class expressServer {
 	/**
 	 * @function configureRoute
 	 * @author Frazer Smith
-	 * @version 1.0.0
 	 * @summary Sets routing options for Express server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 */
@@ -57,7 +55,6 @@ class expressServer {
 	/**
 	 * @function listen
 	 * @author Frazer Smith
-	 * @version 1.0.0
 	 * @summary Start the server.
 	 * @param {string} port - Port for server to listen on. 
 	 */
