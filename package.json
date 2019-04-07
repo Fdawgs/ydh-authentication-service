@@ -7,19 +7,20 @@
     "NHS",
     "authentication",
     "Mirth"
-],
+  ],
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run lint",
     "start": "node src/app.js",
     "nodemon": "nodemon src/app.js",
+    "lint": "eslint src/*.js",
     "install-windows-service": "winser -i -s -c -a -n \"SIDeR Authentication Service\"",
     "uninstall-windows-service": "winser -r -x -s -n \"SIDeR Authentication Service\""
   },
   "author": "Frazer Smith",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "nodemon": "^1.18.10"
   },
   "dependencies": {
