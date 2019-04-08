@@ -2,3 +2,9 @@ language: node_js
 node_js:
   - "lts/*"
   - "node"
+
+# safelist
+branches:
+  only:
+  - master
+  - develop
