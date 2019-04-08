@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 'use strict';
+const apikey = require('./middleware/apikey');
+const compression = require('compression');
+const error = require('./middleware/error');
 const express = require('express');
 const fs = require('fs');
+const helmet = require('helmet');
 const https = require('https');
 const http = require('http');
 const request = require('request');
-const apikey = require('./middleware/apikey');
-const error = require('./middleware/error');
-const compression = require('compression');
 
 class expressServer {
 
@@ -20,6 +21,7 @@ class expressServer {
 		this.config = config;
 		// Setup our express instance
 		this.app = express();
+		this.app.use(helmet());
 		// return self for chaining
 		return this;
 	}
