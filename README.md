@@ -10,7 +10,9 @@ SSL support is not available out of the box so this Node.js service, using the E
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this service.
 
 ## Prerequisites
-[Node.js](https://nodejs.org/en/) if you do not already have it installed.
+- [Node.js](https://nodejs.org/en/)
+- [Mirth Connect](https://github.com/nextgenhealthcare/connect)
+
 
 
 ## Setup
@@ -20,6 +22,29 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 4. Ensure the port of the service is different from the FHIR Listener channel in Mirth Connect
 5. Run `npm install`
 6. Run `npm run install-windows-service` to set up as a Windows Service
+
+### Configuration options
+
+The options for this service are set in src/config.json, with the default values:
+
+```jsonc
+{
+	"name" : "ydh-sider-authentication-service",
+	"port" : "443",
+	"listener_url" : "http://localhost:444", // url and port of what the Mirth Connect FHIR Listener channel is listening on.
+	"USE_HTTPS": true, // If USE_HTTPS set to true, server will use the ssl key and cert in the object to provide HTTPS.
+	"ssl" : {
+		"key" : "./ssl_certificate/ydhclientcert.key",
+		"cert" : "./ssl_certificate/ydhclientcert.cer"
+	},
+	"apikey": {
+		"header": "x-api-key",
+		"value": "Jimmini"
+	}
+}
+```
+
+Alter these as needed prior to deploying as a service.
 
 ## License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-mirth-connect-sider-router/blob/master/LICENSE) license.
