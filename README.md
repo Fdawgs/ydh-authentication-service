@@ -16,10 +16,10 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 
 ## Setup
-1. Download this repository from Github
+1. Clone or download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
 3. Set up the config of the service in `src/config.json`
-4. Ensure the port of the service is different from the FHIR Listener channel in Mirth Connect
+4. Ensure the port of the service is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
 5. Run `npm install`
 6. Run `npm run install-windows-service` to set up as a Windows Service
 
