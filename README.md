@@ -1,13 +1,12 @@
-Yeovil District Hospital - SIDeR Authentication Service
+Yeovil District Hospital (YDH) - SIDeR Authentication Service
 ==========================================
 [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-sider-authentication-service/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Fdawgs/ydh-sider-authentication-service?targetFile=package.json)
 [![Build Status](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service)
 
 ## Intro
-[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few TIEs used at the hospital and plans are for it to be used to provide a FHIR REST API, utilising the FHIR listener extensions for both the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/) and [NHS Care Connect APIs](https://nhsconnect.github.io/CareConnectAPI/), to allow for calls for patient data to be made.
+[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/). These endpoints are set up to provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
 
-SSL support is not available out of the box so this Node.js service, using the Express framework, has been created to provide API key and HTTPS/SSL authentication (as required by the SIDeR programme to secure patient data) and then redirect to the web listener in the TIE.
-
+Mirth Connect does not provide HTTPS/SSL support out of the box which is a requirement of the SIDeR programme to secure patient data. As such a Node.js service using the [Express framework](https://expressjs.com/) has been created to provide this whilst at the same time handling API keys in the HTTP header.
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this service.
 
 ## Prerequisites
