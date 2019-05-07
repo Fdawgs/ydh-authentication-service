@@ -21,12 +21,12 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^5.16.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.0"
   },
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.16.4",
-    "helmet": "^3.16.0",
+    "helmet": "^3.18.0",
     "request": "^2.88.0",
     "winser": "^1.0.3"
   },
