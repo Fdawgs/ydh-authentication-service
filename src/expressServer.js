@@ -22,6 +22,8 @@ class expressServer {
 		// Setup our express instance
 		this.app = express();
 		this.app.use(helmet());
+		this.app.use(helmet.noCache());
+		this.app.use(helmet.hidePoweredBy());
 		// return self for chaining
 		return this;
 	}
@@ -50,7 +52,19 @@ class expressServer {
 	 */
 	configureRoute(listenerUrl) {
 		this.app.get('*', function(req, res) {
-			request.get(listenerUrl + req.originalUrl).pipe(res);
+			//request.get(listenerUrl + req.originalUrl).pipe(res);
+			request.get(listenerUrl + req.originalUrl).on('response', function (response) {
+
+				// Remove or amend inaccurate headers.
+				response.httpVersionMajor = 2;
+				response.httpVersionMinor = 0;
+				response.httpVersion = '2.0';
+				response.headers['access-control-allow-methods'] = 'GET';
+				delete response.headers.etag;
+				delete response.headers['last-modified'];
+				delete response.headers.location;
+				delete response.headers.server;
+			}).pipe(res);
 		});
 	}
 
