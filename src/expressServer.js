@@ -56,9 +56,6 @@ class expressServer {
 			request.get(listenerUrl + req.originalUrl).on('response', function (response) {
 
 				// Remove or amend inaccurate headers.
-				response.httpVersionMajor = 2;
-				response.httpVersionMinor = 0;
-				response.httpVersion = '2.0';
 				response.headers['access-control-allow-methods'] = 'GET';
 				delete response.headers.etag;
 				delete response.headers['last-modified'];
