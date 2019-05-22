@@ -29,7 +29,6 @@ class expressServer {
 	}
 
 	/**
-	 * @function configureMiddleware
 	 * @author Frazer Smith
 	 * @summary Sets middleware options for Express server.
 	 */
@@ -45,20 +44,20 @@ class expressServer {
 	}
 
 	/**
-	 * @function configureRoute
 	 * @author Frazer Smith
 	 * @summary Sets routing options for Express server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 */
 	configureRoute(listenerUrl) {
-		this.app.get('*', function(req, res) {
-			//request.get(listenerUrl + req.originalUrl).pipe(res);
+		this.app.get('*', function (req, res) {
 			request.get(listenerUrl + req.originalUrl).on('response', function (response) {
 
-				// Remove or amend inaccurate headers.
+				// Remove or amend inaccurate headers
 				response.headers['access-control-allow-methods'] = 'GET';
 				delete response.headers.etag;
 				delete response.headers['last-modified'];
+				
+				// Remove security risk headers
 				delete response.headers.location;
 				delete response.headers.server;
 			}).pipe(res);
@@ -66,7 +65,6 @@ class expressServer {
 	}
 
 	/**
-	 * @function listen
 	 * @author Frazer Smith
 	 * @summary Start the server.
 	 * @param {string} port - Port for server to listen on. 
@@ -76,7 +74,7 @@ class expressServer {
 		const server = this.config;
 		let protocol;
 		// Update the express app to be an instance of createServer
-		if(server.USE_HTTPS == true) {
+		if (server.USE_HTTPS == true) {
 			this.app = https.createServer({
 				key: fs.readFileSync(server.ssl.key),
 				cert: fs.readFileSync(server.ssl.cert)
