@@ -1,6 +1,5 @@
 Yeovil District Hospital (YDH) - SIDeR Authentication Service
 ==========================================
-[![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-sider-authentication-service/badge.svg?targetFile=package.json)](https://snyk.io/test/github/Fdawgs/ydh-sider-authentication-service?targetFile=package.json)
 [![Build Status](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service)
 
 ## Intro
