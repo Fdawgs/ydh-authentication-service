@@ -21,9 +21,15 @@ class expressServer {
 		this.config = config;
 		// Setup our express instance
 		this.app = express();
+		// Use Helmet to set response headers
 		this.app.use(helmet());
 		this.app.use(helmet.noCache());
 		this.app.use(helmet.hidePoweredBy());
+		this.app.use(helmet.contentSecurityPolicy({
+			directives: {
+				defaultSrc: ['\'self\'']
+			}
+		}));
 		// return self for chaining
 		return this;
 	}
@@ -37,12 +43,6 @@ class expressServer {
 		this.app.use(compression({ level: 9 }));
 		// Check for matching API key
 		this.app.use(apikey(this.config.apikey));
-		// Add content security policies
-		this.app.use(helmet.contentSecurityPolicy({
-			directives: {
-				defaultSrc: ['\'self\'']
-			}
-		}));
 		// Error handling
 		this.app.use(error());
 		// return self for chaining
@@ -57,12 +57,11 @@ class expressServer {
 	configureRoute(listenerUrl) {
 		this.app.get('*', function (req, res) {
 			request.get(listenerUrl + req.originalUrl).on('response', function (response) {
-
 				// Remove or amend inaccurate headers
 				response.headers['access-control-allow-methods'] = 'GET';
 				delete response.headers.etag;
 				delete response.headers['last-modified'];
-				
+
 				// Remove security risk headers
 				delete response.headers.location;
 				delete response.headers.server;
