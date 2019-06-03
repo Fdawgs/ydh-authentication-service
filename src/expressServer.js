@@ -37,6 +37,12 @@ class expressServer {
 		this.app.use(compression({ level: 9 }));
 		// Check for matching API key
 		this.app.use(apikey(this.config.apikey));
+		// Add content security policies
+		this.app.use(helmet.contentSecurityPolicy({
+			directives: {
+				defaultSrc: ['\'self\'']
+			}
+		}));
 		// Error handling
 		this.app.use(error());
 		// return self for chaining
