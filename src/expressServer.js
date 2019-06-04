@@ -1,23 +1,21 @@
 /* eslint-disable no-console */
-'use strict';
-const apikey = require('./middleware/apikey');
+
 const compression = require('compression');
-const error = require('./middleware/error');
 const express = require('express');
 const fs = require('fs');
 const helmet = require('helmet');
 const https = require('https');
 const http = require('http');
 const request = require('request');
+const error = require('./middleware/error');
+const apikey = require('./middleware/apikey');
 
 class expressServer {
-
 	/**
 	 * @class
 	 * @param {Object} config - Server configuration values.
 	 */
 	constructor(config = {}) {
-
 		this.config = config;
 		// Setup our express instance
 		this.app = express();
@@ -55,8 +53,8 @@ class expressServer {
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 */
 	configureRoute(listenerUrl) {
-		this.app.get('*', function (req, res) {
-			request.get(listenerUrl + req.originalUrl).on('response', function (response) {
+		this.app.get('*', (req, res) => {
+			request.get(listenerUrl + req.originalUrl).on('response', (response) => {
 				// Remove or amend inaccurate headers
 				response.headers['access-control-allow-methods'] = 'GET';
 				delete response.headers.etag;
@@ -72,20 +70,18 @@ class expressServer {
 	/**
 	 * @author Frazer Smith
 	 * @summary Start the server.
-	 * @param {string} port - Port for server to listen on. 
+	 * @param {string} port - Port for server to listen on.
 	 */
 	listen(port, callback) {
-
 		const server = this.config;
 		let protocol;
 		// Update the express app to be an instance of createServer
-		if (server.USE_HTTPS == true) {
+		if (server.USE_HTTPS === true) {
 			this.app = https.createServer({
-				key: fs.readFileSync(server.ssl.key),
-				cert: fs.readFileSync(server.ssl.cert)
+				cert: fs.readFileSync(server.ssl.cert),
+				key: fs.readFileSync(server.ssl.key)
 			}, this.app);
 			protocol = 'https';
-
 		} else {
 			protocol = 'http';
 			this.app = http.createServer(this.app);
@@ -96,6 +92,5 @@ class expressServer {
 		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
 	}
 }
-
 
 module.exports = expressServer;
