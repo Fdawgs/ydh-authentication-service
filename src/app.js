@@ -1,12 +1,11 @@
-'use strict';
-const expressServer = require('./expressServer');
 const fs = require('fs');
+const ExpressServer = require('./expressServer');
 
 // Retrieve config values
 const rawData = fs.readFileSync('./src/config.json');
 const serverConfig = JSON.parse(rawData);
 
-var server = new expressServer(serverConfig);
+const server = new ExpressServer(serverConfig);
 server.configureMiddleware();
 server.configureRoute(serverConfig.listener_url);
 server.listen(serverConfig.port);
