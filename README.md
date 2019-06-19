@@ -46,4 +46,5 @@ The options for this service are set in src/config.json, with the default values
 Alter these as needed prior to deploying as a service.
 
 ## License
-`ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-mirth-connect-sider-router/blob/master/LICENSE) license.
+`ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service
+/blob/master/LICENSE) license.
