@@ -20,7 +20,7 @@
   "author": "Frazer Smith",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-nhsuk": "^0.17.0",
     "eslint-plugin-import": "^2.17.3",
