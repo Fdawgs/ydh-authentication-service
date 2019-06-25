@@ -5,7 +5,7 @@ Yeovil District Hospital (YDH) - SIDeR Authentication Service
 ## Intro
 [Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and an instance of it is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/). These endpoints are set up to provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
 
-Mirth Connect does not provide HTTPS/SSL support out of the box which is a requirement of the SIDeR programme to secure patient data. As such this Node.js service using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling API keys in the HTTP header, acting as middleware between the firewall and the targeted HTTP/FHIR listener channel.
+Mirth Connect does not provide HTTPS/SSL support out of the box which is a requirement of the SIDeR programme to secure patient data. As such this Node.js service using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this service.
 
 ## Prerequisites
@@ -30,7 +30,7 @@ The options for this service are set in src/config.json, with the default values
 {
 	"name" : "ydh-sider-authentication-service",
 	"port" : "443",
-	"listener_url" : "http://localhost:444", // url and port of what the Mirth Connect FHIR Listener channel is listening on.
+	"listener_url" : "http://localhost:444", // url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
 	"USE_HTTPS": true, // If USE_HTTPS set to true, server will use the ssl key and cert in the object to provide HTTPS.
 	"ssl" : {
 		"key" : "./ssl_certificate/ydhclientcert.key",
