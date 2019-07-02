@@ -7,8 +7,8 @@ const helmet = require('helmet');
 const https = require('https');
 const http = require('http');
 const request = require('request');
-const error = require('./middleware/error');
-const apikey = require('./middleware/apikey');
+const error = require('../node_modules/fhir-stu3-subscription-resthook/lib/handlers/error');
+const apikey = require('../node_modules/fhir-stu3-subscription-resthook/lib/middleware/apikey');
 
 class expressServer {
 	/**
