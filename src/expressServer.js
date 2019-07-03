@@ -91,6 +91,10 @@ class expressServer {
 		this.app.listen(port, callback);
 		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
 	}
+
+	close() {
+		this.app.close();
+	}
 }
 
 module.exports = expressServer;
