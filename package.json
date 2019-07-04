@@ -1,6 +1,6 @@
 {
   "name": "ydh-sider-authentication-service",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "NodeJS Express Service to provide authentication before routing to REST API.",
   "keywords": [
     "YDH",
@@ -27,9 +27,9 @@
   "devDependencies": {
     "coveralls": "^3.0.4",
     "eslint": "^6.0.1",
-    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-nhsuk": "^0.18.0",
-    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^22.7.2",
     "eslint-plugin-json": "^1.4.0",
     "jest": "^24.8.0",
@@ -39,10 +39,10 @@
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
     "helmet": "^3.18.0",
     "request": "^2.88.0",
-    "winser": "^1.0.3",
-    "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git"
+    "winser": "^1.0.3"
   },
   "repository": {
     "type": "git",
