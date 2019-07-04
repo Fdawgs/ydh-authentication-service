@@ -3,14 +3,13 @@
 const fs = require('fs');
 const request = require('supertest');
 const ExpressServer = require('./expressServer');
+
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
 config.USE_HTTPS = false; // Only testing for headers at present
 let server;
 let mirthServer;
 const path = `http://127.0.0.1:${config.port}/test`;
-
-
 
 describe('GET response headers', () => {
 	beforeAll(async () => {
