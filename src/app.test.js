@@ -36,8 +36,8 @@ describe('GET response headers', () => {
 			return res.status(200).json();
 		});
 		mirthServer = await http.createServer(mirthServer);
-		mirthServer.listen(444, () => {
-			console.log('listening at 444');
+		mirthServer.listen(8206, () => {
+			console.log('listening at 8206');
 		});
 
 
