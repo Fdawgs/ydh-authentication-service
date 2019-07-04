@@ -1,7 +1,7 @@
 {
 	"name" : "ydh-sider-authentication-service",
-	"port" : "443",
-	"listener_url" : "http://localhost:444",
+	"port" : "8205",
+	"listener_url" : "http://localhost:8206",
 	"USE_HTTPS": true,
 	"ssl" : {
 		"key" : "./ssl_certificate/ydhclientcert.key",
