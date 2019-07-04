@@ -15,7 +15,8 @@ describe('GET response headers', () => {
 		// Stand up server
 		server = new ExpressServer(config);
 		server.configureMiddleware();
-		server.configureRoute(config.listener_url);
+		server.configureHelmet();
+		server.configureRoute(config.listener_url, true);
 		server.listen(config.port);
 	});
 
