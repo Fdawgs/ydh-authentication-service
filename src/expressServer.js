@@ -19,15 +19,7 @@ class expressServer {
 		this.config = config;
 		// Setup our express instance
 		this.app = express();
-		// Use Helmet to set response headers
-		this.app.use(helmet());
-		this.app.use(helmet.noCache());
-		this.app.use(helmet.hidePoweredBy());
-		this.app.use(helmet.contentSecurityPolicy({
-			directives: {
-				defaultSrc: ['\'self\'']
-			}
-		}));
+
 		// return self for chaining
 		return this;
 	}
@@ -49,7 +41,20 @@ class expressServer {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets routing options for Express server.
+	 * @summary Sets Helmet options for server.
+	 */	
+	configureHelmet() {
+		// Use Helmet to set response headers
+		this.app.use(helmet());
+		this.app.use(helmet.noCache());
+		this.app.use(helmet.hidePoweredBy());
+		this.app.use(helmet.contentSecurityPolicy({
+			directives: {
+				defaultSrc: ['\'self\'']
+			}
+		}));
+	}
+
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 */
 	configureRoute(listenerUrl) {
