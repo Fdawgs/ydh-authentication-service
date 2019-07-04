@@ -42,7 +42,7 @@ class expressServer {
 	/**
 	 * @author Frazer Smith
 	 * @summary Sets Helmet options for server.
-	 */	
+	 */
 	configureHelmet() {
 		// Use Helmet to set response headers
 		this.app.use(helmet());
@@ -59,7 +59,7 @@ class expressServer {
 	 * @author Frazer Smith
 	 * @summary Sets routing options for server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
-	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers
+	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
 	 */
 	configureRoute(listenerUrl, hide) {
 		this.app.get('*', (req, res) => {
