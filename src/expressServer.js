@@ -53,6 +53,7 @@ class expressServer {
 				defaultSrc: ['\'self\'']
 			}
 		}));
+		return this;
 	}
 
 	/**
@@ -76,6 +77,8 @@ class expressServer {
 				}
 			}).pipe(res);
 		});
+
+		return this;
 	}
 
 	/**
