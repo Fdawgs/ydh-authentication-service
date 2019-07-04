@@ -26,7 +26,7 @@ class expressServer {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets middleware options for Express server.
+	 * @summary Sets middleware options for server.
 	 */
 	configureMiddleware() {
 		// Add compression
@@ -55,19 +55,25 @@ class expressServer {
 		}));
 	}
 
+	/**
+	 * @author Frazer Smith
+	 * @summary Sets routing options for server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
+	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers
 	 */
-	configureRoute(listenerUrl) {
+	configureRoute(listenerUrl, hide) {
 		this.app.get('*', (req, res) => {
 			request.get(listenerUrl + req.originalUrl).on('response', (response) => {
+				if (hide) {
 				// Remove or amend inaccurate headers
-				response.headers['access-control-allow-methods'] = 'GET';
-				delete response.headers.etag;
-				delete response.headers['last-modified'];
+					response.headers['access-control-allow-methods'] = 'GET';
+					delete response.headers.etag;
+					delete response.headers['last-modified'];
 
-				// Remove security risk headers
-				delete response.headers.location;
-				delete response.headers.server;
+					// Remove security risk headers
+					delete response.headers.location;
+					delete response.headers.server;
+				}
 			}).pipe(res);
 		});
 	}
