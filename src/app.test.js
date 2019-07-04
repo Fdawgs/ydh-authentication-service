@@ -3,12 +3,11 @@
 const fs = require('fs');
 const request = require('supertest');
 const ExpressServer = require('./expressServer');
-const httpMocks = require('node-mocks-http');
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
 config.USE_HTTPS = false; // Only testing for headers at present
 let server;
-const path = `http://127.0.0.1:${config.port}`;
+const path = `http://127.0.0.1:${config.port}/test`;
 
 
 
@@ -34,7 +33,6 @@ describe('GET response headers', () => {
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
-			//console.log(res);
 			return res.status(200).json();
 		});
 		mirthServer = await http.createServer(mirthServer);
@@ -83,7 +81,7 @@ describe('GET response headers', () => {
 			'date': 'Thu, 04 Jul 2019 11:59:41 GMT'
 		};
 
-		const response = await request(path+'/test')
+		const response = await request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
@@ -91,8 +89,7 @@ describe('GET response headers', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
-		console.log(response.res.headers);
-		expect(response.statusCode).toBe(200); // Haven't specified a resource
+		expect(response.statusCode).toBe(200);
 		expect(response.res.headers).toEqual(expect.objectContaining(expectedHeaders));
 	}, 30000);
 
@@ -113,7 +110,7 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 			//console.log(response);
-		expect(response.statusCode).toBe(404); // Haven't specified a resource
+		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
 });
