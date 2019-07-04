@@ -7,5 +7,6 @@ const serverConfig = JSON.parse(rawData);
 
 const server = new ExpressServer(serverConfig);
 server.configureMiddleware();
-server.configureRoute(serverConfig.listener_url);
+server.configureHelmet();
+server.configureRoute(serverConfig.listener_url, true);
 server.listen(serverConfig.port);
