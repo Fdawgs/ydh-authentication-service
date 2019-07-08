@@ -20,7 +20,8 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverage": true
+    "collectCoverage": true,
+    "clearMocks": true
   },
   "author": "Frazer Smith",
   "license": "MIT",
