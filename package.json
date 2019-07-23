@@ -41,7 +41,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
-    "helmet": "^3.18.0",
+    "helmet": "^3.19.0",
     "request": "^2.88.0",
     "winser": "^1.0.3"
   },
