@@ -26,14 +26,14 @@
   "author": "Frazer Smith",
   "license": "MIT",
   "devDependencies": {
-    "coveralls": "^3.0.5",
-    "eslint": "^6.1.0",
+    "coveralls": "^3.0.6",
+    "eslint": "^6.2.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-nhsuk": "^0.19.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.15.1",
     "eslint-plugin-json": "^1.4.0",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2"
   },
@@ -41,7 +41,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
-    "helmet": "^3.19.0",
+    "helmet": "^3.20.0",
     "request": "^2.88.0",
     "winser": "^1.0.3"
   },
