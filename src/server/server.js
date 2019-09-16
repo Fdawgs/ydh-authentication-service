@@ -6,10 +6,10 @@ const helmet = require('helmet');
 const https = require('https');
 const http = require('http');
 const request = require('request');
-const error = require('../node_modules/fhir-stu3-subscription-resthook/lib/handlers/error');
-const apikey = require('../node_modules/fhir-stu3-subscription-resthook/lib/middleware/apikey');
+const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
+const apikey = require('./middleware/apikey');
 
-class expressServer {
+class Server {
 	/**
 	 * @class
 	 * @param {Object} config - Server configuration values.
@@ -31,7 +31,8 @@ class expressServer {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
 		// Check for matching API key
-		this.app.use(apikey(this.config.apikey));
+		this.app.use((req, res, next) => { req.apikeys = this.config.api_keys; next(); });
+		this.app.use(apikey);
 		// Error handling
 		this.app.use(error());
 		// return self for chaining
@@ -41,6 +42,7 @@ class expressServer {
 	/**
 	 * @author Frazer Smith
 	 * @summary Sets Helmet options for server.
+	 * @todo Set up content security policy directives.
 	 */
 	configureHelmet() {
 		// Use Helmet to set response headers
@@ -49,9 +51,13 @@ class expressServer {
 		this.app.use(helmet.hidePoweredBy());
 		this.app.use(helmet.contentSecurityPolicy({
 			directives: {
-				defaultSrc: ['\'self\'']
+				defaultSrc: ['\'self\''],
+				scriptSrc: ['\'self\'', '\'unsafe-inline\''],
+				styleSrc: ['\'self\'', '\'unsafe-inline\'']
 			}
 		}));
+
+		// return self for chaining
 		return this;
 	}
 
@@ -105,9 +111,13 @@ class expressServer {
 		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
 	}
 
+	/**
+	 * @author Frazer Smith
+	 * @summary Shut down server (non-gracefully).
+	 */
 	close() {
 		this.app.close();
 	}
 }
 
-module.exports = expressServer;
+module.exports = Server;
