@@ -51,5 +51,8 @@ The options for this service are set in src/config.json, with the default values
 
 Alter these as needed prior to deploying as a service.
 
+When you add or remove API keys you will need to restart the service for the changes to take effect.
+
+
 ## License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
