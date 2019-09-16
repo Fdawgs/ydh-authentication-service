@@ -81,7 +81,7 @@ describe('GET response headers', () => {
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
-			.set('x-api-key', 'Jimmini')
+			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
@@ -101,7 +101,7 @@ describe('GET response headers', () => {
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
-			.set('x-api-key', 'Jimmini')
+			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
@@ -114,7 +114,7 @@ describe('GET response headers', () => {
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
-			.set('x-api-key', 'Pinochio')
+			.set('Authorization', 'Bearer Pinochio')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
