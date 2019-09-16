@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const request = require('supertest');
-const ExpressServer = require('./expressServer');
+const Server = require('./Server');
 
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
@@ -42,7 +42,7 @@ describe('GET response headers', () => {
 
 
 		// Stand up server
-		server = new ExpressServer(config);
+		server = new Server(config);
 		server.configureHelmet();
 		server.configureMiddleware();
 		server.configureRoute(config.listener_url, true);
