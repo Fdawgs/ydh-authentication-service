@@ -43,10 +43,9 @@ describe('GET response headers', () => {
 
 		// Stand up server
 		server = new Server(config);
-		server.configureHelmet();
 		server.configureMiddleware();
+		server.configureHelmet();
 		server.configureRoute(config.listener_url, true);
-		// server.configureRoute(config.listener_url, true);
 		server.listen(config.port);
 	});
 
@@ -57,28 +56,28 @@ describe('GET response headers', () => {
 
 	test('Expected response headers present', async () => {
 		const expectedHeaders = {
-			'x-dns-prefetch-control': 'off',
-			'x-frame-options': 'SAMEORIGIN',
-			'strict-transport-security': 'max-age=15552000; includeSubDomains',
-			'x-download-options': 'noopen',
-			'x-content-type-options': 'nosniff',
-			'x-xss-protection': '1; mode=block',
-			'surrogate-control': 'no-store',
-			'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-			'connection': 'keep-alive',
-			pragma: 'no-cache',
-			expires: '0',
-			'content-security-policy': 'default-src \'self\'',
-			'x-content-security-policy': 'default-src \'self\'',
-			'x-webkit-csp': 'default-src \'self\'',
-			'access-control-allow-methods': 'GET',
-			'access-control-allow-origin': '*',
-			'access-control-expose-headers': 'Content-Location, Location',
-			'content-type': 'application/fhir+json; charset=UTF-8',
-			'vary': 'Accept-Encoding',
-			'content-encoding': 'gzip',
-			'content-length': '790',
-			'date': 'Thu, 04 Jul 2019 11:59:41 GMT'
+			"access-control-allow-methods": "GET",
+			"access-control-allow-origin": "*",
+			"access-control-expose-headers": "Content-Location, Location",
+			"cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+			"connection": "keep-alive",
+			"content-encoding": "gzip",
+			"content-length": "790",
+			"content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+			"content-type": "application/fhir+json; charset=UTF-8",
+			"date": "Thu, 04 Jul 2019 11:59:41 GMT",
+			"expires": "0",
+			"pragma": "no-cache",
+			"strict-transport-security": "max-age=15552000; includeSubDomains",
+			"surrogate-control": "no-store",
+			"vary": "Accept-Encoding",
+			"x-content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+			"x-content-type-options": "nosniff",
+			"x-dns-prefetch-control": "off",
+			"x-download-options": "noopen",
+			"x-frame-options": "SAMEORIGIN",
+			"x-webkit-csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+			"x-xss-protection": "1; mode=block"
 		};
 
 		const response = await request(path)
