@@ -1,4 +1,3 @@
-/* eslint-disable */
 
 const fs = require('fs');
 const request = require('supertest');
@@ -13,7 +12,6 @@ const path = `http://127.0.0.1:${config.port}/test`;
 
 describe('GET response headers', () => {
 	beforeAll(async () => {
-
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		const express = require('express');
 		mirthServer = express();
@@ -40,13 +38,12 @@ describe('GET response headers', () => {
 			console.log('listening at 8206');
 		});
 
-
 		// Stand up server
-		server = new Server(config);
-		server.configureMiddleware();
-		server.configureHelmet();
-		server.configureRoute(config.listener_url, true);
-		server.listen(config.port);
+		server = new Server(config)
+			.configureHelmet()
+			.configureMiddleware()
+			.configureRoute(config.listener_url, true)
+			.listen(config.port);
 	});
 
 	afterAll(() => {
@@ -56,28 +53,28 @@ describe('GET response headers', () => {
 
 	test('Expected response headers present', async () => {
 		const expectedHeaders = {
-			"access-control-allow-methods": "GET",
-			"access-control-allow-origin": "*",
-			"access-control-expose-headers": "Content-Location, Location",
-			"cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-			"connection": "keep-alive",
-			"content-encoding": "gzip",
-			"content-length": "790",
-			"content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
-			"content-type": "application/fhir+json; charset=UTF-8",
-			"date": "Thu, 04 Jul 2019 11:59:41 GMT",
-			"expires": "0",
-			"pragma": "no-cache",
-			"strict-transport-security": "max-age=15552000; includeSubDomains",
-			"surrogate-control": "no-store",
-			"vary": "Accept-Encoding",
-			"x-content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
-			"x-content-type-options": "nosniff",
-			"x-dns-prefetch-control": "off",
-			"x-download-options": "noopen",
-			"x-frame-options": "SAMEORIGIN",
-			"x-webkit-csp": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
-			"x-xss-protection": "1; mode=block"
+			'access-control-allow-methods': 'GET',
+			'access-control-allow-origin': '*',
+			'access-control-expose-headers': 'Content-Location, Location',
+			'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+			connection: 'keep-alive',
+			'content-encoding': 'gzip',
+			'content-length': '790',
+			'content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'content-type': 'application/fhir+json; charset=UTF-8',
+			date: 'Thu, 04 Jul 2019 11:59:41 GMT',
+			expires: '0',
+			pragma: 'no-cache',
+			'strict-transport-security': 'max-age=15552000; includeSubDomains',
+			'surrogate-control': 'no-store',
+			vary: 'Accept-Encoding',
+			'x-content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'x-content-type-options': 'nosniff',
+			'x-dns-prefetch-control': 'off',
+			'x-download-options': 'noopen',
+			'x-frame-options': 'SAMEORIGIN',
+			'x-webkit-csp': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'x-xss-protection': '1; mode=block'
 		};
 
 		const response = await request(path)
@@ -107,7 +104,7 @@ describe('GET response headers', () => {
 			.set('x-api-key', 'Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');;
+			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
@@ -122,5 +119,5 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(401);
-	})
+	});
 });
