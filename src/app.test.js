@@ -107,9 +107,20 @@ describe('GET response headers', () => {
 			.set('x-api-key', 'Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-			//console.log(response);
+			.set('cache-control', 'no-cache');;
 		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
+
+	test('Access not granted', async () => {
+		const response = await request(path)
+			.get('')
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('x-api-key', 'Pinochio')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache');
+		expect(response.statusCode).toBe(401);
+	})
 });
