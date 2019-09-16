@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const request = require('supertest');
-const Server = require('./Server');
+const Server = require('./server/server');
 
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
