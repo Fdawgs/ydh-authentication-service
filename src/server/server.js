@@ -1,4 +1,5 @@
 
+const bearerToken = require('express-bearer-token');
 const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
@@ -7,7 +8,7 @@ const https = require('https');
 const http = require('http');
 const request = require('request');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const apikey = require('./middleware/apikey');
+const apiKeyCheck = require('./middleware/apikeycheck');
 
 class Server {
 	/**
@@ -30,9 +31,12 @@ class Server {
 	configureMiddleware() {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
-		// Check for matching API key
+		// Check for matching bearer token
+
+		this.app.use(bearerToken());
+
 		this.app.use((req, res, next) => { req.apikeys = this.config.api_keys; next(); });
-		this.app.use(apikey);
+		this.app.use(apiKeyCheck);
 		// Error handling
 		this.app.use(error());
 		// return self for chaining
