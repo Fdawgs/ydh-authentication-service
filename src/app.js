@@ -5,8 +5,8 @@ const Server = require('./server/server');
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
 
-const server = new Server(config);
-server.configureMiddleware();
-server.configureHelmet();
-server.configureRoute(config.listener_url, true);
-server.listen(config.port);
+new Server(config)
+	.configureHelmet()
+	.configureMiddleware()
+	.configureRoute(config.listener_url, true)
+	.listen(config.port);
