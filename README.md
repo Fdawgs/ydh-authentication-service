@@ -28,18 +28,24 @@ The options for this service are set in src/config.json, with the default values
 
 ```jsonc
 {
-	"name" : "ydh-sider-authentication-service",
-	"port" : "443",
-	"listener_url" : "http://localhost:444", // url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
-	"USE_HTTPS": true, // If USE_HTTPS set to true, server will use the ssl key and cert in the object to provide HTTPS.
-	"ssl" : {
-		"key" : "./ssl_certificate/ydhclientcert.key",
-		"cert" : "./ssl_certificate/ydhclientcert.cer"
+	"name": "ydh-sider-authentication-service",
+	"port": "8205",
+	"listener_url": "http://localhost:8206",
+	"USE_HTTPS": true,
+	"ssl": {
+		"key": "./ssl_certificate/ydhclientcert.key",
+		"cert": "./ssl_certificate/ydhclientcert.cer"
 	},
-	"apikey": {
-		"header": "x-api-key",
-		"value": "Jimmini"
-	}
+	"api_keys": [
+		{
+			"service": "Maternity",
+			"value": "Jimmini"
+		},
+		{
+			"service": "Obstetrics",
+			"value": "Cricket"
+		}
+	]
 }
 ```
 
