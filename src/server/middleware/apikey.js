@@ -8,12 +8,16 @@
  */
 function apiKey(req, res, next) {
 	if (typeof req.apikeys !== 'undefined') {
+		const keys = [];
 		req.apikeys.forEach((element) => {
-			if (req.headers['x-api-key'] === element.value) {
-				next();
-			}
+			keys.push(element.value);
 		});
-		next({ status: 401 });
+
+		if (keys.includes(req.headers['x-api-key'])) {
+			next();
+		} else {
+			next({ status: 401 });
+		}
 	}
 }
 
