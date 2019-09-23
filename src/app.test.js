@@ -1,11 +1,15 @@
 
+const express = require('express');
 const fs = require('fs');
+const http = require('http');
 const request = require('supertest');
 const Server = require('./server/server');
 
+// Fetch config
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
 config.USE_HTTPS = false; // Only testing for headers at present
+
 let server;
 let mirthServer;
 const path = `http://127.0.0.1:${config.port}/test`;
@@ -13,9 +17,8 @@ const path = `http://127.0.0.1:${config.port}/test`;
 describe('GET response headers', () => {
 	beforeAll(async () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
-		const express = require('express');
 		mirthServer = express();
-		const http = require('http');
+
 		mirthServer.get('/test', (req, res) => {
 			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
 			res.setHeader('access-control-allow-methods', 'GET, POST, PUT, DELETE, OPTIONS');
