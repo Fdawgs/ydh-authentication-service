@@ -1,11 +1,15 @@
 
+const express = require('express');
 const fs = require('fs');
+const http = require('http');
 const request = require('supertest');
 const Server = require('./server/server');
 
+// Fetch config
 const rawData = fs.readFileSync('./src/config.json');
 const config = JSON.parse(rawData);
 config.USE_HTTPS = false; // Only testing for headers at present
+
 let server;
 let mirthServer;
 const path = `http://127.0.0.1:${config.port}/test`;
@@ -13,9 +17,8 @@ const path = `http://127.0.0.1:${config.port}/test`;
 describe('GET response headers', () => {
 	beforeAll(async () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
-		const express = require('express');
 		mirthServer = express();
-		const http = require('http');
+
 		mirthServer.get('/test', (req, res) => {
 			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
 			res.setHeader('access-control-allow-methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -33,22 +36,28 @@ describe('GET response headers', () => {
 			res.removeHeader('connection');
 			return res.status(200).json();
 		});
-		mirthServer = await http.createServer(mirthServer);
+		mirthServer = http.createServer(mirthServer);
 		mirthServer.listen(8206, () => {
 			console.log('listening at 8206');
 		});
 
 		// Stand up server
-		server = new Server(config)
+		server = await new Server(config)
 			.configureHelmet()
 			.configureMiddleware()
 			.configureRoute(config.listener_url, true)
 			.listen(config.port);
 	});
 
-	afterAll(() => {
-		server.close();
-		mirthServer.close();
+	afterAll(async () => {
+		try {
+			await server.shutdown();
+			await mirthServer.close();
+			setImmediate(() => { mirthServer.emit('close'); });
+		} catch (e) {
+			console.log(e);
+			throw e;
+		}
 	});
 
 	test('Expected response headers present', async () => {
@@ -106,7 +115,8 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
-		expect(Object.keys(response.res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
+		expect(Object.keys(response.res.headers))
+			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
 
 	test('Access not granted with incorrect bearer token', async () => {
