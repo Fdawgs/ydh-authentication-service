@@ -122,8 +122,11 @@ class Server {
 	 * @author Frazer Smith
 	 * @summary Shut down server (non-gracefully).
 	 */
-	close() {
+	shutdown() {
 		this.app.close();
+
+		// return self for chaining
+		return this;
 	}
 }
 
