@@ -31,12 +31,12 @@ class Server {
 	configureMiddleware() {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
+
 		// Check for matching bearer token
-
 		this.app.use(bearerToken());
-
 		this.app.use((req, res, next) => { req.apikeys = this.config.api_keys; next(); });
 		this.app.use(apiKeyCheck);
+
 		// Error handling
 		this.app.use(error());
 		// return self for chaining
@@ -46,7 +46,6 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @summary Sets Helmet options for server.
-	 * @todo Set up content security policy directives.
 	 */
 	configureHelmet() {
 		// Use Helmet to set response headers
@@ -75,7 +74,7 @@ class Server {
 		this.app.get('*', (req, res) => {
 			request.get(listenerUrl + req.originalUrl).on('response', (response) => {
 				if (hide) {
-				// Remove or amend inaccurate headers
+					// Remove or amend inaccurate headers
 					response.headers['access-control-allow-methods'] = 'GET';
 					delete response.headers.etag;
 					delete response.headers['last-modified'];
@@ -87,6 +86,7 @@ class Server {
 			}).pipe(res);
 		});
 
+		// return self for chaining
 		return this;
 	}
 
@@ -113,14 +113,20 @@ class Server {
 		// Start the app
 		this.app.listen(port, callback);
 		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
+
+		// return self for chaining
+		return this;
 	}
 
 	/**
 	 * @author Frazer Smith
 	 * @summary Shut down server (non-gracefully).
 	 */
-	close() {
+	shutdown() {
 		this.app.close();
+
+		// return self for chaining
+		return this;
 	}
 }
 
