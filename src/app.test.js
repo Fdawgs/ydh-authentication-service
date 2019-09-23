@@ -36,22 +36,28 @@ describe('GET response headers', () => {
 			res.removeHeader('connection');
 			return res.status(200).json();
 		});
-		mirthServer = await http.createServer(mirthServer);
+		mirthServer = http.createServer(mirthServer);
 		mirthServer.listen(8206, () => {
 			console.log('listening at 8206');
 		});
 
 		// Stand up server
-		server = new Server(config)
+		server = await new Server(config)
 			.configureHelmet()
 			.configureMiddleware()
 			.configureRoute(config.listener_url, true)
 			.listen(config.port);
 	});
 
-	afterAll(() => {
-		server.close();
-		mirthServer.close();
+	afterAll(async () => {
+		try {
+			await server.shutdown();
+			await mirthServer.close();
+			setImmediate(() => { mirthServer.emit('close'); });
+		} catch (e) {
+			console.log(e);
+			throw e;
+		}
 	});
 
 	test('Expected response headers present', async () => {
