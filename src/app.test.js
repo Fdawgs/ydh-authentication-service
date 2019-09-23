@@ -109,7 +109,8 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
-		expect(Object.keys(response.res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
+		expect(Object.keys(response.res.headers))
+			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
 
 	test('Access not granted with incorrect bearer token', async () => {
