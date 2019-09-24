@@ -23,7 +23,7 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 5. Run `npm install`
 6. Run `npm run nodemon`
 
-The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8204. You should see the following output:
+The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8205. You should see the following output:
 
 ```
 ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
