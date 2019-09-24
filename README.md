@@ -7,7 +7,7 @@ Yeovil District Hospital (YDH) - SIDeR Authentication Service
 
 Mirth Connect does not provide SSL/TLS support out of the box which is a requirement of the SIDeR programme to secure patient data. As such this Node.js application using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling bearer authorization API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
 
-To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this service.
+To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
 
 ## Prerequisites
 - [Node.js](https://nodejs.org/en/)
