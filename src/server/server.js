@@ -4,11 +4,11 @@ const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const helmet = require('helmet');
-const https = require('https');
 const http = require('http');
+const https = require('https');
 const request = require('request');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const apiKeyCheck = require('./middleware/auth-header.middleware');
+const authHeader = require('./middleware/auth-header.middleware');
 
 class Server {
 	/**
@@ -34,7 +34,7 @@ class Server {
 
 		// Retrieve and then check for matching bearer token
 		this.app.use(bearerToken());
-		this.app.use(apiKeyCheck(this.config.api_keys));
+		this.app.use(authHeader(this.config.api_keys));
 
 		// Error handling
 		this.app.use(error());
