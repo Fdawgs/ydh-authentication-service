@@ -8,7 +8,7 @@ const https = require('https');
 const http = require('http');
 const request = require('request');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const apiKeyCheck = require('./middleware/apikeycheck');
+const apiKeyCheck = require('./middleware/authentication.middleware');
 
 class Server {
 	/**
