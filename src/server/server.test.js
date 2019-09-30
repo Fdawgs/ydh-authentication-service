@@ -1,14 +1,10 @@
-
 const express = require('express');
-const fs = require('fs');
 const http = require('http');
 const request = require('supertest');
+const config = require('../config').serverConfig;
 const Server = require('./server');
 
-// Fetch config
-const rawData = fs.readFileSync('./src/config.json');
-const config = JSON.parse(rawData);
-config.USE_HTTPS = false; // Only testing for headers at present
+config.https = false; // Only testing for headers at present
 
 let server;
 let mirthServer;
