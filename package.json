@@ -19,9 +19,10 @@
     "uninstall-windows-service": "winser -r -x -s -n \"SIDeR Authentication Service\""
   },
   "jest": {
-    "verbose": true,
+    "clearMocks": true,
     "collectCoverage": true,
-    "clearMocks": true
+    "testEnvironment" : "node",
+    "verbose": true
   },
   "author": "Frazer Smith",
   "license": "MIT",
