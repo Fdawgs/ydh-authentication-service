@@ -9,7 +9,7 @@ const serverConfig = {
 	}
 };
 
-const bearerConfig = {
+const authConfig = {
 	api_keys: [
 		{
 			service: 'Maternity',
@@ -45,7 +45,7 @@ const helmetConfig = {
 };
 
 module.exports = {
-	bearerConfig,
+	authConfig,
 	helmetConfig,
 	serverConfig
 };
