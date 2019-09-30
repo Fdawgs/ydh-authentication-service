@@ -57,7 +57,7 @@ describe('GET response headers', () => {
 		}
 	});
 
-	test('Expected response headers present', async () => {
+	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
 			'access-control-allow-methods': 'GET',
 			'access-control-allow-origin': '*',
@@ -95,7 +95,7 @@ describe('GET response headers', () => {
 		expect(response.res.headers).toEqual(expect.objectContaining(expectedHeaders));
 	}, 30000);
 
-	test('Removed response headers not present', async () => {
+	test('Should have unexpected response headers removed', async () => {
 		const unexpectedHeaders = [
 			'etag',
 			'last-modified',
