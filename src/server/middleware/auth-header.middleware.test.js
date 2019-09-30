@@ -1,0 +1,29 @@
+const authHeaderMiddleware = require('./auth-header.middleware');
+const bearerConfig = require('../../config').bearerConfig;
+
+describe('Authorization Header middleware', () => {
+	test('Should return a middleware function', () => {
+		const middleware = authHeaderMiddleware();
+		expect(typeof middleware).toBe('function');
+	});
+
+	test('Should allow access if bearer key in array', () => {
+		const middleware = authHeaderMiddleware(bearerConfig.api_keys);
+		const req = { token: 'Jimini' };
+		const res = {};
+		const next = jest.fn();
+
+		middleware(req, res, next);
+		expect(next).toHaveBeenCalledTimes(1);
+	});
+
+	test('Should reject access if bearer key not in array', () => {
+		const middleware = authHeaderMiddleware(bearerConfig.api_keys);
+		const req = { token: 'Pinocchio' };
+		const res = {};
+		const next = jest.fn();
+
+		middleware(req, res, next);
+		expect(next).toHaveBeenCalledTimes(1);
+	});
+});

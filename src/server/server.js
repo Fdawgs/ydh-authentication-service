@@ -28,13 +28,14 @@ class Server {
 	 * @author Frazer Smith
 	 * @summary Sets middleware options for server.
 	 */
-	configureMiddleware() {
+	configureMiddleware(config) {
+		this.middleware_config = config;
 		// Add compression
 		this.app.use(compression({ level: 9 }));
 
 		// Retrieve and then check for matching bearer token
 		this.app.use(bearerToken());
-		this.app.use(authHeader(this.config.api_keys));
+		this.app.use(authHeader(this.middleware_config.api_keys));
 
 		// Error handling
 		this.app.use(error());
@@ -98,7 +99,7 @@ class Server {
 		const server = this.config;
 		let protocol;
 		// Update the express app to be an instance of createServer
-		if (server.USE_HTTPS === true) {
+		if (server.https === true) {
 			this.app = https.createServer({
 				cert: fs.readFileSync(server.ssl.cert),
 				key: fs.readFileSync(server.ssl.key)
