@@ -115,27 +115,4 @@ describe('GET response headers', () => {
 		expect(Object.keys(response.res.headers))
 			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
-
-	test('Access not granted with incorrect bearer token', async () => {
-		const response = await request(path)
-			.get('')
-			.set('Accept', '*/*')
-			.set('Content-Type', 'application/fhir+json')
-			.set('Authorization', 'Bearer Pinochio')
-			.set('accept-encoding', 'gzip, deflate')
-			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-		expect(response.statusCode).toBe(401);
-	}, 10000);
-
-	test('Access not granted with missing bearer token', async () => {
-		const response = await request(path)
-			.get('')
-			.set('Accept', '*/*')
-			.set('Content-Type', 'application/fhir+json')
-			.set('accept-encoding', 'gzip, deflate')
-			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-		expect(response.statusCode).toBe(401);
-	}, 10000);
 });

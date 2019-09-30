@@ -17,7 +17,7 @@ describe('Authorization Header middleware', () => {
 		expect(next).toHaveBeenCalledTimes(1);
 	});
 
-	test('Should reject access if bearer key not in array', () => {
+	test('Should deny access if bearer key not in array', () => {
 		const middleware = authHeaderMiddleware(bearerConfig.api_keys);
 		const req = { token: 'Pinocchio' };
 		const res = {};
@@ -25,5 +25,16 @@ describe('Authorization Header middleware', () => {
 
 		middleware(req, res, next);
 		expect(next).toHaveBeenCalledTimes(1);
+	});
+
+	test('Should deny access if bearer key missing', () => {
+		const middleware = authHeaderMiddleware(bearerConfig.api_keys);
+		const req = {};
+		const res = {};
+		const next = jest.fn();
+
+		middleware(req, res, next);
+		expect(next).toHaveBeenCalledTimes(1);
+		expect(next.mock.calls[0][0].status).toBe(401);
 	});
 });

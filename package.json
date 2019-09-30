@@ -12,7 +12,7 @@
   "scripts": {
     "start": "node src/app.js",
     "nodemon": "nodemon src/app.js",
-    "jest": "jest src --detectOpenHandles --forceExit",
+    "jest": "jest src --detectOpenHandles",
     "lint": "eslint \"src/*.js\"",
     "test": "npm run lint; npm run jest;",
     "install-windows-service": "winser -i -s -c -a -n \"SIDeR Authentication Service\"",
