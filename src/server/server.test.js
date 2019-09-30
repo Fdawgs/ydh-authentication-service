@@ -1,14 +1,12 @@
-
 const express = require('express');
-const fs = require('fs');
 const http = require('http');
 const request = require('supertest');
-const Server = require('./server/server');
+const config = require('../config').serverConfig;
+const authConfig = require('../config').bearerConfig;
+const helmetConfig = require('../config').helmetConfig;
+const Server = require('./server');
 
-// Fetch config
-const rawData = fs.readFileSync('./src/config.json');
-const config = JSON.parse(rawData);
-config.USE_HTTPS = false; // Only testing for headers at present
+config.https = false; // Only testing for headers at present
 
 let server;
 let mirthServer;
@@ -43,7 +41,8 @@ describe('GET response headers', () => {
 
 		// Stand up server
 		server = await new Server(config)
-			.configureHelmet()
+			.configureHelmet(helmetConfig)
+			.configureAuthorization(authConfig)
 			.configureMiddleware()
 			.configureRoute(config.listener_url, true)
 			.listen(config.port);
@@ -60,7 +59,7 @@ describe('GET response headers', () => {
 		}
 	});
 
-	test('Expected response headers present', async () => {
+	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
 			'access-control-allow-methods': 'GET',
 			'access-control-allow-origin': '*',
@@ -98,7 +97,7 @@ describe('GET response headers', () => {
 		expect(response.res.headers).toEqual(expect.objectContaining(expectedHeaders));
 	}, 30000);
 
-	test('Removed response headers not present', async () => {
+	test('Should have unexpected response headers removed', async () => {
 		const unexpectedHeaders = [
 			'etag',
 			'last-modified',
@@ -118,27 +117,4 @@ describe('GET response headers', () => {
 		expect(Object.keys(response.res.headers))
 			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	}, 30000);
-
-	test('Access not granted with incorrect bearer token', async () => {
-		const response = await request(path)
-			.get('')
-			.set('Accept', '*/*')
-			.set('Content-Type', 'application/fhir+json')
-			.set('Authorization', 'Bearer Pinochio')
-			.set('accept-encoding', 'gzip, deflate')
-			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-		expect(response.statusCode).toBe(401);
-	}, 10000);
-
-	test('Access not granted with missing bearer token', async () => {
-		const response = await request(path)
-			.get('')
-			.set('Accept', '*/*')
-			.set('Content-Type', 'application/fhir+json')
-			.set('accept-encoding', 'gzip, deflate')
-			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-		expect(response.statusCode).toBe(401);
-	}, 10000);
 });

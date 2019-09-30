@@ -1,12 +1,11 @@
-const fs = require('fs');
+const config = require('./config').serverConfig;
+const authConfig = require('./config').bearerConfig;
+const helmetConfig = require('./config').helmetConfig;
 const Server = require('./server/server');
 
-// Retrieve config values
-const rawData = fs.readFileSync('./src/config.json');
-const config = JSON.parse(rawData);
-
 new Server(config)
-	.configureHelmet()
+	.configureHelmet(helmetConfig)
+	.configureAuthorization(authConfig)
 	.configureMiddleware()
 	.configureRoute(config.listener_url, true)
 	.listen(config.port);

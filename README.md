@@ -31,7 +31,7 @@ The options for this service are set in src/config.json, with the default values
 	"name" : "ydh-sider-authentication-service",
 	"port" : "443",
 	"listener_url" : "http://localhost:444", // url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
-	"USE_HTTPS": true, // If USE_HTTPS set to true, server will use the ssl key and cert in the object to provide HTTPS.
+	"https": true, // If https set to true, server will use the ssl key and cert in the object to provide HTTPS.
 	"ssl" : {
 		"key" : "./ssl_certificate/ydhclientcert.key",
 		"cert" : "./ssl_certificate/ydhclientcert.cer"

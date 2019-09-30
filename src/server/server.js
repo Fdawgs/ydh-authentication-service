@@ -4,11 +4,11 @@ const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
 const helmet = require('helmet');
-const https = require('https');
 const http = require('http');
+const https = require('https');
 const request = require('request');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const apiKeyCheck = require('./middleware/apikeycheck');
+const authHeader = require('./middleware/auth-header.middleware');
 
 class Server {
 	/**
@@ -26,19 +26,28 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
+	 * @summary Sets up bearer and auth middleware.
+	 */
+	configureAuthorization(authConfig) {
+		// Retrieve and then check for matching bearer token
+		this.app.use(bearerToken());
+		this.app.use(authHeader(authConfig.api_keys));
+
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @author Frazer Smith
 	 * @summary Sets middleware options for server.
 	 */
 	configureMiddleware() {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
 
-		// Check for matching bearer token
-		this.app.use(bearerToken());
-		this.app.use((req, res, next) => { req.apikeys = this.config.api_keys; next(); });
-		this.app.use(apiKeyCheck);
-
 		// Error handling
 		this.app.use(error());
+
 		// return self for chaining
 		return this;
 	}
@@ -47,18 +56,9 @@ class Server {
 	 * @author Frazer Smith
 	 * @summary Sets Helmet options for server.
 	 */
-	configureHelmet() {
+	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
-		this.app.use(helmet());
-		this.app.use(helmet.noCache());
-		this.app.use(helmet.hidePoweredBy());
-		this.app.use(helmet.contentSecurityPolicy({
-			directives: {
-				defaultSrc: ['\'self\''],
-				scriptSrc: ['\'self\'', '\'unsafe-inline\''],
-				styleSrc: ['\'self\'', '\'unsafe-inline\'']
-			}
-		}));
+		this.app.use(helmet(helmetConfig));
 
 		// return self for chaining
 		return this;
@@ -99,7 +99,7 @@ class Server {
 		const server = this.config;
 		let protocol;
 		// Update the express app to be an instance of createServer
-		if (server.USE_HTTPS === true) {
+		if (server.https === true) {
 			this.app = https.createServer({
 				cert: fs.readFileSync(server.ssl.cert),
 				key: fs.readFileSync(server.ssl.key)
