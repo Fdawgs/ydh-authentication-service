@@ -2,7 +2,8 @@ const express = require('express');
 const http = require('http');
 const request = require('supertest');
 const config = require('../config').serverConfig;
-const middlewareConfig = require('../config').bearerConfig;
+const authConfig = require('../config').bearerConfig;
+const helmetConfig = require('../config').helmetConfig;
 const Server = require('./server');
 
 config.https = false; // Only testing for headers at present
@@ -40,8 +41,9 @@ describe('GET response headers', () => {
 
 		// Stand up server
 		server = await new Server(config)
-			.configureHelmet()
-			.configureMiddleware(middlewareConfig)
+			.configureHelmet(helmetConfig)
+			.configureAuthorization(authConfig)
+			.configureMiddleware()
 			.configureRoute(config.listener_url, true)
 			.listen(config.port);
 	});

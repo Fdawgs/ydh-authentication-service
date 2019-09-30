@@ -26,19 +26,28 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
+	 * @summary Sets up bearer and auth middleware.
+	 */
+	configureAuthorization(authConfig) {
+		// Retrieve and then check for matching bearer token
+		this.app.use(bearerToken());
+		this.app.use(authHeader(authConfig.api_keys));
+
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @author Frazer Smith
 	 * @summary Sets middleware options for server.
 	 */
-	configureMiddleware(config) {
-		this.middleware_config = config;
+	configureMiddleware() {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
 
-		// Retrieve and then check for matching bearer token
-		this.app.use(bearerToken());
-		this.app.use(authHeader(this.middleware_config.api_keys));
-
 		// Error handling
 		this.app.use(error());
+
 		// return self for chaining
 		return this;
 	}
@@ -47,18 +56,9 @@ class Server {
 	 * @author Frazer Smith
 	 * @summary Sets Helmet options for server.
 	 */
-	configureHelmet() {
+	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
-		this.app.use(helmet());
-		this.app.use(helmet.noCache());
-		this.app.use(helmet.hidePoweredBy());
-		this.app.use(helmet.contentSecurityPolicy({
-			directives: {
-				defaultSrc: ['\'self\''],
-				scriptSrc: ['\'self\'', '\'unsafe-inline\''],
-				styleSrc: ['\'self\'', '\'unsafe-inline\'']
-			}
-		}));
+		this.app.use(helmet(helmetConfig));
 
 		// return self for chaining
 		return this;

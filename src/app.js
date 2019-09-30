@@ -1,9 +1,11 @@
 const config = require('./config').serverConfig;
-const middlewareConfig = require('./config').bearerConfig;
+const authConfig = require('./config').bearerConfig;
+const helmetConfig = require('./config').helmetConfig;
 const Server = require('./server/server');
 
 new Server(config)
-	.configureHelmet()
-	.configureMiddleware(middlewareConfig)
+	.configureHelmet(helmetConfig)
+	.configureAuthorization(authConfig)
+	.configureMiddleware()
 	.configureRoute(config.listener_url, true)
 	.listen(config.port);
