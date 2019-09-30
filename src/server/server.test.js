@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const http = require('http');
 const request = require('supertest');
-const Server = require('./server/server');
+const Server = require('./server');
 
 // Fetch config
 const rawData = fs.readFileSync('./src/config.json');
