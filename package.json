@@ -44,7 +44,8 @@
     "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
     "helmet": "^3.21.1",
     "request": "^2.88.0",
-    "winser": "^1.0.3"
+    "winser": "^1.0.3",
+    "winston": "^3.2.1"
   },
   "repository": {
     "type": "git",
