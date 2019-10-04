@@ -18,7 +18,7 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 ## Test Setup
 1. Clone or download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
-3. Set up the config of the application in `src/config.json`
+3. Set up the config of the application in `src/config.js`
 4. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
 5. Run `npm install`
 6. Run `npm run nodemon`
@@ -40,36 +40,7 @@ Host: 127.0.0.1:8205
 Content-Type: application/fhir+json
 Authorization: Bearer Jimmini
 ```
-A FHIR resource or bundle of resources should be returned.
-
-## Configuration options
-
-The options for this app are set in src/config.json, with the default values:
-
-```jsonc
-{
-	"name": "ydh-sider-authentication-service",
-	"port": "8205",
-	"listener_url": "http://localhost:8206",
-	"USE_HTTPS": true, // If USE_HTTPS set to true, server will use the ssl key and cert in the object to provide HTTPS.
-	"ssl": {
-		"key": "./ssl_certificate/ydhclientcert.key",
-		"cert": "./ssl_certificate/ydhclientcert.cer"
-	},
-	"api_keys": [ // Array of API bearer key values and the service they relate to
-		{
-			"service": "Maternity",
-			"value": "Jimmini"
-		},
-		{
-			"service": "Obstetrics",
-			"value": "Cricket"
-		}
-	]
-}
-```
-
-Alter these as needed prior to running the application.
+A FHIR resource should be returned.
 
 
 ## Setting up as a Windows Service
@@ -90,7 +61,23 @@ as a Windows Service.
 2. Run `npm run uninstall-windows-service` as administrator
 3. The service will be uninstalled silently
 
+## Setting up as a Windows Service
+The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
+As such this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
+as a Windows Service.
 
+### To install as a service:
+1. Navigate to the repo
+2. Run `npm run install-windows-service` as administrator
+3. A prompt will appear asking for confirmation of installation type `y` and hit enter
+4. The service should now be visible in Services
+
+**Note**: When you add or remove API keys, or change any settings in the config file, you will need to restart the service for the changes to take effect.
+
+### To uninstall the service:
+1. Navigate to the repo
+2. Run `npm run uninstall-windows-service` as administrator
+3. The service will be uninstalled silently
 
 ## License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.

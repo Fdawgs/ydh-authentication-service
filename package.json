@@ -1,6 +1,6 @@
 {
   "name": "ydh-sider-authentication-service",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "NodeJS Express Service to provide authentication before routing to REST API.",
   "keywords": [
     "YDH",
@@ -12,39 +12,43 @@
   "scripts": {
     "start": "node src/app.js",
     "nodemon": "nodemon src/app.js",
-    "jest": "jest src --detectOpenHandles --forceExit",
+    "jest": "jest src --detectOpenHandles",
     "lint": "eslint \"src/*.js\"",
     "test": "npm run lint; npm run jest;",
     "install-windows-service": "winser -i -s -c -a -n \"SIDeR Authentication Service\"",
     "uninstall-windows-service": "winser -r -x -s -n \"SIDeR Authentication Service\""
   },
   "jest": {
-    "verbose": true,
+    "clearMocks": true,
     "collectCoverage": true,
-    "clearMocks": true
+    "testEnvironment": "node",
+    "verbose": true
   },
   "author": "Frazer Smith",
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^3.0.6",
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-nhsuk": "^0.20.0",
+    "eslint-config-nhsuk": "^0.21.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-json": "^1.4.0",
     "jest": "^24.9.0",
-    "nodemon": "^1.19.2",
+    "nodemon": "^1.19.3",
     "supertest": "^4.0.2"
   },
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "express-bearer-token": "^2.4.0",
+    "express-winston": "^4.0.0",
     "fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
     "helmet": "^3.21.1",
     "request": "^2.88.0",
-    "winser": "^1.0.3"
+    "winser": "^1.0.3",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
   },
   "repository": {
     "type": "git",

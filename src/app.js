@@ -1,12 +1,12 @@
-const fs = require('fs');
+const {
+	authConfig, helmetConfig, serverConfig, winstonRotateConfig
+} = require('./config');
 const Server = require('./server/server');
 
-// Retrieve config values
-const rawData = fs.readFileSync('./src/config.json');
-const config = JSON.parse(rawData);
-
-new Server(config)
-	.configureHelmet()
+new Server(serverConfig)
+	.configureHelmet(helmetConfig)
+	.configureWinston(winstonRotateConfig)
+	.configureAuthorization(authConfig)
 	.configureMiddleware()
-	.configureRoute(config.listener_url, true)
-	.listen(config.port);
+	.configureRoute(serverConfig.listener_url, true)
+	.listen(serverConfig.port);
