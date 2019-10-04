@@ -49,7 +49,7 @@ const winstonRotateConfig = {
 	auditFile: 'logs/logging-audit.json',
 	datePattern: 'YYYY-MM-DD-HH',
 	dirname: 'logs',
-	extension: 'json',
+	extension: '.json',
 	filename: 'auth-service-log-%DATE%',
 	maxFiles: '14d',
 	maxSize: '20m',

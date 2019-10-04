@@ -84,6 +84,7 @@ class Server {
 				winston.format.colorize(),
 				winston.format.json()
 			),
+			requestWhitelist: ['url', 'headers', 'method', 'httpVersion', 'originalUrl', 'query', 'ip', '_startTime'],
 			transports: [
 				transport
 			]
