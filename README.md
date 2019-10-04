@@ -61,7 +61,23 @@ as a Windows Service.
 2. Run `npm run uninstall-windows-service` as administrator
 3. The service will be uninstalled silently
 
+## Setting up as a Windows Service
+The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
+As such this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
+as a Windows Service.
 
+### To install as a service:
+1. Navigate to the repo
+2. Run `npm run install-windows-service` as administrator
+3. A prompt will appear asking for confirmation of installation type `y` and hit enter
+4. The service should now be visible in Services
+
+**Note**: When you add or remove API keys, or change any settings in the config file, you will need to restart the service for the changes to take effect.
+
+### To uninstall the service:
+1. Navigate to the repo
+2. Run `npm run uninstall-windows-service` as administrator
+3. The service will be uninstalled silently
 
 ## License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
