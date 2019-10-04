@@ -7,6 +7,9 @@ const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
 const request = require('request');
+const expressWinston = require('express-winston');
+const winston = require('winston');
+const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const authHeader = require('./middleware/auth-header.middleware');
 
@@ -66,7 +69,33 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets routing options for server.
+	 */
+	configureWinston() {
+		const transport = new (WinstonRotate)({
+			datePattern: 'YYYY-MM-DD-HH',
+			filename: 'application-%DATE%.log',
+			maxFiles: '14d',
+			maxSize: '20m',
+			zippedArchive: true
+		});
+
+		this.app.use(expressWinston.logger({
+			format: winston.format.combine(
+				winston.format.colorize(),
+				winston.format.json()
+			),
+			transports: [
+				transport
+			]
+		}));
+
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @author Frazer Smith
+	 * @description Sets routing options for server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
 	 */

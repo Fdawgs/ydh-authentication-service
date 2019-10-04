@@ -3,6 +3,7 @@ const Server = require('./server/server');
 
 new Server(serverConfig)
 	.configureHelmet(helmetConfig)
+	.configureWinston()
 	.configureAuthorization(authConfig)
 	.configureMiddleware()
 	.configureRoute(serverConfig.listener_url, true)
