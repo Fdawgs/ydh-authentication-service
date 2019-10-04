@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 const request = require('supertest');
-const { authConfig, helmetConfig, serverConfig } = require('../config');
+const { authConfig, helmetConfig, serverConfig, winstonRotateConfig } = require('../config');
 // const authConfig = require('../config').bearerConfig;
 // const helmetConfig = require('../config').helmetConfig;
 const Server = require('./server');
@@ -42,7 +42,7 @@ describe('GET response headers', () => {
 		// Stand up server
 		server = await new Server(serverConfig)
 			.configureHelmet(helmetConfig)
-			.configureWinston()
+			.configureWinston(winstonRotateConfig)
 			.configureAuthorization(authConfig)
 			.configureMiddleware()
 			.configureRoute(serverConfig.listener_url, true)

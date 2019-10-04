@@ -30,6 +30,7 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets up bearer and auth middleware.
+	 * @param {Object} authConfig - Authentication configuration values.
 	 */
 	configureAuthorization(authConfig) {
 		// Retrieve and then check for matching bearer token
@@ -58,6 +59,7 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets Helmet options for server.
+	 * @param {Object} helmetConfig - Helmet configuration values.
 	 */
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
@@ -69,19 +71,13 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
+	 * @description Sets Winston Daily Rotate options for server.
+	 * Useful as the Mirth logs will only show the requests coming from
+	 * localhost.
+	 * @param {Object} winstonRotateConfig - Winston Daily Rotate configuration values.
 	 */
 	configureWinston(winstonRotateConfig) {
-		const config = {
-			auditFile: 'logs/logging-audit.json',
-			datePattern: 'YYYY-MM-DD-HH',
-			dirname: 'logs',
-			filename: 'application-%DATE%.json',
-			maxFiles: '14d',
-			maxSize: '20m',
-			zippedArchive: true
-		}
-
-		const transport = new (WinstonRotate)(config);
+		const transport = new (WinstonRotate)(winstonRotateConfig);
 
 		this.app.use(expressWinston.logger({
 			format: winston.format.combine(
@@ -127,6 +123,7 @@ class Server {
 	 * @author Frazer Smith
 	 * @description Start the server.
 	 * @param {string} port - Port for server to listen on.
+	 * @param {Function} callback
 	 */
 	listen(port, callback) {
 		const server = this.config;
