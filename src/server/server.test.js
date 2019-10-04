@@ -42,6 +42,7 @@ describe('GET response headers', () => {
 		// Stand up server
 		server = await new Server(serverConfig)
 			.configureHelmet(helmetConfig)
+			.configureWinston()
 			.configureAuthorization(authConfig)
 			.configureMiddleware()
 			.configureRoute(serverConfig.listener_url, true)
