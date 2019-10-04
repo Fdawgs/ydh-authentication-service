@@ -7,6 +7,9 @@ const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
 const request = require('request');
+const expressWinston = require('express-winston');
+const winston = require('winston');
+const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const authHeader = require('./middleware/auth-header.middleware');
 
@@ -26,7 +29,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets up bearer and auth middleware.
+	 * @description Sets up bearer and auth middleware.
 	 */
 	configureAuthorization(authConfig) {
 		// Retrieve and then check for matching bearer token
@@ -39,7 +42,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets middleware options for server.
+	 * @description Sets middleware options for server.
 	 */
 	configureMiddleware() {
 		// Add compression
@@ -54,7 +57,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets Helmet options for server.
+	 * @description Sets Helmet options for server.
 	 */
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
@@ -66,7 +69,37 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets routing options for server.
+	 */
+	configureWinston(winstonRotateConfig) {
+		const config = {
+			auditFile: 'logs/logging-audit.json',
+			datePattern: 'YYYY-MM-DD-HH',
+			dirname: 'logs',
+			filename: 'application-%DATE%.json',
+			maxFiles: '14d',
+			maxSize: '20m',
+			zippedArchive: true
+		}
+
+		const transport = new (WinstonRotate)(config);
+
+		this.app.use(expressWinston.logger({
+			format: winston.format.combine(
+				winston.format.colorize(),
+				winston.format.json()
+			),
+			transports: [
+				transport
+			]
+		}));
+
+		// return self for chaining
+		return this;
+	}
+
+	/**
+	 * @author Frazer Smith
+	 * @description Sets routing options for server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
 	 */
@@ -92,7 +125,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Start the server.
+	 * @description Start the server.
 	 * @param {string} port - Port for server to listen on.
 	 */
 	listen(port, callback) {
@@ -120,7 +153,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Shut down server (non-gracefully).
+	 * @description Shut down server (non-gracefully).
 	 */
 	shutdown() {
 		this.app.close();

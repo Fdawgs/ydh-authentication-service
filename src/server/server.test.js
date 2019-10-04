@@ -1,16 +1,16 @@
 const express = require('express');
 const http = require('http');
 const request = require('supertest');
-const config = require('../config').serverConfig;
-const authConfig = require('../config').bearerConfig;
-const helmetConfig = require('../config').helmetConfig;
+const { authConfig, helmetConfig, serverConfig } = require('../config');
+// const authConfig = require('../config').bearerConfig;
+// const helmetConfig = require('../config').helmetConfig;
 const Server = require('./server');
 
-config.https = false; // Only testing for headers at present
+serverConfig.https = false; // Only testing for headers at present
 
 let server;
 let mirthServer;
-const path = `http://127.0.0.1:${config.port}/test`;
+const path = `http://127.0.0.1:${serverConfig.port}/test`;
 
 describe('GET response headers', () => {
 	beforeAll(async () => {
@@ -40,12 +40,12 @@ describe('GET response headers', () => {
 		});
 
 		// Stand up server
-		server = await new Server(config)
+		server = await new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureAuthorization(authConfig)
 			.configureMiddleware()
-			.configureRoute(config.listener_url, true)
-			.listen(config.port);
+			.configureRoute(serverConfig.listener_url, true)
+			.listen(serverConfig.port);
 	});
 
 	afterAll(async () => {

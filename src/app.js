@@ -1,11 +1,10 @@
-const config = require('./config').serverConfig;
-const authConfig = require('./config').bearerConfig;
-const helmetConfig = require('./config').helmetConfig;
+const { authConfig, helmetConfig, serverConfig } = require('./config');
 const Server = require('./server/server');
 
-new Server(config)
+new Server(serverConfig)
 	.configureHelmet(helmetConfig)
+	.configureWinston()
 	.configureAuthorization(authConfig)
 	.configureMiddleware()
-	.configureRoute(config.listener_url, true)
-	.listen(config.port);
+	.configureRoute(serverConfig.listener_url, true)
+	.listen(serverConfig.port);
