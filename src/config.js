@@ -1,3 +1,7 @@
+/**
+ * https: if set to true, server will use the ssl object to provide HTTPS.
+ * listener_url: url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
+ */
 const serverConfig = {
 	https: true,
 	listener_url: 'http://localhost:8206',
@@ -9,6 +13,7 @@ const serverConfig = {
 	}
 };
 
+// Array of API bearer key values and the service they relate to
 const authConfig = {
 	api_keys: [
 		{
@@ -24,7 +29,7 @@ const authConfig = {
 
 /**
  * The following headers are turned on by default:
- * - dnsPrefetchControl (Controle browser DNS prefetching). https://helmetjs.github.io/docs/dns-prefetch-control
+ * - dnsPrefetchControl (Control browser DNS prefetching). https://helmetjs.github.io/docs/dns-prefetch-control
  * - frameguard (prevent clickjacking). https://helmetjs.github.io/docs/frameguard
  * - hidePoweredBy (remove the X-Powered-By header). https://helmetjs.github.io/docs/hide-powered-by
  * - hsts (HTTP strict transport security). https://helmetjs.github.io/docs/hsts
