@@ -29,7 +29,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets up bearer and auth middleware.
+	 * @description Sets up bearer and auth middleware.
 	 */
 	configureAuthorization(authConfig) {
 		// Retrieve and then check for matching bearer token
@@ -42,7 +42,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets middleware options for server.
+	 * @description Sets middleware options for server.
 	 */
 	configureMiddleware() {
 		// Add compression
@@ -57,7 +57,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Sets Helmet options for server.
+	 * @description Sets Helmet options for server.
 	 */
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
@@ -121,7 +121,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Start the server.
+	 * @description Start the server.
 	 * @param {string} port - Port for server to listen on.
 	 */
 	listen(port, callback) {
@@ -149,7 +149,7 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @summary Shut down server (non-gracefully).
+	 * @description Shut down server (non-gracefully).
 	 */
 	shutdown() {
 		this.app.close();
