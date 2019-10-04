@@ -70,14 +70,18 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 */
-	configureWinston() {
-		const transport = new (WinstonRotate)({
+	configureWinston(winstonRotateConfig) {
+		const config = {
+			auditFile: 'logs/logging-audit.json',
 			datePattern: 'YYYY-MM-DD-HH',
-			filename: 'application-%DATE%.log',
+			dirname: 'logs',
+			filename: 'application-%DATE%.json',
 			maxFiles: '14d',
 			maxSize: '20m',
 			zippedArchive: true
-		});
+		}
+
+		const transport = new (WinstonRotate)(config);
 
 		this.app.use(expressWinston.logger({
 			format: winston.format.combine(
