@@ -28,7 +28,7 @@ The Express server should now be up and running using [nodemon](https://nodemon.
 ```
 ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
 ```
-If an error is returned due to the port already being in use, change the value of the port key in src/config.json.
+If an error is returned due to the port already being in use, change the value of the port key in src/config.js.
 
 ## Testing
 Open your request builder of choice (i.e. Postman) and create and execute a new GET request.
