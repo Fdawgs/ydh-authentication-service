@@ -9,10 +9,10 @@ Mirth Connect does not provide SSL/TLS support out of the box which is a require
 
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
 
+
 ## Prerequisites
 - [Node.js](https://nodejs.org/en/)
 - [Mirth Connect](https://github.com/nextgenhealthcare/connect)
-
 
 
 ## Test Setup
@@ -28,7 +28,8 @@ The Express server should now be up and running using [nodemon](https://nodemon.
 ```
 ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
 ```
-If an error is returned due to the port already being in use, change the value of the port key in src/config.json.
+If an error is returned due to the port already being in use, change the value of the port key in src/config.js.
+
 
 ## Testing
 Open your request builder of choice (i.e. Postman) and create and execute a new GET request.
@@ -51,7 +52,7 @@ as a Windows Service.
 ### To install as a service:
 1. Navigate to the repo
 2. Run `npm run install-windows-service` as administrator
-3. A prompt will appear asking for confirmation of installation type `y` and hit enter
+3. A prompt will appear asking for confirmation of installation type `y` and press `enter`
 4. The service should now be visible in Services
 
 **Note**: When you add or remove API keys, or change any settings in the config file, you will need to restart the service for the changes to take effect.
@@ -61,23 +62,6 @@ as a Windows Service.
 2. Run `npm run uninstall-windows-service` as administrator
 3. The service will be uninstalled silently
 
-## Setting up as a Windows Service
-The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
-As such this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
-as a Windows Service.
-
-### To install as a service:
-1. Navigate to the repo
-2. Run `npm run install-windows-service` as administrator
-3. A prompt will appear asking for confirmation of installation type `y` and hit enter
-4. The service should now be visible in Services
-
-**Note**: When you add or remove API keys, or change any settings in the config file, you will need to restart the service for the changes to take effect.
-
-### To uninstall the service:
-1. Navigate to the repo
-2. Run `npm run uninstall-windows-service` as administrator
-3. The service will be uninstalled silently
 
 ## License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.

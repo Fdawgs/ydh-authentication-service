@@ -1,9 +1,9 @@
 const express = require('express');
 const http = require('http');
 const request = require('supertest');
-const { authConfig, helmetConfig, serverConfig, winstonRotateConfig } = require('../config');
-// const authConfig = require('../config').bearerConfig;
-// const helmetConfig = require('../config').helmetConfig;
+const {
+	authConfig, helmetConfig, serverConfig, winstonRotateConfig
+} = require('../config');
 const Server = require('./server');
 
 serverConfig.https = false; // Only testing for headers at present
