@@ -37,6 +37,7 @@ class Server {
 	 * @author Frazer Smith
 	 * @description Sets up bearer and auth middleware.
 	 * @param {Object} authConfig - Authentication configuration values.
+	 * @returns {this} self
 	 */
 	configureAuthorization(authConfig) {
 		// Retrieve and then check for matching bearer token
@@ -50,6 +51,7 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets middleware options for server.
+	 * @returns {this} self
 	 */
 	configureMiddleware() {
 		// Add compression
@@ -66,6 +68,7 @@ class Server {
 	 * @author Frazer Smith
 	 * @description Sets Helmet options for server.
 	 * @param {Object} helmetConfig - Helmet configuration values.
+	 * @returns {this} self
 	 */
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
@@ -81,6 +84,7 @@ class Server {
 	 * Useful as the Mirth logs will only show the requests coming from
 	 * localhost.
 	 * @param {Object} winstonRotateConfig - Winston Daily Rotate configuration values.
+	 * @returns {this} self
 	 */
 	configureWinston(winstonRotateConfig) {
 		const transport = new (WinstonRotate)(winstonRotateConfig);
@@ -105,6 +109,7 @@ class Server {
 	 * @description Sets routing options for server.
 	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
 	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
+	 * @returns {this} self
 	 */
 	configureRoute(listenerUrl, hide) {
 		this.app.get('*', (req, res) => {
@@ -130,26 +135,25 @@ class Server {
 	 * @author Frazer Smith
 	 * @description Start the server.
 	 * @param {string} port - Port for server to listen on.
-	 * @param {Function} callback
+	 * @returns {this} self
 	 */
-	listen(port, callback) {
+	listen(port) {
 		const server = this.config;
-		let protocol;
 		// Update the express app to be an instance of createServer
 		if (server.https === true) {
 			this.app = https.createServer({
 				cert: fs.readFileSync(server.ssl.cert),
 				key: fs.readFileSync(server.ssl.key)
 			}, this.app);
-			protocol = 'https';
+			this.config.protocol = 'https';
 		} else {
-			protocol = 'http';
+			this.config.protocol = 'http';
 			this.app = http.createServer(this.app);
 		}
 
 		// Start the app
-		this.app.listen(port, callback);
-		console.log(`${server.name} listening for requests at ${protocol}://127.0.0.1:${port}`);
+		this.app.listen(port);
+		console.log(`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`);
 
 		// return self for chaining
 		return this;
