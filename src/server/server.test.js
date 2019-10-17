@@ -6,6 +6,8 @@ const {
 } = require('../config');
 const Server = require('./server');
 
+const path = `http://127.0.0.1:${serverConfig.port}`;
+
 describe('Server deployment', () => {
 	const port = '8204';
 
