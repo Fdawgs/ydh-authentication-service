@@ -1,4 +1,3 @@
-
 /**
  * @author Frazer Smith
  * @param {Array.<{value: String}>} keyArray - Array of API key objects.
