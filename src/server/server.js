@@ -1,4 +1,3 @@
-
 const bearerToken = require('express-bearer-token');
 const compression = require('compression');
 const express = require('express');
