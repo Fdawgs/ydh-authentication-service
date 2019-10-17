@@ -13,6 +13,19 @@ describe('Server deployment', () => {
 		jest.setTimeout(300000);
 	});
 
+	test('Should assign default values if none provided', async () => {
+		const server = new Server()
+			.configureHelmet(helmetConfig)
+			.configureWinston(winstonRotateConfig)
+			.configureAuthorization(authConfig)
+			.configureMiddleware()
+			.configureRoute(serverConfig.listener_url, true)
+			.listen(port);
+
+		expect(server.config.protocol).toBe('http');
+		await server.shutdown();
+	});
+
 	test('Should set protocol to https', async () => {
 		const httpsServerConfig = {
 			https: true
@@ -37,6 +50,7 @@ describe('Server deployment', () => {
 describe('GET response headers', () => {
 	let server;
 	let mirthServer;
+	const path = `http://127.0.0.1:${serverConfig.port}/test`;
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
@@ -64,11 +78,11 @@ describe('GET response headers', () => {
 		});
 		mirthServer = http.createServer(mirthServer);
 		mirthServer.listen(8206, () => {
-			console.log('listening at 8206');
+			console.log('Test Mirth listening at 8206');
 		});
 
 		// Stand up server
-		server = await new Server(serverConfig)
+		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
 			.configureAuthorization(authConfig)
