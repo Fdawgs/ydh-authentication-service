@@ -6,14 +6,56 @@ const {
 } = require('../config');
 const Server = require('./server');
 
-serverConfig.https = false; // Only testing for headers at present
+describe('Server deployment', () => {
+	const port = '8204';
 
-let server;
-let mirthServer;
-const path = `http://127.0.0.1:${serverConfig.port}/test`;
+	beforeAll(async () => {
+		jest.setTimeout(300000);
+	});
+
+	test('Should assign default values if none provided', async () => {
+		const server = new Server()
+			.configureHelmet(helmetConfig)
+			.configureWinston(winstonRotateConfig)
+			.configureAuthorization(authConfig)
+			.configureMiddleware()
+			.configureRoute(serverConfig.listener_url, true)
+			.listen(port);
+
+		expect(server.config.protocol).toBe('http');
+		await server.shutdown();
+	});
+
+	test('Should set protocol to https', async () => {
+		const httpsServerConfig = {
+			https: true
+		};
+
+		try {
+			const server = new Server(httpsServerConfig)
+				.configureHelmet(helmetConfig)
+				.configureWinston(winstonRotateConfig)
+				.configureAuthorization(authConfig)
+				.configureMiddleware()
+				.configureRoute(serverConfig.listener_url, true)
+				.listen(port);
+
+			expect(server.config.protocol).toBe('https');
+		} catch (e) {
+			// Do nothing
+		}
+	});
+});
 
 describe('GET response headers', () => {
+	let server;
+	let mirthServer;
+	const path = `http://127.0.0.1:${serverConfig.port}/test`;
+	serverConfig.https = false; // Only testing for headers
+
 	beforeAll(async () => {
+		jest.setTimeout(300000);
+
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 
@@ -36,11 +78,11 @@ describe('GET response headers', () => {
 		});
 		mirthServer = http.createServer(mirthServer);
 		mirthServer.listen(8206, () => {
-			console.log('listening at 8206');
+			console.log('Test Mirth listening at 8206');
 		});
 
 		// Stand up server
-		server = await new Server(serverConfig)
+		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
 			.configureAuthorization(authConfig)
@@ -96,7 +138,7 @@ describe('GET response headers', () => {
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
 		expect(response.res.headers).toEqual(expect.objectContaining(expectedHeaders));
-	}, 30000);
+	});
 
 	test('Should have unexpected response headers removed', async () => {
 		const unexpectedHeaders = [
@@ -117,5 +159,5 @@ describe('GET response headers', () => {
 		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers))
 			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
-	}, 30000);
+	});
 });
