@@ -158,12 +158,13 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Shut down server (non-gracefully).
+	 * @returns {Promise<this>} self
 	 */
 	shutdown() {
-		this.app.close();
-
-		// return self for chaining
-		return this;
+		return new Promise((resolve) => {
+			this.app.close();
+			resolve(this);
+		});
 	}
 }
 
