@@ -1,5 +1,6 @@
 const express = require('express');
 const http = require('http');
+const compression = require('compression');
 const request = require('supertest');
 const {
 	authConfig, helmetConfig, serverConfig, winstonRotateConfig
@@ -57,7 +58,7 @@ describe('GET response headers', () => {
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
-
+		mirthServer.use(compression({ level: 9 }));
 		mirthServer.get('/test', (req, res) => {
 			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
 			res.setHeader('access-control-allow-methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -65,18 +66,18 @@ describe('GET response headers', () => {
 			res.setHeader('access-control-expose-headers', 'Content-Location, Location');
 			res.setHeader('etag', 'W/"1"');
 			res.setHeader('content-type', 'application/fhir+json; charset=UTF-8');
-			res.setHeader('content-encoding', 'gzip');
-			res.setHeader('content-length', '790');
 
 			res.setHeader('connection', 'keep-alive');
 			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
-			return res.status(200).json();
+			return res.status(200).send({});
 		});
-		mirthServer = http.createServer(mirthServer);
-		mirthServer.listen(8206, () => {
+
+		var tester2 = http.createServer(mirthServer);
+
+		tester2.listen(8206, () => {
 			console.log('Test Mirth listening at 8206');
 		});
 
@@ -108,8 +109,7 @@ describe('GET response headers', () => {
 			'access-control-expose-headers': 'Content-Location, Location',
 			'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'keep-alive',
-			'content-encoding': 'gzip',
-			'content-length': '790',
+			'content-length': '2',
 			'content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
 			'content-type': 'application/fhir+json; charset=UTF-8',
 			date: 'Thu, 04 Jul 2019 11:59:41 GMT',
