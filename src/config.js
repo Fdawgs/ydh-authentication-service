@@ -8,11 +8,11 @@ const serverConfig = {
 	name: 'ydh-sider-authentication-service',
 	port: 8205,
 	ssl: {
-		cert: 'ssl_certs/ydhclientcert.cer',
-		key: 'ssl_certs/ydhclientcert.key',
+		cert: './ssl_certs/ydhclientcert.cer',
+		key: './ssl_certs/ydhclientcert.key',
 		pfx: {
 			passphrase: '',
-			pfx: 'ssl_certs/ydhwildcard.pfx'
+			pfx: './ssl_certs/ydhwildcard.pfx'
 		}
 	}
 };
