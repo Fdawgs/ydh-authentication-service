@@ -27,9 +27,8 @@ describe('Server deployment', () => {
 	});
 
 	test('Should set protocol to https', async () => {
-		const httpsServerConfig = {
-			https: true
-		};
+		const httpsServerConfig = { ...serverConfig };
+		httpsServerConfig.https = true;
 
 		try {
 			const server = new Server(httpsServerConfig)
