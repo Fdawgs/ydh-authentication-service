@@ -10,7 +10,7 @@ os:
 
 matrix:
   allow_failures:
-    - os: windows
+    - node_js: "node"
 
 
 # safelist
