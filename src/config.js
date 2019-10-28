@@ -9,7 +9,11 @@ const serverConfig = {
 	port: 8205,
 	ssl: {
 		cert: 'ssl_certs/ydhclientcert.cer',
-		key: 'ssl_certs/ydhclientcert.key'
+		key: 'ssl_certs/ydhclientcert.key',
+		pfx: {
+			passphrase: '',
+			pfx: 'ssl_certs/ydhwildcard.pfx'
+		}
 	}
 };
 
