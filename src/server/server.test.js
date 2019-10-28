@@ -10,7 +10,7 @@ describe('Server deployment', () => {
 	const port = '8204';
 
 	beforeAll(async () => {
-		jest.setTimeout(300000);
+		jest.setTimeout(30000);
 	});
 
 	test('Should assign default values if none provided', async () => {
@@ -54,7 +54,7 @@ describe('GET response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-		jest.setTimeout(300000);
+		jest.setTimeout(30000);
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
