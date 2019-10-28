@@ -54,7 +54,7 @@ describe('GET response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-		jest.setTimeout(30000);
+		jest.setTimeout(60000);
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
