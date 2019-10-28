@@ -21,7 +21,7 @@ class Server {
 		// Define any default settings the server should have to get up and running
 		const defaultConfig = {
 			https: false,
-			name: ''
+			name: 'auth-service'
 		};
 		this.config = Object.assign(defaultConfig, config);
 
@@ -141,10 +141,17 @@ class Server {
 		const server = this.config;
 		// Update the express app to be an instance of createServer
 		if (server.https === true) {
-			this.app = https.createServer({
-				cert: fs.readFileSync(server.ssl.cert),
-				key: fs.readFileSync(server.ssl.key)
-			}, this.app);
+			const options = {};
+			// Attempt to use PFX file if present
+			if (server.ssl.pfx.pfx) {
+				options.pfx = fs.readFileSync(server.ssl.pfx.pfx);
+				options.passphrase = server.ssl.pfx.passphrase;
+			} else {
+				options.cert = fs.readFileSync(server.ssl.cert);
+				options.key = fs.readFileSync(server.ssl.key);
+			}
+
+			this.app = https.createServer(options, this.app);
 			this.config.protocol = 'https';
 		} else {
 			this.config.protocol = 'http';
