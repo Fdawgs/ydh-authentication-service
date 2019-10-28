@@ -142,6 +142,7 @@ class Server {
 		// Update the express app to be an instance of createServer
 		if (server.https === true) {
 			const options = {};
+			// Attempt to use PFX file if present
 			if (server.ssl.pfx.pfx) {
 				options.pfx = fs.readFileSync(server.ssl.pfx.pfx);
 				options.passphrase = server.ssl.pfx.passphrase;
