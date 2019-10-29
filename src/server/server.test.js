@@ -10,7 +10,7 @@ describe('Server deployment', () => {
 	const port = '8204';
 
 	beforeAll(async () => {
-		jest.setTimeout(300000);
+		jest.setTimeout(30000);
 	});
 
 	test('Should assign default values if none provided', async () => {
@@ -27,9 +27,8 @@ describe('Server deployment', () => {
 	});
 
 	test('Should set protocol to https', async () => {
-		const httpsServerConfig = {
-			https: true
-		};
+		const httpsServerConfig = { ...serverConfig };
+		httpsServerConfig.https = true;
 
 		try {
 			const server = new Server(httpsServerConfig)
@@ -54,11 +53,10 @@ describe('GET response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-		jest.setTimeout(300000);
+		jest.setTimeout(60000);
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
-
 		mirthServer.get('/test', (req, res) => {
 			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
 			res.setHeader('access-control-allow-methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -66,17 +64,17 @@ describe('GET response headers', () => {
 			res.setHeader('access-control-expose-headers', 'Content-Location, Location');
 			res.setHeader('etag', 'W/"1"');
 			res.setHeader('content-type', 'application/fhir+json; charset=UTF-8');
-			res.setHeader('content-encoding', 'gzip');
-			res.setHeader('content-length', '790');
 
 			res.setHeader('connection', 'keep-alive');
 			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
-			return res.status(200).json();
+			return res.status(200).send({});
 		});
+
 		mirthServer = http.createServer(mirthServer);
+
 		mirthServer.listen(8206, () => {
 			console.log('Test Mirth listening at 8206');
 		});
@@ -109,10 +107,9 @@ describe('GET response headers', () => {
 			'access-control-expose-headers': 'Content-Location, Location',
 			'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'keep-alive',
-			'content-encoding': 'gzip',
-			'content-length': '790',
+			'content-length': '2',
 			'content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
-			'content-type': 'application/fhir+json; charset=UTF-8',
+			'content-type': 'application/fhir+json; charset=utf-8',
 			date: 'Thu, 04 Jul 2019 11:59:41 GMT',
 			expires: '0',
 			pragma: 'no-cache',
@@ -137,7 +134,7 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
-		expect(response.res.headers).toEqual(expect.objectContaining(expectedHeaders));
+		expect(response.res.headers).toEqual(expectedHeaders);
 	});
 
 	test('Should have unexpected response headers removed', async () => {

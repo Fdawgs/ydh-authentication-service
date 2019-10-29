@@ -3,16 +3,16 @@
  * listener_url: url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
  */
 const serverConfig = {
-	https: true,
+	https: false,
 	listener_url: 'http://localhost:8206',
 	name: 'ydh-sider-authentication-service',
 	port: 8205,
 	ssl: {
-		cert: 'ssl_certs/ydhclientcert.cer',
-		key: 'ssl_certs/ydhclientcert.key',
+		cert: './ssl_certs/ydhclientcert.cer',
+		key: './ssl_certs/ydhclientcert.key',
 		pfx: {
 			passphrase: '',
-			pfx: 'ssl_certs/ydhwildcard.pfx'
+			pfx: './ssl_certs/ydhwildcard.pfx'
 		}
 	}
 };
