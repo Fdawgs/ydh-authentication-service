@@ -1,6 +1,5 @@
 const express = require('express');
 const http = require('http');
-const compression = require('compression');
 const request = require('supertest');
 const {
 	authConfig, helmetConfig, serverConfig, winstonRotateConfig
