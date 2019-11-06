@@ -18,7 +18,7 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 ## Test Setup
 1. Clone or download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
-3. Set up the config of the application in `src/config.js`
+3. Configure the application in `src/config.js`
 4. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
 5. Run `npm install`
 6. Run `npm run nodemon`
@@ -32,7 +32,7 @@ If an error is returned due to the port already being in use, change the value o
 
 
 ## Testing
-Open your request builder of choice (i.e. Postman) and create and execute a new GET request.
+Open your request builder of choice (i.e. Insomnia) and create and execute a new GET request.
 An example of the headers used can be found below: 
 
 ```http
@@ -46,7 +46,7 @@ A FHIR resource should be returned.
 
 ## Setting up as a Windows Service
 The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
-As such this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
+As such, this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
 as a Windows Service.
 
 ### To install as a service:
@@ -55,7 +55,7 @@ as a Windows Service.
 3. A prompt will appear asking for confirmation of installation type `y` and press `enter`
 4. The service should now be visible in Services
 
-**Note**: When you add or remove API keys, or change any settings in the config file, you will need to restart the service for the changes to take effect.
+**Note**: When you add or remove API keys, or change any settings in the configuration file, you will need to restart the service for the changes to take effect.
 
 ### To uninstall the service:
 1. Navigate to the repo
