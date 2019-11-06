@@ -2,7 +2,7 @@ Yeovil District Hospital (YDH) - SIDeR Authentication Service
 ==========================================
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-sider-authentication-service.svg)](https://github.com/Fdawgs/ydh-sider-authentication-service/releases/latest/) [![Build Status](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-sider-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-sider-authentication-service?branch=master) [![Greenkeeper badge](https://badges.greenkeeper.io/Fdawgs/ydh-sider-authentication-service.svg)](https://greenkeeper.io/)
 
-## Intro
+# Intro
 [Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and an instance of it is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/). These endpoints are set up to provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
 
 Mirth Connect does not provide SSL/TLS support out of the box which is a requirement of the SIDeR programme to secure patient data. As such this Node.js application using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling bearer authorization API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
@@ -10,12 +10,12 @@ Mirth Connect does not provide SSL/TLS support out of the box which is a require
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
 
 
-## Prerequisites
+# Prerequisites
 - [Node.js](https://nodejs.org/en/)
 - [Mirth Connect](https://github.com/nextgenhealthcare/connect)
 
 
-## Test Setup
+# Test Setup
 1. Clone or download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
 3. Configure the application in `src/config.js`
@@ -43,7 +43,7 @@ Authorization: Bearer Jimmini
 ```
 A FHIR resource should be returned.
 
-
+# Deployment
 ## Setting up as a Windows Service
 The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
 As such, this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
@@ -63,5 +63,5 @@ as a Windows Service.
 3. The service will be uninstalled silently
 
 
-## License
+# License
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
