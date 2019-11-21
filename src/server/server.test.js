@@ -95,8 +95,8 @@ describe('GET response headers', () => {
 			await mirthServer.close();
 			setImmediate(() => { mirthServer.emit('close'); });
 		} catch (error) {
-			console.log(e);
-			throw e;
+			console.log(error);
+			throw error;
 		}
 	});
 
