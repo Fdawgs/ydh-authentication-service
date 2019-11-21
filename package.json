@@ -27,7 +27,7 @@
   "author": "Frazer Smith",
   "license": "MIT",
   "devDependencies": {
-    "coveralls": "^3.0.7",
+    "coveralls": "^3.0.8",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-nhsuk": "^1.0.0",
@@ -48,7 +48,7 @@
     "request": "^2.88.0",
     "winser": "^1.0.3",
     "winston": "^3.2.1",
-    "winston-daily-rotate-file": "^4.2.1"
+    "winston-daily-rotate-file": "^4.3.0"
   },
   "repository": {
     "type": "git",
