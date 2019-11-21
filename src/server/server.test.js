@@ -40,7 +40,7 @@ describe('Server deployment', () => {
 				.listen(port);
 
 			expect(server.config.protocol).toBe('https');
-		} catch (e) {
+		} catch (error) {
 			// Do nothing
 		}
 	});
@@ -94,7 +94,7 @@ describe('GET response headers', () => {
 			await server.shutdown();
 			await mirthServer.close();
 			setImmediate(() => { mirthServer.emit('close'); });
-		} catch (e) {
+		} catch (error) {
 			console.log(e);
 			throw e;
 		}
