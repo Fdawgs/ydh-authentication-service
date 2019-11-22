@@ -51,9 +51,10 @@ as a Windows Service.
 
 ### To install as a service:
 1. Navigate to the repo
-2. Run `npm run install-windows-service` as administrator
-3. A prompt will appear asking for confirmation of installation type `y` and press `enter`
-4. The service should now be visible in Services
+2. Run `npm install` to install dependencies (if not done so in testing)
+3. Run `npm run install-windows-service` as administrator
+4. A prompt will appear asking for confirmation of installation type `y` and press `enter`
+5. The service should now be visible in Services
 
 **Note**: When you add or remove API keys, or change any settings in the configuration file, you will need to restart the service for the changes to take effect.
 
