@@ -1,6 +1,6 @@
 {
   "name": "ydh-sider-authentication-service",
-  "version": "2.2.1",
+  "version": "2.2.3",
   "description": "NodeJS Express Service to provide authentication before routing to REST API.",
   "keywords": [
     "YDH",
