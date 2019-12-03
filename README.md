@@ -33,7 +33,7 @@ If an error is returned due to the port already being in use, change the value o
 
 ## Testing
 Open your request builder of choice (i.e. Insomnia) and create and execute a new GET request.
-An example of the headers used can be found below: 
+An example of the headers used can be found below:
 
 ```http
 GET /3_0_1/Encounter/test HTTP/1.1
