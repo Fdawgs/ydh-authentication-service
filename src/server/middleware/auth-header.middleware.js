@@ -1,8 +1,8 @@
 /**
  * @author Frazer Smith
+ * @description Checks 'authorization' request header value against array of api key objects.
  * @param {Array.<{value: String}>} keyArray - Array of API key objects.
  * @return {Function} express middleware
- * @description Checks 'authorization' request header value against array of api key objects.
  */
 module.exports = function authHeaderMiddleware(keyArray) {
 	return (req, res, next) => {
