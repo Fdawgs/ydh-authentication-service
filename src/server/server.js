@@ -14,7 +14,6 @@ const authHeader = require('./middleware/auth-header.middleware');
 
 class Server {
 	/**
-	 * @class
 	 * @param {Object} config - Server configuration values.
 	 */
 	constructor(config = {}) {
