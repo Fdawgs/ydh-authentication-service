@@ -13,14 +13,14 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 # Prerequisites
 - [Node.js](https://nodejs.org/en/)
 - [Mirth Connect](https://github.com/nextgenhealthcare/connect)
-
+- [Yarn](https://yarnpkg.com) (optional)
 
 # Test Setup
 1. Clone or download this repository from Github
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
 3. Configure the application in `src/config.js`
 4. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
-5. Run `npm install`
+5. Run `yarn install` or `npm install` (if using `npm install` then delete the yarn.lock file to stop conflicting lock files)
 6. Run `npm run nodemon`
 
 The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8205. You should see the following output:
