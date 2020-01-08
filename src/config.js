@@ -3,32 +3,32 @@
  * listener_url: url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
  */
 const serverConfig = {
-	https: false,
-	listener_url: 'http://localhost:8206',
-	name: 'ydh-sider-authentication-service',
-	port: 8205,
-	ssl: {
-		cert: './ssl_certs/ydhclientcert.cer',
-		key: './ssl_certs/ydhclientcert.key',
-		pfx: {
-			passphrase: '',
-			pfx: './ssl_certs/ydhwildcard.pfx'
-		}
-	}
+  https: false,
+  listener_url: 'http://localhost:8206',
+  name: 'ydh-sider-authentication-service',
+  port: 8205,
+  ssl: {
+    cert: './ssl_certs/ydhclientcert.cer',
+    key: './ssl_certs/ydhclientcert.key',
+    pfx: {
+      passphrase: '',
+      pfx: './ssl_certs/ydhwildcard.pfx'
+    }
+  }
 };
 
 // Array of API bearer key values and the service they relate to
 const authConfig = {
-	api_keys: [
-		{
-			service: 'Maternity',
-			value: 'Jimmini'
-		},
-		{
-			service: 'Obstetrics',
-			value: 'Cricket'
-		}
-	]
+  api_keys: [
+    {
+      service: 'Maternity',
+      value: 'Jimmini'
+    },
+    {
+      service: 'Obstetrics',
+      value: 'Cricket'
+    }
+  ]
 };
 
 /**
@@ -42,32 +42,32 @@ const authConfig = {
  * - xssFilter (adds small XSS protections). https://helmetjs.github.io/docs/xss-filter/
  */
 const helmetConfig = {
-	contentSecurityPolicy: {
-		directives: {
-			defaultSrc: ['\'self\''],
-			scriptSrc: ['\'self\'', '\'unsafe-inline\''],
-			styleSrc: ['\'self\'', '\'unsafe-inline\'']
-		}
-	},
-	hidePoweredBy: true,
-	noCache: true
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"]
+    }
+  },
+  hidePoweredBy: true,
+  noCache: true
 };
 
 // Refer to option documention here: https://github.com/winstonjs/winston-daily-rotate-file/blob/master/README.md#options
 const winstonRotateConfig = {
-	auditFile: 'logs/logging-audit.json',
-	datePattern: 'YYYY-MM-DD-HH',
-	dirname: 'logs',
-	extension: '.json',
-	filename: 'auth-service-log-%DATE%',
-	maxFiles: '14d',
-	maxSize: '20m',
-	zippedArchive: true
+  auditFile: 'logs/logging-audit.json',
+  datePattern: 'YYYY-MM-DD-HH',
+  dirname: 'logs',
+  extension: '.json',
+  filename: 'auth-service-log-%DATE%',
+  maxFiles: '14d',
+  maxSize: '20m',
+  zippedArchive: true
 };
 
 module.exports = {
-	authConfig,
-	helmetConfig,
-	serverConfig,
-	winstonRotateConfig
+  authConfig,
+  helmetConfig,
+  serverConfig,
+  winstonRotateConfig
 };
