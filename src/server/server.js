@@ -86,18 +86,27 @@ class Server {
 	 * @returns {this} self
 	 */
 	configureWinston(winstonRotateConfig) {
-		const transport = new (WinstonRotate)(winstonRotateConfig);
+		const transport = new WinstonRotate(winstonRotateConfig);
 
-		this.app.use(expressWinston.logger({
-			format: winston.format.combine(
-				winston.format.colorize(),
-				winston.format.json()
-			),
-			requestWhitelist: ['url', 'headers', 'method', 'httpVersion', 'originalUrl', 'query', 'ip', '_startTime'],
-			transports: [
-				transport
-			]
-		}));
+		this.app.use(
+			expressWinston.logger({
+				format: winston.format.combine(
+					winston.format.colorize(),
+					winston.format.json()
+				),
+				requestWhitelist: [
+					'url',
+					'headers',
+					'method',
+					'httpVersion',
+					'originalUrl',
+					'query',
+					'ip',
+					'_startTime'
+				],
+				transports: [transport]
+			})
+		);
 
 		// return self for chaining
 		return this;
@@ -112,18 +121,22 @@ class Server {
 	 */
 	configureRoute(listenerUrl, hide) {
 		this.app.get('*', (req, res) => {
-			request.get(listenerUrl + req.originalUrl).on('response', (response) => {
-				if (hide) {
-					// Remove or amend inaccurate headers
-					response.headers['access-control-allow-methods'] = 'GET';
-					delete response.headers.etag;
-					delete response.headers['last-modified'];
+			request
+				.get(listenerUrl + req.originalUrl)
+				.on('response', (response) => {
+					if (hide) {
+						// Remove or amend inaccurate headers
+						response.headers['access-control-allow-methods'] =
+							'GET';
+						delete response.headers.etag;
+						delete response.headers['last-modified'];
 
-					// Remove security risk headers
-					delete response.headers.location;
-					delete response.headers.server;
-				}
-			}).pipe(res);
+						// Remove security risk headers
+						delete response.headers.location;
+						delete response.headers.server;
+					}
+				})
+				.pipe(res);
 		});
 
 		// return self for chaining
@@ -159,7 +172,9 @@ class Server {
 
 		// Start the app
 		this.app.listen(port);
-		console.log(`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`);
+		console.log(
+			`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`
+		);
 
 		// return self for chaining
 		return this;

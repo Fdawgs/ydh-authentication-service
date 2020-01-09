@@ -2,7 +2,10 @@ const express = require('express');
 const http = require('http');
 const request = require('supertest');
 const {
-	authConfig, helmetConfig, serverConfig, winstonRotateConfig
+	authConfig,
+	helmetConfig,
+	serverConfig,
+	winstonRotateConfig
 } = require('../config');
 const Server = require('./server');
 
@@ -59,11 +62,20 @@ describe('GET response headers', () => {
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
 			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
-			res.setHeader('access-control-allow-methods', 'GET, POST, PUT, DELETE, OPTIONS');
+			res.setHeader(
+				'access-control-allow-methods',
+				'GET, POST, PUT, DELETE, OPTIONS'
+			);
 			res.setHeader('access-control-allow-origin', '*');
-			res.setHeader('access-control-expose-headers', 'Content-Location, Location');
+			res.setHeader(
+				'access-control-expose-headers',
+				'Content-Location, Location'
+			);
 			res.setHeader('etag', 'W/"1"');
-			res.setHeader('content-type', 'application/fhir+json; charset=UTF-8');
+			res.setHeader(
+				'content-type',
+				'application/fhir+json; charset=UTF-8'
+			);
 
 			res.setHeader('connection', 'keep-alive');
 			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
@@ -93,7 +105,9 @@ describe('GET response headers', () => {
 		try {
 			await server.shutdown();
 			await mirthServer.close();
-			setImmediate(() => { mirthServer.emit('close'); });
+			setImmediate(() => {
+				mirthServer.emit('close');
+			});
 		} catch (error) {
 			console.log(error);
 			throw error;
@@ -105,10 +119,12 @@ describe('GET response headers', () => {
 			'access-control-allow-methods': 'GET',
 			'access-control-allow-origin': '*',
 			'access-control-expose-headers': 'Content-Location, Location',
-			'cache-control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+			'cache-control':
+				'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'keep-alive',
 			'content-length': '2',
-			'content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'content-security-policy':
+				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'content-type': 'application/fhir+json; charset=utf-8',
 			date: 'Thu, 04 Jul 2019 11:59:41 GMT',
 			expires: '0',
@@ -116,12 +132,14 @@ describe('GET response headers', () => {
 			'strict-transport-security': 'max-age=15552000; includeSubDomains',
 			'surrogate-control': 'no-store',
 			vary: 'Accept-Encoding',
-			'x-content-security-policy': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'x-content-security-policy':
+				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'x-content-type-options': 'nosniff',
 			'x-dns-prefetch-control': 'off',
 			'x-download-options': 'noopen',
 			'x-frame-options': 'SAMEORIGIN',
-			'x-webkit-csp': 'default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'',
+			'x-webkit-csp':
+				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'x-xss-protection': '1; mode=block'
 		};
 
@@ -154,7 +172,8 @@ describe('GET response headers', () => {
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
 		expect(response.statusCode).toBe(200);
-		expect(Object.keys(response.res.headers))
-			.toEqual(expect.not.arrayContaining(unexpectedHeaders));
+		expect(Object.keys(response.res.headers)).toEqual(
+			expect.not.arrayContaining(unexpectedHeaders)
+		);
 	});
 });

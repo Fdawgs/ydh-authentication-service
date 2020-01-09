@@ -12,9 +12,9 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 # Prerequisites
 
-- [Node.js](https://nodejs.org/en/)
-- [Mirth Connect](https://github.com/nextgenhealthcare/connect)
-- [Yarn](https://yarnpkg.com) (optional)
+-   [Node.js](https://nodejs.org/en/)
+-   [Mirth Connect](https://github.com/nextgenhealthcare/connect)
+-   [Yarn](https://yarnpkg.com) (optional)
 
 # Test Setup
 
