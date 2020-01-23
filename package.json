@@ -2,13 +2,10 @@
 	"name": "ydh-sider-authentication-service",
 	"version": "2.2.7",
 	"description": "NodeJS Express Service to provide authentication before routing to REST API.",
-	"keywords": [
-		"YDH",
-		"NHS",
-		"authentication",
-		"Mirth"
-	],
 	"main": "src/app.js",
+	"repository": "git+https://github.com/Fdawgs/ydh-sider-authentication-service.git",
+	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
+	"license": "MIT",
 	"scripts": {
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md",
 		"dupe-check": "yarn jsinspect ./src",
@@ -28,8 +25,6 @@
 		"testEnvironment": "node",
 		"verbose": true
 	},
-	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
-	"license": "MIT",
 	"prettier": {
 		"arrowParens": "always",
 		"bracketSpacing": true,
@@ -68,9 +63,5 @@
 		"winser": "^1.0.3",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.1"
-	},
-	"repository": "git+https://github.com/Fdawgs/ydh-sider-authentication-service.git",
-	"bugs": {
-		"url": "https://github.com/Fdawgs/ydh-sider-authentication-service/issues"
 	}
 }
