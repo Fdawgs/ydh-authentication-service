@@ -22,8 +22,8 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
 3. Configure the application in `src/config.js`
 4. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
-5. Run `yarn install` or `npm install` (if using `npm install` then delete the yarn.lock file to stop conflicting lock files)
-6. Run `npm run nodemon`
+5. Run `yarn install`
+6. Run `yarn nodemon`
 
 The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8205. You should see the following output:
 
@@ -58,8 +58,8 @@ as a Windows Service.
 ### To install as a service:
 
 1. Navigate to the repo
-2. Run `npm install` to install dependencies (if not done so in testing)
-3. Run `npm run install-windows-service` as administrator
+2. Run `yarn install` to install dependencies (if not done so in testing)
+3. Run `yarn install-windows-service` as administrator
 4. The service should now be visible in Services
 
 **Note**: When you add or remove API keys, or change any settings in the configuration file, you will need to restart the service for the changes to take effect.
@@ -67,7 +67,7 @@ as a Windows Service.
 ### To uninstall the service:
 
 1. Navigate to the repo
-2. Run `npm run uninstall-windows-service` as administrator
+2. Run `yarn uninstall-windows-service` as administrator
 3. The service will be uninstalled silently
 
 # License
