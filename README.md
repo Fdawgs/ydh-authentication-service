@@ -46,14 +46,13 @@ Authorization: Bearer Jimmini
 ```
 
 A FHIR resource should be returned.
+The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`.
 
 # Deployment
 
 ## Setting up as a Windows Service
-
-The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`, which is not ideal.
-As such, this implementation uses the [winser](https://github.com/jfromaniello/winser) package to deploy the Node.js application
-as a Windows Service.
+Yeovil District Hospital is heavily invested in Microsoft's ecosystem.
+As such, this implementation uses the [winser](https://github.com/jfromaniello/winser) package to allow the Node.js application to be deployed as a Windows Service.
 
 ### To install as a service:
 
