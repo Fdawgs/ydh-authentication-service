@@ -70,6 +70,10 @@ as a Windows Service.
 2. Run `yarn uninstall-windows-service` as administrator
 3. The service will be uninstalled silently
 
+# Contributing
+
+Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
+
 # License
 
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
