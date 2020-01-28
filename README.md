@@ -34,8 +34,9 @@ As such, this implementation uses the [winser](https://github.com/jfromaniello/w
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Run `yarn install-windows-service` as administrator
-4. The service should now be visible in Services
+3. Configure the application in `src/config.js`
+4. Run `yarn install-windows-service` as administrator
+5. The service should now be visible in Services
 
 **Note**: When you add or remove API keys, or change any settings in the configuration file, you will need to restart the service for the changes to take effect.
 

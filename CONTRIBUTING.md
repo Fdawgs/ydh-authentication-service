@@ -28,7 +28,11 @@ After cloning and installing all the dependencies, there are several commands av
 -   `yarn test` - Runs `yarn lint` and `yarn jest` together
 -   `yarn nodemon` - Starts a development server with live reload. Available on `localhost:8204` unless you specify your own PORT.
 
-#### Test Setup
+### Production Workflow
+
+-   `yarn start` - Runs a production version. No live reload.
+
+## Test Setup
 
 1. Configure the application in `src/config.js`
 2. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
@@ -42,7 +46,7 @@ ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
 
 If an error is returned due to the port already being in use, change the value of the port key in src/config.js.
 
-##### Testing
+### Testing
 
 Open your request builder of choice (i.e. Insomnia or Postman) and create and execute a new GET request.
 An example of the headers used can be found below:
@@ -57,9 +61,6 @@ Authorization: Bearer Jimmini
 A FHIR resource should be returned.
 The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`.
 
-### Production Workflow
-
--   `yarn start` - Runs a production version. No live reload.
 
 ## Pull Request Checklist
 
