@@ -61,7 +61,6 @@ Authorization: Bearer Jimmini
 A FHIR resource should be returned.
 The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`.
 
-
 ## Pull Request Checklist
 
 Prior to submitting a pull request back to the main repository, please make sure you have completed the following steps:
