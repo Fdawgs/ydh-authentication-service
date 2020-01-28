@@ -16,48 +16,24 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 -   [Mirth Connect](https://github.com/nextgenhealthcare/connect)
 -   [Yarn](https://yarnpkg.com)
 
-# Test Setup
-
-1. Clone or download this repository from Github
-2. Navigate to the repo directory using a CLI (after it has been extracted if downloaded as ZIP)
-3. Configure the application in `src/config.js`
-4. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
-5. Run `yarn install`
-6. Run `yarn nodemon`
-
-The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8205. You should see the following output:
-
-```
-ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
-```
-
-If an error is returned due to the port already being in use, change the value of the port key in src/config.js.
-
-## Testing
-
-Open your request builder of choice (i.e. Insomnia) and create and execute a new GET request.
-An example of the headers used can be found below:
-
-```http
-GET /3_0_1/Encounter/test HTTP/1.1
-Host: 127.0.0.1:8205
-Content-Type: application/fhir+json
-Authorization: Bearer Jimmini
-```
-
-A FHIR resource should be returned.
-The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`.
-
 # Deployment
 
+## Regular deployment (not as a service)
+
+1. Navigate to the repo
+2. Run `yarn install` to install dependencies
+3. Configure the application in `src/config.js`, ensuring the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
+4. Run `yarn start`
+
 ## Setting up as a Windows Service
+
 Yeovil District Hospital is heavily invested in Microsoft's ecosystem.
 As such, this implementation uses the [winser](https://github.com/jfromaniello/winser) package to allow the Node.js application to be deployed as a Windows Service.
 
 ### To install as a service:
 
 1. Navigate to the repo
-2. Run `yarn install` to install dependencies (if not done so in testing)
+2. Run `yarn install` to install dependencies
 3. Run `yarn install-windows-service` as administrator
 4. The service should now be visible in Services
 

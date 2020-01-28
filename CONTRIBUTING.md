@@ -17,7 +17,7 @@ Other processes and specifications that are in use in this repository are:
 
 As noted in the prerequisites section of the readme file, this project requires that you have Node.js and Yarn installed.
 
-With those in place you can fork the repo and clone it, and then run `yarn install` to install all dependencies.
+With those in place you can fork the repository and clone it, and then run `yarn install` to install all dependencies.
 
 ### Development Workflow
 
@@ -27,6 +27,35 @@ After cloning and installing all the dependencies, there are several commands av
 -   `yarn jest` - Runs Jest over all tests in src directory
 -   `yarn test` - Runs `yarn lint` and `yarn jest` together
 -   `yarn nodemon` - Starts a development server with live reload. Available on `localhost:8204` unless you specify your own PORT.
+
+#### Test Setup
+
+1. Configure the application in `src/config.js`
+2. Ensure the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
+3. Run `yarn nodemon`
+
+The Express server should now be up and running using [nodemon](https://nodemon.io/) on the default port 8205. You should see the following output:
+
+```
+ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
+```
+
+If an error is returned due to the port already being in use, change the value of the port key in src/config.js.
+
+##### Testing
+
+Open your request builder of choice (i.e. Insomnia or Postman) and create and execute a new GET request.
+An example of the headers used can be found below:
+
+```http
+GET /3_0_1/Encounter/test HTTP/1.1
+Host: 127.0.0.1:8205
+Content-Type: application/fhir+json
+Authorization: Bearer Jimmini
+```
+
+A FHIR resource should be returned.
+The test listener will stop running once the CLI is exited or the Node.js REPL is terminated using `Ctrl+C`.
 
 ### Production Workflow
 
