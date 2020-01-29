@@ -10,7 +10,7 @@
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md",
 		"dupe-check": "yarn jsinspect ./src",
 		"lint": "eslint src/**/*.js",
-		"nodemon": "nodemon src/app.js",
+		"nodemon": "cross-env NODE_ENV=development nodemon src/app.js",
 		"prettier": "prettier ** --write",
 		"start": "cross-env NODE_ENV=production node src/app.js",
 		"test": "cross-env NODE_ENV=development yarn lint && yarn test-coverage",
