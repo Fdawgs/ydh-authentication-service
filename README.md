@@ -18,12 +18,30 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 # Deployment
 
-## Regular deployment (not as a service)
+## Standard deployment
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
 3. Configure the application in `src/config.js`, ensuring the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
 4. Run `yarn start`
+
+The Express server should now be up and running on the port set in the config. You should see the following output:
+
+```
+ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
+```
+
+To quickly test it open your request builder of choice (i.e. Insomnia or Postman) and create and execute a new GET request.
+An example of the headers used can be found below:
+
+```http
+GET /3_0_1/Encounter/test HTTP/1.1
+Host: 127.0.0.1:8205
+Content-Type: application/fhir+json
+Authorization: Bearer Jimmini
+```
+
+A FHIR resource should be returned.
 
 ## Setting up as a Windows Service
 
