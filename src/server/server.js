@@ -25,7 +25,6 @@ class Server {
 		};
 		this.config = Object.assign(defaultConfig, config);
 
-		this.config = config;
 		// Setup our express instance
 		this.app = express();
 
