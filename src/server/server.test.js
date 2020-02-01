@@ -22,7 +22,6 @@ describe('Server deployment', () => {
 			.configureWinston(winstonRotateConfig)
 			.configureAuthorization(authConfig)
 			.configureMiddleware()
-			.configureRoute(serverConfig.listener_url, true)
 			.listen(port);
 
 		expect(server.config.protocol).toBe('http');
@@ -39,10 +38,11 @@ describe('Server deployment', () => {
 				.configureWinston(winstonRotateConfig)
 				.configureAuthorization(authConfig)
 				.configureMiddleware()
-				.configureRoute(serverConfig.listener_url, true)
+				.configureRoutes()
 				.listen(port);
 
 			expect(server.config.protocol).toBe('https');
+			await server.shutdown();
 		} catch (error) {
 			// Do nothing
 		}
@@ -97,7 +97,7 @@ describe('GET response headers', () => {
 			.configureWinston(winstonRotateConfig)
 			.configureAuthorization(authConfig)
 			.configureMiddleware()
-			.configureRoute(serverConfig.listener_url, true)
+			.configureRoutes()
 			.listen(serverConfig.port);
 	});
 

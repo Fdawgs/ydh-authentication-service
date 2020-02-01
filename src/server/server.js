@@ -5,12 +5,13 @@ const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
-const request = require('request');
 const expressWinston = require('express-winston');
 const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const authHeader = require('./middleware/auth-header.middleware');
+
+const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
 	/**
@@ -77,6 +78,13 @@ class Server {
 		return this;
 	}
 
+	configureRoutes() {
+		this.app.use('*', wildcardRoute(this.config.listener_url, true));
+
+		// return self for chaining
+		return this;
+	}
+
 	/**
 	 * @author Frazer Smith
 	 * @description Sets Winston Daily Rotate options for server.
@@ -107,37 +115,6 @@ class Server {
 				transports: [transport]
 			})
 		);
-
-		// return self for chaining
-		return this;
-	}
-
-	/**
-	 * @author Frazer Smith
-	 * @description Sets routing options for server.
-	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
-	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
-	 * @returns {this} self
-	 */
-	configureRoute(listenerUrl, hide) {
-		this.app.get('*', (req, res) => {
-			request
-				.get(listenerUrl + req.originalUrl)
-				.on('response', (response) => {
-					if (hide) {
-						// Remove or amend inaccurate headers
-						response.headers['access-control-allow-methods'] =
-							'GET';
-						delete response.headers.etag;
-						delete response.headers['last-modified'];
-
-						// Remove security risk headers
-						delete response.headers.location;
-						delete response.headers.server;
-					}
-				})
-				.pipe(res);
-		});
 
 		// return self for chaining
 		return this;
