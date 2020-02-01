@@ -8,7 +8,7 @@ const request = require('request');
  * @description Sets routing options for server.
  * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
  * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
- * @returns {this} self
+ * @returns {Router} express router instance.
  */
 module.exports = function configureRoute(listenerUrl, hide) {
 	router.get('*', (req, res) => {
