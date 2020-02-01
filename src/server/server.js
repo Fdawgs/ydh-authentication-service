@@ -5,12 +5,13 @@ const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
-const request = require('request');
 const expressWinston = require('express-winston');
 const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const authHeader = require('./middleware/auth-header.middleware');
+
+const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
 	/**
@@ -24,11 +25,10 @@ class Server {
 		};
 		this.config = Object.assign(defaultConfig, config);
 
-		this.config = config;
 		// Setup our express instance
 		this.app = express();
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -43,7 +43,7 @@ class Server {
 		this.app.use(bearerToken());
 		this.app.use(authHeader(authConfig.api_keys));
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -59,7 +59,7 @@ class Server {
 		// Error handling
 		this.app.use(error());
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -73,7 +73,14 @@ class Server {
 		// Use Helmet to set response headers
 		this.app.use(helmet(helmetConfig));
 
-		// return self for chaining
+		// Return self for chaining
+		return this;
+	}
+
+	configureRoutes() {
+		this.app.use('*', wildcardRoute(this.config.listener_url, true));
+
+		// Return self for chaining
 		return this;
 	}
 
@@ -108,38 +115,7 @@ class Server {
 			})
 		);
 
-		// return self for chaining
-		return this;
-	}
-
-	/**
-	 * @author Frazer Smith
-	 * @description Sets routing options for server.
-	 * @param {string} listenerUrl - URL of FHIR REST hook endpoint.
-	 * @param {boolean} hide - If true, remove and amend inaccurate/security risk headers.
-	 * @returns {this} self
-	 */
-	configureRoute(listenerUrl, hide) {
-		this.app.get('*', (req, res) => {
-			request
-				.get(listenerUrl + req.originalUrl)
-				.on('response', (response) => {
-					if (hide) {
-						// Remove or amend inaccurate headers
-						response.headers['access-control-allow-methods'] =
-							'GET';
-						delete response.headers.etag;
-						delete response.headers['last-modified'];
-
-						// Remove security risk headers
-						delete response.headers.location;
-						delete response.headers.server;
-					}
-				})
-				.pipe(res);
-		});
-
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -176,7 +152,7 @@ class Server {
 			`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`
 		);
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
