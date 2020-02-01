@@ -28,7 +28,7 @@ class Server {
 		// Setup our express instance
 		this.app = express();
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -43,7 +43,7 @@ class Server {
 		this.app.use(bearerToken());
 		this.app.use(authHeader(authConfig.api_keys));
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -59,7 +59,7 @@ class Server {
 		// Error handling
 		this.app.use(error());
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -73,14 +73,14 @@ class Server {
 		// Use Helmet to set response headers
 		this.app.use(helmet(helmetConfig));
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
 	configureRoutes() {
 		this.app.use('*', wildcardRoute(this.config.listener_url, true));
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -115,7 +115,7 @@ class Server {
 			})
 		);
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
@@ -152,7 +152,7 @@ class Server {
 			`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`
 		);
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
