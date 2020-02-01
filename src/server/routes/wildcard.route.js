@@ -15,6 +15,9 @@ module.exports = function configureRoute(listenerUrl, hide) {
 		console.log(listenerUrl + req.originalUrl);
 		request
 			.get(listenerUrl + req.originalUrl)
+			.on('error', () => {
+				res.status(500).send('Error connecting to webservice');
+			})
 			.on('response', (response) => {
 				if (hide) {
 					// Remove or amend inaccurate headers
