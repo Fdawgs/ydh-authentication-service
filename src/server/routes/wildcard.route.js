@@ -18,12 +18,12 @@ module.exports = function configureRoute(listenerUrl, hide) {
 		if (req.query && Object.keys(req.query).length) {
 			Object.assign(params, req.query);
 		}
-		// Remove '\', ';', ''', '"', '>', '<', and '/' characters
+		// Remove ';', ''', '"', '>', and '<' characters
 		const parsedParams = Object.entries(params)
 			.map(
 				([key, val]) =>
 					`${key}=${validator
-						.blacklist(validator.stripLow(val), ';\'"></')
+						.blacklist(validator.stripLow(val), ';\'"><')
 						.trim()}`
 			)
 			.join('&');
