@@ -1,3 +1,25 @@
+## 2.3.0 (2020-02-03)
+
+-   docs: refine test example ([81993ed](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/81993ed))
+-   docs(contributing): punctuation fixes ([600bb7e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/600bb7e))
+-   docs(routes): update jsdoc return tag ([0ad0c11](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0ad0c11))
+-   docs(server): uppercase first letter of comment ([ef05fe4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ef05fe4))
+-   build(deps-dev): bump eslint-plugin-import from 2.20.0 to 2.20.1 ([c14297e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c14297e))
+-   build(deps): make cross-env dep rather than devdep ([b181276](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b181276))
+-   build(scripts): change node_env to test for test scripts ([7fa75da](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7fa75da))
+-   fix(routes): remove slashes from param blacklist ([7538636](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7538636))
+-   feat(routes): add sanitization step ([771e10b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/771e10b))
+-   feat(routes): add simple error handling ([ee709d4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ee709d4))
+-   bug(server): remove reassigning config values ([0a2a282](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0a2a282))
+-   refactor(server): move routing to own router instance ([2b38804](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/2b38804))
+-   perf: set node_env variable for nodemon ([d67c987](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d67c987))
+-   perf: set node_env variables for test and production ([d867a9a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d867a9a))
+-   chore(eslint): remove redundant rules ([9af0267](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/9af0267))
+
+### BREAKING CHANGE
+
+-   refactor to use separate router instances. configureRoute Server function replaced with configureRoutes
+
 ## <small>2.2.8 (2020-01-28)</small>
 
 -   docs: add contributing guide ([137cb82](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/137cb82))
