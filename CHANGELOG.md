@@ -1,3 +1,7 @@
+## <small>2.3.1 (2020-02-05)</small>
+
+-   fix(package): remove cross-env from winser scripts ([248e9ea](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/248e9ea))
+
 ## 2.3.0 (2020-02-03)
 
 -   docs: refine test example ([81993ed](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/81993ed))
