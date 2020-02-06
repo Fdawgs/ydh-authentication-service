@@ -39,4 +39,16 @@ describe('Authorization Header middleware', () => {
 		expect(next).toHaveBeenCalledTimes(1);
 		expect(next.mock.calls[0][0].status).toBe(401);
 	});
+
+	test('Should throw error if config files missing', () => {
+		const middleware = authHeaderMiddleware({});
+		const req = {};
+		const res = {};
+		const next = jest.fn();
+
+		middleware(req, res, next);
+		expect(next).toHaveBeenCalledTimes(1);
+		expect(next.mock.calls[0][0].status).toBe(500);
+	});
+
 });
