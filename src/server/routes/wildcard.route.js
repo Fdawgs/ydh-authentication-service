@@ -2,7 +2,7 @@ const { Router } = require('express');
 
 const router = new Router();
 const request = require('request');
-const validator = require('validator');
+const sanitizeParamString = require('../utils/sanitize-param-string.utils');
 
 /**
  * @author Frazer Smith
@@ -14,20 +14,7 @@ module.exports = function configureRoute(options = {}) {
 	const { config } = options;
 
 	router.get('*', (req, res) => {
-		// Sanitize query parameters to protect against injections
-		const params = {};
-		if (req.query && Object.keys(req.query).length) {
-			Object.assign(params, req.query);
-		}
-		// Remove ';', ''', '"', '>', and '<' characters
-		const parsedParams = Object.entries(params)
-			.map(
-				([key, val]) =>
-					`${key}=${validator
-						.blacklist(validator.stripLow(val), ';\'"><')
-						.trim()}`
-			)
-			.join('&');
+		const parsedParams = sanitizeParamString(req.query);
 
 		request
 			.get(`${config.routing.listenerUrl + req.baseUrl}?${parsedParams}`)
