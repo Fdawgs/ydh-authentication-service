@@ -4,9 +4,24 @@
  */
 const serverConfig = {
 	https: false,
-
 	name: 'ydh-sider-authentication-service',
-	port: 8205,
+	port: 8215,
+	auth: {
+		apiKeys: [
+			{
+				service: 'Maternity',
+				value: 'Jimmini'
+			},
+			{
+				service: 'Obstetrics',
+				value: 'Cricket'
+			}
+		]
+	},
+	routing: {
+		listenerUrl: 'http://localhost:8206',
+		hide: true
+	},
 	ssl: {
 		cert: './ssl_certs/ydhclientcert.cer',
 		key: './ssl_certs/ydhclientcert.key',
@@ -15,24 +30,6 @@ const serverConfig = {
 			pfx: './ssl_certs/ydhwildcard.pfx'
 		}
 	}
-};
-
-// Array of API bearer key values and the service they relate to
-const authConfig = {
-	api_keys: [
-		{
-			service: 'Maternity',
-			value: 'Jimmini'
-		},
-		{
-			service: 'Obstetrics',
-			value: 'Cricket'
-		}
-	]
-	routing: {
-		listenerUrl: 'http://localhost:8206',
-		hide: true
-	},
 };
 
 /**
@@ -70,7 +67,6 @@ const winstonRotateConfig = {
 };
 
 module.exports = {
-	authConfig,
 	helmetConfig,
 	serverConfig,
 	winstonRotateConfig

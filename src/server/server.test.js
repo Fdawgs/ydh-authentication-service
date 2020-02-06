@@ -2,7 +2,6 @@ const express = require('express');
 const http = require('http');
 const request = require('supertest');
 const {
-	authConfig,
 	helmetConfig,
 	serverConfig,
 	winstonRotateConfig
@@ -20,7 +19,7 @@ describe('Server deployment', () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization(authConfig)
+			.configureAuthorization()
 			.configureMiddleware()
 			.listen(port);
 
@@ -36,7 +35,7 @@ describe('Server deployment', () => {
 			const server = new Server(httpsServerConfig)
 				.configureHelmet(helmetConfig)
 				.configureWinston(winstonRotateConfig)
-				.configureAuthorization(authConfig)
+				.configureAuthorization()
 				.configureMiddleware()
 				.configureRoutes()
 				.listen(port);
@@ -95,7 +94,7 @@ describe('GET response headers', () => {
 		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization(authConfig)
+			.configureAuthorization()
 			.configureMiddleware()
 			.configureRoutes()
 			.listen(serverConfig.port);

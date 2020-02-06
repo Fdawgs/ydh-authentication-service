@@ -35,13 +35,12 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets up bearer and auth middleware.
-	 * @param {Object} authConfig - Authentication configuration values.
 	 * @returns {this} self
 	 */
-	configureAuthorization(authConfig) {
+	configureAuthorization() {
 		// Retrieve and then check for matching bearer token
 		this.app.use(bearerToken());
-		this.app.use(authHeader(authConfig.api_keys));
+		this.app.use(authHeader(this));
 
 		// Return self for chaining
 		return this;

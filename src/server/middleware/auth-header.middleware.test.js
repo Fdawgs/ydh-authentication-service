@@ -1,5 +1,7 @@
 const authHeaderMiddleware = require('./auth-header.middleware');
-const { authConfig } = require('../../config');
+const { serverConfig } = require('../../config');
+
+const server = {config: serverConfig};
 
 describe('Authorization Header middleware', () => {
 	test('Should return a middleware function', () => {
@@ -8,7 +10,7 @@ describe('Authorization Header middleware', () => {
 	});
 
 	test('Should allow access if bearer key in array', () => {
-		const middleware = authHeaderMiddleware(authConfig.api_keys);
+		const middleware = authHeaderMiddleware(server);
 		const req = { token: 'Jimini' };
 		const res = {};
 		const next = jest.fn();
@@ -18,7 +20,7 @@ describe('Authorization Header middleware', () => {
 	});
 
 	test('Should deny access if bearer key not in array', () => {
-		const middleware = authHeaderMiddleware(authConfig.api_keys);
+		const middleware = authHeaderMiddleware(server);
 		const req = { token: 'Pinocchio' };
 		const res = {};
 		const next = jest.fn();
@@ -28,7 +30,7 @@ describe('Authorization Header middleware', () => {
 	});
 
 	test('Should deny access if bearer key missing', () => {
-		const middleware = authHeaderMiddleware(authConfig.api_keys);
+		const middleware = authHeaderMiddleware(server);
 		const req = {};
 		const res = {};
 		const next = jest.fn();
