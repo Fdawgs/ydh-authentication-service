@@ -4,7 +4,7 @@
  */
 const serverConfig = {
 	https: false,
-	listener_url: 'http://localhost:8206',
+
 	name: 'ydh-sider-authentication-service',
 	port: 8205,
 	ssl: {
@@ -29,6 +29,10 @@ const authConfig = {
 			value: 'Cricket'
 		}
 	]
+	routing: {
+		listenerUrl: 'http://localhost:8206',
+		hide: true
+	},
 };
 
 /**
