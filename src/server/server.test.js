@@ -136,7 +136,7 @@ describe('GET response headers', () => {
 			'x-content-type-options': 'nosniff',
 			'x-dns-prefetch-control': 'off',
 			'x-download-options': 'noopen',
-			'x-frame-options': 'SAMEORIGIN',
+			'x-frame-options': 'DENY',
 			'x-webkit-csp':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'x-xss-protection': '1; mode=block'
