@@ -121,10 +121,9 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Start the server.
-	 * @param {string} port - Port for server to listen on.
 	 * @returns {this} self
 	 */
-	listen(port) {
+	listen() {
 		const server = this.config;
 		// Update the express app to be an instance of createServer
 		if (server.https === true) {

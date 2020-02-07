@@ -9,7 +9,6 @@ const {
 const Server = require('./server');
 
 describe('Server deployment', () => {
-	const port = '8204';
 
 	beforeAll(async () => {
 		jest.setTimeout(30000);
@@ -21,7 +20,7 @@ describe('Server deployment', () => {
 			.configureWinston(winstonRotateConfig)
 			.configureAuthorization()
 			.configureMiddleware()
-			.listen(port);
+			.listen();
 
 		expect(server.config.protocol).toBe('http');
 		await server.shutdown();
@@ -38,7 +37,7 @@ describe('Server deployment', () => {
 				.configureAuthorization()
 				.configureMiddleware()
 				.configureRoutes()
-				.listen(port);
+				.listen();
 
 			expect(server.config.protocol).toBe('https');
 			await server.shutdown();
@@ -97,7 +96,7 @@ describe('GET response headers', () => {
 			.configureAuthorization()
 			.configureMiddleware()
 			.configureRoutes()
-			.listen(serverConfig.port);
+			.listen();
 	});
 
 	afterAll(async () => {
