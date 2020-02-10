@@ -1,4 +1,3 @@
-const bearerToken = require('express-bearer-token');
 const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
@@ -9,8 +8,10 @@ const expressWinston = require('express-winston');
 const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const authHeader = require('./middleware/auth-header.middleware');
+const passport = require('passport');
+const { Strategy } = require('passport-http-bearer');
 
+const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
 const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
@@ -34,16 +35,17 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @description Sets up bearer and auth middleware.
-	 * @param {Object} authConfig - Authentication configuration values.
+	 * @description Sets up Passport authentication middleware for server.
 	 * @returns {this} self
 	 */
-	configureAuthorization(authConfig) {
-		// Retrieve and then check for matching bearer token
-		this.app.use(bearerToken());
-		this.app.use(authHeader(authConfig.api_keys));
+	configurePassport() {
+		passport.use(
+			new Strategy((token, callback) => {
+				console.log(`token: ${token}`);
+				bearerTokenAuth(token, callback, this.config.auth.apiKeys);
+			})
+		);
 
-		// Return self for chaining
 		return this;
 	}
 
@@ -78,7 +80,7 @@ class Server {
 	}
 
 	configureRoutes() {
-		this.app.use('*', wildcardRoute(this.config.listener_url, true));
+		this.app.use('*', wildcardRoute(this));
 
 		// Return self for chaining
 		return this;
@@ -122,11 +124,11 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Start the server.
-	 * @param {string} port - Port for server to listen on.
 	 * @returns {this} self
 	 */
-	listen(port) {
+	listen() {
 		const server = this.config;
+		const port = process.env.PORT;
 		// Update the express app to be an instance of createServer
 		if (server.https === true) {
 			const options = {};
@@ -147,9 +149,11 @@ class Server {
 		}
 
 		// Start the app
-		this.app.listen(port);
+		this.app.listen(port || server.port);
 		console.log(
-			`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port}`
+			`${server.name} listening for requests at ${
+				this.config.protocol
+			}://127.0.0.1:${port || server.port}`
 		);
 
 		// Return self for chaining

@@ -2,7 +2,6 @@ const express = require('express');
 const http = require('http');
 const request = require('supertest');
 const {
-	authConfig,
 	helmetConfig,
 	serverConfig,
 	winstonRotateConfig
@@ -10,8 +9,6 @@ const {
 const Server = require('./server');
 
 describe('Server deployment', () => {
-	const port = '8204';
-
 	beforeAll(async () => {
 		jest.setTimeout(30000);
 	});
@@ -20,9 +17,9 @@ describe('Server deployment', () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization(authConfig)
+			.configurePassport()
 			.configureMiddleware()
-			.listen(port);
+			.listen();
 
 		expect(server.config.protocol).toBe('http');
 		await server.shutdown();
@@ -36,10 +33,10 @@ describe('Server deployment', () => {
 			const server = new Server(httpsServerConfig)
 				.configureHelmet(helmetConfig)
 				.configureWinston(winstonRotateConfig)
-				.configureAuthorization(authConfig)
+				.configurePassport()
 				.configureMiddleware()
 				.configureRoutes()
-				.listen(port);
+				.listen();
 
 			expect(server.config.protocol).toBe('https');
 			await server.shutdown();
@@ -95,10 +92,10 @@ describe('GET response headers', () => {
 		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization(authConfig)
+			.configurePassport()
 			.configureMiddleware()
 			.configureRoutes()
-			.listen(serverConfig.port);
+			.listen();
 	});
 
 	afterAll(async () => {
@@ -137,7 +134,7 @@ describe('GET response headers', () => {
 			'x-content-type-options': 'nosniff',
 			'x-dns-prefetch-control': 'off',
 			'x-download-options': 'noopen',
-			'x-frame-options': 'SAMEORIGIN',
+			'x-frame-options': 'DENY',
 			'x-webkit-csp':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'x-xss-protection': '1; mode=block'

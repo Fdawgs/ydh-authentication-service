@@ -1,12 +1,23 @@
-/**
- * https: if set to true, server will use the ssl object to provide HTTPS.
- * listener_url: url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
- */
 const serverConfig = {
 	https: false,
-	listener_url: 'http://localhost:8206',
 	name: 'ydh-sider-authentication-service',
-	port: 8205,
+	port: 8215,
+	auth: {
+		apiKeys: [
+			{
+				service: 'Maternity',
+				value: 'Jimmini'
+			},
+			{
+				service: 'Obstetrics',
+				value: 'Cricket'
+			}
+		]
+	},
+	routing: {
+		listenerUrl: 'http://localhost:8206', // URL and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on
+		hide: true // If set to true then remove or amend inaccurate response headers
+	},
 	ssl: {
 		cert: './ssl_certs/ydhclientcert.cer',
 		key: './ssl_certs/ydhclientcert.key',
@@ -15,20 +26,6 @@ const serverConfig = {
 			pfx: './ssl_certs/ydhwildcard.pfx'
 		}
 	}
-};
-
-// Array of API bearer key values and the service they relate to
-const authConfig = {
-	api_keys: [
-		{
-			service: 'Maternity',
-			value: 'Jimmini'
-		},
-		{
-			service: 'Obstetrics',
-			value: 'Cricket'
-		}
-	]
 };
 
 /**
@@ -49,6 +46,9 @@ const helmetConfig = {
 			styleSrc: ["'self'", "'unsafe-inline'"]
 		}
 	},
+	frameguard: {
+		action: 'deny'
+	},
 	hidePoweredBy: true,
 	noCache: true
 };
@@ -66,7 +66,6 @@ const winstonRotateConfig = {
 };
 
 module.exports = {
-	authConfig,
 	helmetConfig,
 	serverConfig,
 	winstonRotateConfig
