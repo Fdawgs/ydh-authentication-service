@@ -9,7 +9,6 @@ const {
 const Server = require('./server');
 
 describe('Server deployment', () => {
-
 	beforeAll(async () => {
 		jest.setTimeout(30000);
 	});
@@ -18,7 +17,7 @@ describe('Server deployment', () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization()
+			.configurePassport()
 			.configureMiddleware()
 			.listen();
 
@@ -34,7 +33,7 @@ describe('Server deployment', () => {
 			const server = new Server(httpsServerConfig)
 				.configureHelmet(helmetConfig)
 				.configureWinston(winstonRotateConfig)
-				.configureAuthorization()
+				.configurePassport()
 				.configureMiddleware()
 				.configureRoutes()
 				.listen();
@@ -93,7 +92,7 @@ describe('GET response headers', () => {
 		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
 			.configureWinston(winstonRotateConfig)
-			.configureAuthorization()
+			.configurePassport()
 			.configureMiddleware()
 			.configureRoutes()
 			.listen();

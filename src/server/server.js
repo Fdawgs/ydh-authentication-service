@@ -46,19 +46,10 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @description Sets up bearer and auth middleware.
+	 * @description Sets up Passport authentication middleware for server.
 	 * @returns {this} self
 	 */
-	// configureAuthorization() {
-	// 	// Retrieve and then check for matching bearer token
-	// 	this.app.use(bearerToken());
-	// 	this.app.use(authHeader(this));
-
-	// 	// Return self for chaining
-	// 	return this;
-	// }
-
-	configureAuthorization() {
+	configurePassport() {
 		passport.use(
 			new Strategy((token, callback) => {
 				console.log(`token: ${token}`);

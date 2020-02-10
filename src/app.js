@@ -4,7 +4,7 @@ const Server = require('./server/server');
 new Server(serverConfig)
 	.configureHelmet(helmetConfig)
 	.configureWinston(winstonRotateConfig)
-	.configureAuthorization()
+	.configurePassport()
 	.configureMiddleware()
 	.configureRoutes()
 	.listen(serverConfig.port);
