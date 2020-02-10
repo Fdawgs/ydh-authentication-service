@@ -11,19 +11,8 @@ const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const passport = require('passport');
 const { Strategy } = require('passport-http-bearer');
 
+const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
 const wildcardRoute = require('./routes/wildcard.route');
-
-function loop(token, callback, authArray) {
-	const keys = [];
-	authArray.forEach((element) => {
-		keys.push(element.value);
-	});
-
-	if (keys.includes(token)) {
-		return callback(null, token);
-	}
-	return callback(null, false);
-}
 
 class Server {
 	/**
@@ -53,7 +42,7 @@ class Server {
 		passport.use(
 			new Strategy((token, callback) => {
 				console.log(`token: ${token}`);
-				loop(token, callback, this.config.auth.apiKeys);
+				bearerTokenAuth(token, callback, this.config.auth.apiKeys);
 			})
 		);
 
