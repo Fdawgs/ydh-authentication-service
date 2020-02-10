@@ -1,7 +1,3 @@
-/**
- * https: if set to true, server will use the ssl object to provide HTTPS.
- * listener_url: url and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on.
- */
 const serverConfig = {
 	https: false,
 	name: 'ydh-sider-authentication-service',
@@ -19,8 +15,8 @@ const serverConfig = {
 		]
 	},
 	routing: {
-		listenerUrl: 'http://localhost:8206',
-		hide: true
+		listenerUrl: 'http://localhost:8206', // URL and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on
+		hide: true // If set to true then remove or amend inaccurate response headers
 	},
 	ssl: {
 		cert: './ssl_certs/ydhclientcert.cer',

@@ -13,13 +13,13 @@ module.exports = function sanitizeParamString(paramString) {
 	}
 	// Remove ';', ''', '"', '>', and '<' characters
 	const parsedParams = Object.entries(params)
-	.map(
-		([key, val]) =>
-			`${key}=${validator
-				.blacklist(validator.stripLow(val), ';\'"><')
-				.trim()}`
-	)
-	.join('&');
+		.map(
+			([key, val]) =>
+				`${key}=${validator
+					.blacklist(validator.stripLow(val), ';\'"><')
+					.trim()}`
+		)
+		.join('&');
 
 	return parsedParams;
-}
+};
