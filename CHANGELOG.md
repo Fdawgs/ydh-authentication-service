@@ -1,3 +1,27 @@
+## 3.0.0 (2020-02-10)
+
+-   chore: format code style ([601b29f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/601b29f))
+-   chore(config): set x-frame-options to deny ([9471ca3](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/9471ca3))
+-   chore(middleware): remove redundant auth-header middleware ([3d7ccf8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3d7ccf8))
+-   refactor(routes): move sanitization step to own util function ([93c85ef](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/93c85ef))
+-   refactor(server): move bearer token authentication to util function ([6e24081](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6e24081))
+-   refactor(server): remove port param from listen function ([5119d83](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/5119d83))
+-   refactor(server): rename configureAuthorization function ([c5a53c0](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c5a53c0))
+-   refactor(server): use passportjs middleware for authentication ([a184da7](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a184da7))
+-   build(deps-dev): bump eslint-plugin-jest from 23.6.0 to 23.7.0 ([5c987fb](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/5c987fb))
+-   feat(auth): move auth options to config file ([f94669f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f94669f))
+-   feat(routes): add check for missing config values ([e2cfa51](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e2cfa51))
+-   feat(routes): move routing options to config file ([7de0cbe](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7de0cbe))
+-   feat(server): add ability for listen function to use env port ([7e9040c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7e9040c))
+-   test(auth): add test for missing config files ([67353d8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/67353d8))
+-   test(server): update expect x-frame-options to deny ([fc277a0](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/fc277a0))
+
+### BREAKING CHANGE
+
+-   `authConfig` object has been removed from config file, contents moved to `serverConfig.auth.apiKeys`
+-   `listener_url` key in config file move to new `routing` object in file
+-   `port` param for listen function of Server class removed
+
 ## <small>2.3.1 (2020-02-05)</small>
 
 -   fix(package): remove cross-env from winser scripts ([248e9ea](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/248e9ea))
