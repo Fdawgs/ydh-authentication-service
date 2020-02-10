@@ -1,4 +1,3 @@
-const bearerToken = require('express-bearer-token');
 const compression = require('compression');
 const express = require('express');
 const fs = require('fs');
@@ -9,9 +8,22 @@ const expressWinston = require('express-winston');
 const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
-const authHeader = require('./middleware/auth-header.middleware');
+const passport = require('passport');
+const { Strategy } = require('passport-http-bearer');
 
 const wildcardRoute = require('./routes/wildcard.route');
+
+function loop(token, callback, authArray) {
+	const keys = [];
+	authArray.forEach((element) => {
+		keys.push(element.value);
+	});
+
+	if (keys.includes(token)) {
+		return callback(null, token);
+	}
+	return callback(null, false);
+}
 
 class Server {
 	/**
@@ -37,12 +49,23 @@ class Server {
 	 * @description Sets up bearer and auth middleware.
 	 * @returns {this} self
 	 */
-	configureAuthorization() {
-		// Retrieve and then check for matching bearer token
-		this.app.use(bearerToken());
-		this.app.use(authHeader(this));
+	// configureAuthorization() {
+	// 	// Retrieve and then check for matching bearer token
+	// 	this.app.use(bearerToken());
+	// 	this.app.use(authHeader(this));
 
-		// Return self for chaining
+	// 	// Return self for chaining
+	// 	return this;
+	// }
+
+	configureAuthorization() {
+		passport.use(
+			new Strategy((token, callback) => {
+				console.log(`token: ${token}`);
+				loop(token, callback, this.config.auth.apiKeys);
+			})
+		);
+
 		return this;
 	}
 
@@ -148,7 +171,9 @@ class Server {
 		// Start the app
 		this.app.listen(port || server.port);
 		console.log(
-			`${server.name} listening for requests at ${this.config.protocol}://127.0.0.1:${port || server.port}`
+			`${server.name} listening for requests at ${
+				this.config.protocol
+			}://127.0.0.1:${port || server.port}`
 		);
 
 		// Return self for chaining
