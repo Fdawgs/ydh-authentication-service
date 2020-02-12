@@ -1,17 +1,20 @@
 const compression = require('compression');
+const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const express = require('express');
+const expressWinston = require('express-winston');
 const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
-const expressWinston = require('express-winston');
-const winston = require('winston');
-const WinstonRotate = require('winston-daily-rotate-file');
-const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const passport = require('passport');
 const { Strategy } = require('passport-http-bearer');
+const winston = require('winston');
+const WinstonRotate = require('winston-daily-rotate-file');
 
+// Import utils
 const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
+
+// Import routes
 const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
