@@ -61,7 +61,7 @@
 		"helmet": "^3.21.2",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
-		"request": "^2.88.0",
+		"request": "^2.88.2",
 		"validator": "^12.2.0",
 		"winser": "^1.0.3",
 		"winston": "^3.2.1",
