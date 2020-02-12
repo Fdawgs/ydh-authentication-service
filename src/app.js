@@ -7,4 +7,4 @@ new Server(serverConfig)
 	.configurePassport()
 	.configureMiddleware()
 	.configureRoutes()
-	.listen(serverConfig.port);
+	.listen();
