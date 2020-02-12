@@ -1,6 +1,6 @@
 ## <small>3.0.1 (2020-02-12)</small>
 
--   chore(server): remove name key from defaultConifg ([b458836](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b458836))
+-   chore(server): remove name key from defaultConfig ([b458836](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b458836))
 -   style(server): alphabetically sort imports ([168bd92](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/168bd92))
 -   refactor(server): use name key value from package.json ([f221bc4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f221bc4))
 -   fix(app): remove param from listen function ([fb1d92e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/fb1d92e))
