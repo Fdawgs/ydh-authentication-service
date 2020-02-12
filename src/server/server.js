@@ -24,8 +24,7 @@ class Server {
 	constructor(config = {}) {
 		// Define any default settings the server should have to get up and running
 		const defaultConfig = {
-			https: false,
-			name: 'auth-service'
+			https: false
 		};
 		this.config = Object.assign(defaultConfig, config);
 
