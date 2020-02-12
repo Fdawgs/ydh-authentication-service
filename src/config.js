@@ -1,6 +1,5 @@
 const serverConfig = {
 	https: false,
-	name: 'ydh-sider-authentication-service',
 	port: 8215,
 	auth: {
 		apiKeys: [

@@ -1,17 +1,20 @@
 const compression = require('compression');
+const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const express = require('express');
+const expressWinston = require('express-winston');
 const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
-const expressWinston = require('express-winston');
-const winston = require('winston');
-const WinstonRotate = require('winston-daily-rotate-file');
-const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
 const passport = require('passport');
 const { Strategy } = require('passport-http-bearer');
+const winston = require('winston');
+const WinstonRotate = require('winston-daily-rotate-file');
 
+// Import utils
 const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
+
+// Import routes
 const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
@@ -21,8 +24,7 @@ class Server {
 	constructor(config = {}) {
 		// Define any default settings the server should have to get up and running
 		const defaultConfig = {
-			https: false,
-			name: 'auth-service'
+			https: false
 		};
 		this.config = Object.assign(defaultConfig, config);
 
@@ -151,7 +153,7 @@ class Server {
 		// Start the app
 		this.app.listen(port || server.port);
 		console.log(
-			`${server.name} listening for requests at ${
+			`${process.env.npm_package_name} listening for requests at ${
 				this.config.protocol
 			}://127.0.0.1:${port || server.port}`
 		);
