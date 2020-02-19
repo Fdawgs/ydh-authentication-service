@@ -47,9 +47,12 @@ A FHIR resource should be returned.
 
 It is [recommended](https://expressjs.com/en/advanced/best-practice-performance.html#ensure-your-app-automatically-restarts) that you use a process manager such as [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
 
-1. Run `yarn global add pm2` to install pm2 globally
-2. Launch application with `pm2 start .pm2.yml`
-3. Check the application has been deployed using `pm2 list` or `pm2 monit`
+1. Navigate to the repo
+2. Run `yarn install` to install dependencies
+3. Configure the application in `src/config.js`
+4. Run `yarn global add pm2` to install pm2 globally
+5. Launch application with `pm2 start .pm2.yml`
+6. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 ## Setting up as a Windows Service
 
