@@ -18,6 +18,8 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 # Deployment
 
+It is [recommended](https://expressjs.com/en/advanced/best-practice-performance.html#ensure-your-app-automatically-restarts) that you use a process manager like [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
+
 ## Standard deployment
 
 1. Navigate to the repo
