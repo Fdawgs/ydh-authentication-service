@@ -18,8 +18,6 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 # Deployment
 
-It is [recommended](https://expressjs.com/en/advanced/best-practice-performance.html#ensure-your-app-automatically-restarts) that you use a process manager like [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
-
 ## Standard deployment
 
 1. Navigate to the repo
@@ -44,6 +42,14 @@ Authorization: Bearer Jimmini
 ```
 
 A FHIR resource should be returned.
+
+## Deploying using PM2
+
+It is [recommended](https://expressjs.com/en/advanced/best-practice-performance.html#ensure-your-app-automatically-restarts) that you use a process manager like [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
+
+1. Run `yarn global add pm2` to install pm2 globally
+2. Launch application with `pm2 start .pm2.yml`
+3. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 ## Setting up as a Windows Service
 
