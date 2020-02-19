@@ -1,3 +1,15 @@
+## <small>3.0.2 (2020-02-19)</small>
+
+-   docs(readme): add pm2 deployment section ([f6292a6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f6292a6))
+-   docs(readme): add reference to process managers for deployment ([b4f2dae](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b4f2dae))
+-   chore: add pm2 config file ([2a6671c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/2a6671c))
+-   chore(changelog): spell check ([b5101ed](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b5101ed))
+-   chore(config): add comment for example cert path ([c62808c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c62808c))
+-   chore(deps): update lock file ([43895bb](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/43895bb))
+-   chore(gitignore): remove ssl_certs from list ([d398eb9](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d398eb9))
+-   chore(prettierignore): add comment ([0cc431a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0cc431a))
+-   build(deps): bump express-winston from 4.0.2 to 4.0.3 ([4338426](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/4338426))
+
 ## <small>3.0.1 (2020-02-12)</small>
 
 -   chore(server): remove name key from defaultConfig ([b458836](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b458836))
