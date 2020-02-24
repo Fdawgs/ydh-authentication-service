@@ -1,3 +1,12 @@
+## <small>3.0.3 (2020-02-24)</small>
+
+-   chore: convert pm2 config file from yml to js ([db47569](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/db47569))
+-   build(deps-dev): bump eslint-plugin-jest from 23.7.0 to 23.8.0 ([66a3534](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/66a3534))
+-   build(deps-dev): bump eslint-plugin-json from 2.0.1 to 2.1.0 ([48a650d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/48a650d))
+-   build(deps-dev): bump typescript from 3.7.5 to 3.8.2 ([a1bb84f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a1bb84f))
+-   docs(readme): add additional install steps for pm2 ([0bdf506](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0bdf506))
+-   docs(readme): change process manager link ([405623f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/405623f))
+
 ## <small>3.0.2 (2020-02-19)</small>
 
 -   docs(readme): add pm2 deployment section ([f6292a6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f6292a6))
