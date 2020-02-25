@@ -12,7 +12,7 @@ const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 
 // Import utils
-const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
+const bearerTokenAuth = require('./utils/bearer.utils');
 
 // Import routes
 const wildcardRoute = require('./routes/wildcard.route');
