@@ -43,7 +43,6 @@ class Server {
 	configurePassport() {
 		passport.use(
 			new Strategy((token, callback) => {
-				console.log(`token: ${token}`);
 				bearerTokenAuth(token, callback, this.config.auth.apiKeys);
 			})
 		);
