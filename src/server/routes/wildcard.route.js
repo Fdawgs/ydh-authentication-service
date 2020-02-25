@@ -1,9 +1,12 @@
 const { Router } = require('express');
 const passport = require('passport');
 const request = require('request');
-const sanitizeParamString = require('../utils/sanitize-param-string.utils');
+const queryString = require('query-string');
 
 const router = new Router();
+
+// Import middleware
+const sanitize = require('../middleware/sanitize.middleware');
 
 /**
  * @author Frazer Smith
@@ -11,15 +14,15 @@ const router = new Router();
  * @param {Object} options
  * @returns {Router} express router instance.
  */
-module.exports = function configureRoute(options = {}) {
+module.exports = function wildcardRoute(options = {}) {
 	const { config } = options;
+
+	router.use(sanitize());
 
 	router.get(
 		'*',
 		passport.authenticate('bearer', { session: false }),
 		(req, res) => {
-			const parsedParams = sanitizeParamString(req.query);
-
 			if (
 				config &&
 				config.routing &&
@@ -28,8 +31,9 @@ module.exports = function configureRoute(options = {}) {
 			) {
 				request
 					.get(
-						`${config.routing.listenerUrl +
-							req.baseUrl}?${parsedParams}`
+						`${config.routing.listenerUrl + req.baseUrl}?${
+							queryString.stringify(req.query)
+						}`
 					)
 					.on('error', () => {
 						res.status(500).send('Error connecting to webservice');
