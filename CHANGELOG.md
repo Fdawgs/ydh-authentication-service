@@ -1,3 +1,11 @@
+## 3.1.0 (2020-02-25)
+
+-   fix(server): remove console log from configurePassport function ([f372f21](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f372f21))
+-   chore: add options to pm2 config ([b40014a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b40014a))
+-   chore(utils): rename bearer util ([5c1ee31](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/5c1ee31))
+-   feat(middleware): add sanitize middleware ([b07d621](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b07d621))
+-   build(deps): bump helmet from 3.21.2 to 3.21.3 ([3c4fac9](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3c4fac9))
+
 ## <small>3.0.3 (2020-02-24)</small>
 
 -   chore: convert pm2 config file from yml to js ([db47569](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/db47569))
