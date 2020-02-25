@@ -58,7 +58,7 @@
 		"express": "^4.17.1",
 		"express-winston": "^4.0.3",
 		"fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
-		"helmet": "^3.21.2",
+		"helmet": "^3.21.3",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
 		"request": "^2.88.2",
