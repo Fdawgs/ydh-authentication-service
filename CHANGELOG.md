@@ -1,3 +1,13 @@
+## 3.2.0 (2020-02-26)
+
+-   chore: remove watch options ([e704cbe](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e704cbe))
+-   chore(deps): remove redundant winser dependency ([cea9098](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/cea9098))
+-   chore(package): remove winser scripts ([46c3cbc](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/46c3cbc))
+-   docs(readme): add pm2 windows service steps ([a8407b0](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a8407b0))
+-   docs(readme): remove winser steps ([d337b7d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d337b7d))
+-   refactor(middleware): return entire error rather than just message ([331dcb3](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/331dcb3))
+-   feat(server): add basic error handling ([be63d7f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/be63d7f))
+
 ## 3.1.0 (2020-02-25)
 
 -   fix(server): remove console log from configurePassport function ([f372f21](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f372f21))
