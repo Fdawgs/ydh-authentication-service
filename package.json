@@ -67,7 +67,6 @@
 		"request": "^2.88.2",
 		"sanitize-html": "^1.22.0",
 		"validator": "^12.2.0",
-		"winser": "^1.0.3",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.2",
 		"xss": "^1.0.6"
