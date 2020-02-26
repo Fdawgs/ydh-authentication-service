@@ -19,6 +19,7 @@ describe('Server deployment', () => {
 			.configureWinston(winstonRotateConfig)
 			.configurePassport()
 			.configureMiddleware()
+			.configureErrorHandling()
 			.listen();
 
 		expect(server.config.protocol).toBe('http');
@@ -36,6 +37,7 @@ describe('Server deployment', () => {
 				.configurePassport()
 				.configureMiddleware()
 				.configureRoutes()
+				.configureErrorHandling()
 				.listen();
 
 			expect(server.config.protocol).toBe('https');
@@ -95,6 +97,7 @@ describe('GET response headers', () => {
 			.configurePassport()
 			.configureMiddleware()
 			.configureRoutes()
+			.configureErrorHandling()
 			.listen();
 	});
 
