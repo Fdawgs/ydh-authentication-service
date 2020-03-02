@@ -6,7 +6,7 @@ const queryString = require('query-string');
 const router = new Router();
 
 // Import middleware
-const sanitize = require('../middleware/sanitize.middleware');
+const sanitize = require('sanitize-middleware');
 
 /**
  * @author Frazer Smith
