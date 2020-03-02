@@ -1,3 +1,9 @@
+## <small>3.2.1 (2020-03-02)</small>
+
+-   refactor(middleware): move sanitization middleware to own module ([1540844](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/1540844))
+-   build(deps-dev): bump eslint-plugin-jest from 23.8.0 to 23.8.1 ([cd5043e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/cd5043e))
+-   build(deps-dev): bump typescript from 3.8.2 to 3.8.3 ([6738278](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6738278))
+
 ## 3.2.0 (2020-02-26)
 
 -   chore: remove watch options ([e704cbe](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e704cbe))
