@@ -53,7 +53,7 @@
 	},
 	"dependencies": {
 		"compression": "^1.7.4",
-		"cross-env": "^7.0.0",
+		"cross-env": "^7.0.1",
 		"express": "^4.17.1",
 		"express-winston": "^4.0.3",
 		"fhir-stu3-subscription-resthook": "git+https://github.com/BlackPearSw/fhir-stu3-subscription-resthook.git",
