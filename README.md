@@ -34,11 +34,11 @@ ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
 To quickly test it open your request builder of choice (i.e. Insomnia or Postman) and create and execute a new GET request.
 An example of the headers used can be found below:
 
-```http
-GET /3_0_1/Encounter/test HTTP/1.1
-Host: 127.0.0.1:8205
-Content-Type: application/fhir+json
-Authorization: Bearer Jimmini
+```
+curl --request GET \
+  --url http://localhost:8205/Encounter/test \
+  --header 'authorization: Bearer Jimmini' \
+  --header 'content-type: application/fhir+json' \
 ```
 
 A FHIR resource should be returned.
