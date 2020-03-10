@@ -34,11 +34,11 @@ ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
 To quickly test it open your request builder of choice (i.e. Insomnia or Postman) and create and execute a new GET request.
 An example of the headers used can be found below:
 
-```http
-GET /3_0_1/Encounter/test HTTP/1.1
-Host: 127.0.0.1:8205
-Content-Type: application/fhir+json
-Authorization: Bearer Jimmini
+```
+curl --request GET \
+  --url http://localhost:8205/Encounter/test \
+  --header 'authorization: Bearer Jimmini' \
+  --header 'content-type: application/fhir+json' \
 ```
 
 A FHIR resource should be returned.
@@ -59,11 +59,13 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 Yeovil District Hospital is heavily invested in Microsoft's ecosystem, as such the service can be deployed on Windows as a service.
 
 1. Run `yarn global add pm2-windows-service` to install [pm2-windows-service](https://classic.yarnpkg.com/en/package/pm2-windows-service)
-2. PM2 creates a default PM2 home folder under `C:/Users/<username>/.pm2`, copy the folder to a system accessible level i.e `C:/.pm2`
+2. PM2 creates a default PM2 home folder under `C:/Users/<username>/.pm2` after its first run; copy the folder to a system accessible level i.e `C:/.pm2`
 3. Create a new PM2_HOME variable at the System level and set the value to `C:/.pm2`
-4. Run `pm2 start .pm2.config.js`
-5. Run `pm2 save`
+4. Run `pm2 start .pm2.config.js` to start the application
+5. Run `pm2 save` to save the process list
 6. Run `pm2-service-install` to start as a service
+
+When the service starts or restarts, it will start all the applications saved in the process list.
 
 The service will then restart that set of processes when the service is next started (by default this will be on system boot).
 
