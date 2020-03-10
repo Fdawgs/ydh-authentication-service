@@ -1,3 +1,14 @@
+## <small>3.2.2 (2020-03-10)</small>
+
+-   docs(readme): change example call to curl request ([bc95761](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/bc95761))
+-   docs(readme): clarify pm2 usage ([b8447c2](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b8447c2))
+-   chore: update lockfile ([05cfd4a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/05cfd4a))
+-   build(deps-dev): bump eslint-plugin-jest from 23.8.1 to 23.8.2 ([a838feb](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a838feb))
+-   build(deps): bump cross-env from 7.0.0 to 7.0.1 ([8910bbe](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8910bbe))
+-   build(deps): bump cross-env from 7.0.1 to 7.0.2 ([b26b1cd](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b26b1cd))
+-   build(deps): bump sanitize-middleware from 1.0.0 to 1.0.1 ([c21a901](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c21a901))
+-   build(deps): move cross-env to dev dependencies ([49126c4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/49126c4))
+
 ## <small>3.2.1 (2020-03-02)</small>
 
 -   refactor(middleware): move sanitization middleware to own module ([1540844](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/1540844))
