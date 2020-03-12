@@ -1,3 +1,8 @@
+## <small>3.2.3 (2020-03-12)</small>
+
+-   chore: update lockfile ([ecae517](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ecae517))
+-   docs(readme): remove redundant sentence regarding pm2 service ([750172b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/750172b))
+
 ## <small>3.2.2 (2020-03-10)</small>
 
 -   docs(readme): change example call to curl request ([bc95761](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/bc95761))
