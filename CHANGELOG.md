@@ -1,3 +1,11 @@
+## <small>3.2.4 (2020-03-16)</small>
+
+-   build(deps-dev): bump eslint-plugin-json from 2.1.0 to 2.1.1 ([d71ae09](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d71ae09))
+-   build(deps): bump sanitize-middleware from 1.0.1 to 2.0.0 ([7260bf8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7260bf8))
+-   build(deps): bump sanitize-middleware from 2.0.0 to 2.0.1 ([7a576b3](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7a576b3))
+-   chore: update dependencies ([f41a341](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f41a341))
+-   style: rename main file to index from app ([902d776](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/902d776))
+
 ## <small>3.2.3 (2020-03-12)</small>
 
 -   chore: update lockfile ([ecae517](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ecae517))
