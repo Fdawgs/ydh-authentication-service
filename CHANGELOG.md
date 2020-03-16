@@ -1,3 +1,9 @@
+## 3.3.0 (2020-03-16)
+
+-   tests(server): update tests to expect new cors headers ([e1a7ac9](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e1a7ac9))
+-   feat(server): add cors middleware ([b088cf4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b088cf4))
+-   refactor(server): remove redundant error handler ([c0b810b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c0b810b))
+
 ## <small>3.2.4 (2020-03-16)</small>
 
 -   build(deps-dev): bump eslint-plugin-json from 2.1.0 to 2.1.1 ([d71ae09](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d71ae09))
