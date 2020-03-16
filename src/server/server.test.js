@@ -116,7 +116,8 @@ describe('GET response headers', () => {
 
 	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
-			'access-control-allow-headers': 'Origin,X-Requested-With,Content-Type,Accept,Authorization',
+			'access-control-allow-headers':
+				'Origin,X-Requested-With,Content-Type,Accept,Authorization',
 			'access-control-allow-methods': 'GET',
 			'access-control-allow-origin': '*',
 			'access-control-expose-headers': 'Content-Location, Location',
