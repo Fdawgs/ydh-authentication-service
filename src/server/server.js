@@ -1,5 +1,5 @@
 const compression = require('compression');
-const error = require('fhir-stu3-subscription-resthook/lib/handlers/error');
+const cors = require('cors');
 const express = require('express');
 const expressWinston = require('express-winston');
 const fs = require('fs');
@@ -74,8 +74,8 @@ class Server {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
 
-		// Error handling
-		this.app.use(error());
+		// Set up CORS
+		this.app.use(cors(this.config.cors));
 
 		// Return self for chaining
 		return this;
