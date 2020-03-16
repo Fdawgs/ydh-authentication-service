@@ -24,6 +24,16 @@ const serverConfig = {
 			passphrase: '',
 			pfx: ''
 		}
+	},
+	cors: {
+		allowedHeaders: [
+			'Origin',
+			'X-Requested-With',
+			'Content-Type',
+			'Accept',
+			'Authorization'
+		],
+		methods: ['GET']
 	}
 };
 

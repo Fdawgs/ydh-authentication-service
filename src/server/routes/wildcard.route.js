@@ -19,6 +19,7 @@ module.exports = function wildcardRoute(options = {}) {
 
 	router.use(sanitize());
 
+	router.options('*');
 	router.get(
 		'*',
 		passport.authenticate('bearer', { session: false }),
@@ -42,6 +43,8 @@ module.exports = function wildcardRoute(options = {}) {
 							// Remove or amend inaccurate headers
 							response.headers['access-control-allow-methods'] =
 								'GET';
+							response.headers['access-control-allow-headers'] =
+								'Origin,X-Requested-With,Content-Type,Accept,Authorization';
 							delete response.headers.etag;
 							delete response.headers['last-modified'];
 
