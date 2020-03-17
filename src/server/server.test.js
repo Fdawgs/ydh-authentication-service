@@ -116,7 +116,7 @@ describe('GET response headers', () => {
 
 	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
-			'allow': 'GET',
+			allow: 'GET',
 			'access-control-allow-origin': '*',
 			'access-control-expose-headers': 'Content-Location, Location',
 			'cache-control':
@@ -278,7 +278,7 @@ describe('OPTIONS response headers', () => {
 		Object.keys(expectedHeaders).forEach((key) => {
 			expect(response.res.headers).toHaveProperty(key);
 			// date varies, so only test if key exists, not value of key
-			if(key !== 'date') {
+			if (key !== 'date') {
 				expect(response.res.headers[key]).toEqual(expectedHeaders[key]);
 			}
 		});

@@ -1,3 +1,12 @@
+## <small>3.3.1 (2020-03-17)</small>
+
+-   style(config): add whitespace ([b7dc60d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b7dc60d))
+-   fix(routes): remove cors headers from get response ([11c7d42](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/11c7d42))
+-   fix(routes): remove preflight headers, add allow header ([123bfec](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/123bfec))
+-   fix(tests): remove expected cors headers ([c3852a2](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c3852a2))
+-   tests(server): add tests for options requests ([0c78186](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0c78186))
+-   refactor(config): add spacing to allowedHeaders property ([6ae97c4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6ae97c4))
+
 ## 3.3.0 (2020-03-16)
 
 -   tests(server): update tests to expect new cors headers ([e1a7ac9](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e1a7ac9))
