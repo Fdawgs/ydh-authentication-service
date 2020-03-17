@@ -26,7 +26,8 @@ const serverConfig = {
 		}
 	},
 	cors: {
-		allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+		allowedHeaders:
+			'Origin, X-Requested-With, Content-Type, Accept, Authorization',
 		methods: ['GET']
 	}
 };
