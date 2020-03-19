@@ -78,10 +78,7 @@ describe('GET response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-
-		mirthServer.listen(8206, () => {
-			console.log('Test Mirth listening at 8206');
-		});
+		mirthServer.listen(8206);
 
 		// Stand up server
 		server = new Server(serverConfig)
@@ -203,10 +200,7 @@ describe('OPTIONS response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-
-		mirthServer.listen(8206, () => {
-			console.log('Test Mirth listening at 8206');
-		});
+		mirthServer.listen(8206);
 
 		// Stand up server
 		server = new Server(serverConfig)
