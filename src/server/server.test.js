@@ -60,24 +60,17 @@ describe('GET response headers', () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
-			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
-			res.setHeader(
-				'access-control-allow-methods',
-				'GET, POST, PUT, DELETE, OPTIONS'
-			);
-			res.setHeader('access-control-allow-origin', '*');
-			res.setHeader(
-				'access-control-expose-headers',
-				'Content-Location, Location'
-			);
-			res.setHeader('etag', 'W/"1"');
-			res.setHeader(
-				'content-type',
-				'application/fhir+json; charset=UTF-8'
-			);
-
-			res.setHeader('connection', 'keep-alive');
-			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
+			res.set({
+				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+				'access-control-allow-methods':
+					'GET, POST, PUT, DELETE, OPTIONS',
+				'access-control-allow-origin': '*',
+				'access-control-expose-headers': 'Content-Location, Location',
+				etag: 'W/"1"',
+				'content-type': 'application/fhir+json; charset=UTF-8',
+				connection: 'keep-alive',
+				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+			});
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
@@ -190,24 +183,17 @@ describe('OPTIONS response headers', () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
-			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
-			res.setHeader(
-				'access-control-allow-methods',
-				'GET, POST, PUT, DELETE, OPTIONS'
-			);
-			res.setHeader('access-control-allow-origin', '*');
-			res.setHeader(
-				'access-control-expose-headers',
-				'Content-Location, Location'
-			);
-			res.setHeader('etag', 'W/"1"');
-			res.setHeader(
-				'content-type',
-				'application/fhir+json; charset=UTF-8'
-			);
-
-			res.setHeader('connection', 'keep-alive');
-			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
+			res.set({
+				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+				'access-control-allow-methods':
+					'GET, POST, PUT, DELETE, OPTIONS',
+				'access-control-allow-origin': '*',
+				'access-control-expose-headers': 'Content-Location, Location',
+				etag: 'W/"1"',
+				'content-type': 'application/fhir+json; charset=UTF-8',
+				connection: 'keep-alive',
+				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+			});
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
