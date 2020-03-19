@@ -144,6 +144,7 @@ describe('GET response headers', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
+
 		expect(response.statusCode).toBe(200);
 		expect(response.res.headers).toMatchObject(expectedHeaders);
 	});
@@ -164,6 +165,7 @@ describe('GET response headers', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
+
 		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers)).toEqual(
 			expect.not.arrayContaining(unexpectedHeaders)
@@ -259,8 +261,8 @@ describe('OPTIONS response headers', () => {
 		};
 
 		const response = await request(path).options('');
-		expect(response.statusCode).toBe(204);
 
+		expect(response.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
 			expect(response.res.headers).toHaveProperty(key);
 			// date varies, so only test if key exists, not value of key
