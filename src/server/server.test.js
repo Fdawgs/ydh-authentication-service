@@ -60,24 +60,17 @@ describe('GET response headers', () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
-			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
-			res.setHeader(
-				'access-control-allow-methods',
-				'GET, POST, PUT, DELETE, OPTIONS'
-			);
-			res.setHeader('access-control-allow-origin', '*');
-			res.setHeader(
-				'access-control-expose-headers',
-				'Content-Location, Location'
-			);
-			res.setHeader('etag', 'W/"1"');
-			res.setHeader(
-				'content-type',
-				'application/fhir+json; charset=UTF-8'
-			);
-
-			res.setHeader('connection', 'keep-alive');
-			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
+			res.set({
+				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+				'access-control-allow-methods':
+					'GET, POST, PUT, DELETE, OPTIONS',
+				'access-control-allow-origin': '*',
+				'access-control-expose-headers': 'Content-Location, Location',
+				etag: 'W/"1"',
+				'content-type': 'application/fhir+json; charset=UTF-8',
+				connection: 'keep-alive',
+				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+			});
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
@@ -85,10 +78,7 @@ describe('GET response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-
-		mirthServer.listen(8206, () => {
-			console.log('Test Mirth listening at 8206');
-		});
+		mirthServer.listen(8206);
 
 		// Stand up server
 		server = new Server(serverConfig)
@@ -151,6 +141,7 @@ describe('GET response headers', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
+
 		expect(response.statusCode).toBe(200);
 		expect(response.res.headers).toMatchObject(expectedHeaders);
 	});
@@ -171,6 +162,7 @@ describe('GET response headers', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache');
+
 		expect(response.statusCode).toBe(200);
 		expect(Object.keys(response.res.headers)).toEqual(
 			expect.not.arrayContaining(unexpectedHeaders)
@@ -190,24 +182,17 @@ describe('OPTIONS response headers', () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
-			res.setHeader('server', 'Mirth Connect FHIR Server (3.8.0.b1172)');
-			res.setHeader(
-				'access-control-allow-methods',
-				'GET, POST, PUT, DELETE, OPTIONS'
-			);
-			res.setHeader('access-control-allow-origin', '*');
-			res.setHeader(
-				'access-control-expose-headers',
-				'Content-Location, Location'
-			);
-			res.setHeader('etag', 'W/"1"');
-			res.setHeader(
-				'content-type',
-				'application/fhir+json; charset=UTF-8'
-			);
-
-			res.setHeader('connection', 'keep-alive');
-			res.setHeader('date', 'Thu, 04 Jul 2019 11:59:41 GMT');
+			res.set({
+				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+				'access-control-allow-methods':
+					'GET, POST, PUT, DELETE, OPTIONS',
+				'access-control-allow-origin': '*',
+				'access-control-expose-headers': 'Content-Location, Location',
+				etag: 'W/"1"',
+				'content-type': 'application/fhir+json; charset=UTF-8',
+				connection: 'keep-alive',
+				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+			});
 
 			res.removeHeader('x-powered-by');
 			res.removeHeader('connection');
@@ -215,10 +200,7 @@ describe('OPTIONS response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-
-		mirthServer.listen(8206, () => {
-			console.log('Test Mirth listening at 8206');
-		});
+		mirthServer.listen(8206);
 
 		// Stand up server
 		server = new Server(serverConfig)
@@ -273,8 +255,8 @@ describe('OPTIONS response headers', () => {
 		};
 
 		const response = await request(path).options('');
-		expect(response.statusCode).toBe(204);
 
+		expect(response.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
 			expect(response.res.headers).toHaveProperty(key);
 			// date varies, so only test if key exists, not value of key
