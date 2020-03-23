@@ -36,11 +36,11 @@
 	"devDependencies": {
 		"@commitlint/config-conventional": "^8.3.4",
 		"conventional-changelog-cli": "^2.0.31",
-		"coveralls": "^3.0.9",
+		"coveralls": "^3.0.11",
 		"cross-env": "^7.0.2",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb-base": "^14.1.0",
-		"eslint-config-prettier": "^6.10.0",
+		"eslint-config-prettier": "^6.10.1",
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jest": "^23.8.2",
 		"eslint-plugin-json": "^2.1.1",
@@ -48,7 +48,7 @@
 		"jsinspect": "^0.12.7",
 		"node-mocks-http": "^1.8.1",
 		"nodemon": "^2.0.2",
-		"prettier": "1.19.1",
+		"prettier": "2.0.1",
 		"supertest": "^4.0.2",
 		"typescript": "^3.8.3"
 	},
@@ -62,7 +62,7 @@
 		"passport-http-bearer": "^1.0.1",
 		"query-string": "^6.11.1",
 		"request": "^2.88.2",
-		"sanitize-middleware": "^2.0.2",
+		"sanitize-middleware": "^2.0.3",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.2"
 	}
