@@ -1,3 +1,20 @@
+## <small>3.3.2 (2020-03-23)</small>
+
+-   ci(travis): add release tags to branch safelist ([aca2ac4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/aca2ac4))
+-   ci(travis): test osx ([ffff11d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ffff11d))
+-   chore(package): add prettier call to changelog gen script ([d7a646b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d7a646b))
+-   chore(package): use test-only script when testing ([5f8e8ff](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/5f8e8ff))
+-   build(deps-dev): bump coveralls from 3.0.9 to 3.0.11 ([3ef6c9c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3ef6c9c))
+-   build(deps-dev): bump eslint-config-prettier from 6.10.0 to 6.10.1 ([6b8211f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6b8211f))
+-   build(deps-dev): bump prettier from 1.19.1 to 2.0.1 ([0e35d6e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0e35d6e))
+-   build(deps): bump sanitize-middleware from 2.0.1 to 2.0.3 ([074d709](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/074d709))
+-   build(deps): update dependencies ([959bb03](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/959bb03))
+-   tests(server): refactor header setting for mock mirth connect server ([17800d3](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/17800d3))
+-   tests(server): remove superfluous console logs ([3664eed](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3664eed))
+-   style(server): add whitespace to increase readability ([0860611](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0860611))
+-   fix(server): add deep cloning when assigning config param ([081b57e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/081b57e))
+-   docs(utils): correct return jsdoc tag ([c92d032](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c92d032))
+
 ## <small>3.3.1 (2020-03-17)</small>
 
 -   style(config): add whitespace ([b7dc60d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b7dc60d))
