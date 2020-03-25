@@ -32,8 +32,9 @@ module.exports = function wildcardRoute(options = {}) {
 			) {
 				request
 					.get(
-						`${config.routing.listenerUrl +
-							req.baseUrl}?${queryString.stringify(req.query)}`
+						`${
+							config.routing.listenerUrl + req.baseUrl
+						}?${queryString.stringify(req.query)}`
 					)
 					.on('error', () => {
 						res.status(500).send('Error connecting to webservice');

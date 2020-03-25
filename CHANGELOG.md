@@ -1,3 +1,13 @@
+## <small>3.3.3 (2020-03-25)</small>
+
+-   fix(server): call nocache function directly due to change in helmet ([6a0663b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6a0663b))
+-   build(deps-dev): bump prettier from 2.0.1 to 2.0.2 ([a3139d6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a3139d6))
+-   build(deps): bump helmet from 3.21.3 to 3.22.0 ([1b48fd2](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/1b48fd2))
+-   build(deps): bump sanitize-middleware from 2.0.3 to 2.0.4 ([781a6fa](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/781a6fa))
+-   ci(travis): run jobs using linux ([322ff11](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/322ff11))
+-   docs(readme): update pm2 section to reflect auto restart changes ([392fb15](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/392fb15))
+-   chore(pm2): remove need to manually restart upon config change ([cac584a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/cac584a))
+
 ## <small>3.3.2 (2020-03-23)</small>
 
 -   ci(travis): add release tags to branch safelist ([aca2ac4](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/aca2ac4))
