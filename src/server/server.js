@@ -90,6 +90,7 @@ class Server {
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
 		this.app.use(helmet(helmetConfig));
+		this.app.use(helmet.noCache());
 
 		// Return self for chaining
 		return this;
