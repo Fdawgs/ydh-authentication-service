@@ -8,6 +8,7 @@ module.exports = {
         exec_mode: 'cluster',
         instances: 8,
         name: "sider-auth",
-        script: './src/index.js'
+        script: './src/index.js',
+        watch: './src/config.js'
     }]
 }
