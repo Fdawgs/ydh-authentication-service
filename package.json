@@ -62,7 +62,7 @@
 		"passport-http-bearer": "^1.0.1",
 		"query-string": "^6.11.1",
 		"request": "^2.88.2",
-		"sanitize-middleware": "^2.0.3",
+		"sanitize-middleware": "^2.0.4",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.2"
 	}
