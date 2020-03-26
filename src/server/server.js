@@ -6,6 +6,7 @@ const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const https = require('https');
+const nocache = require('nocache');
 const passport = require('passport');
 const { Strategy } = require('passport-http-bearer');
 const winston = require('winston');
@@ -93,7 +94,7 @@ class Server {
 	configureHelmet(helmetConfig) {
 		// Use Helmet to set response headers
 		this.app.use(helmet(helmetConfig));
-		this.app.use(helmet.noCache());
+		this.app.use(nocache());
 
 		// Return self for chaining
 		return this;

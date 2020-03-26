@@ -58,6 +58,7 @@
 		"express": "^4.17.1",
 		"express-winston": "^4.0.3",
 		"helmet": "^3.22.0",
+		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
 		"query-string": "^6.11.1",
