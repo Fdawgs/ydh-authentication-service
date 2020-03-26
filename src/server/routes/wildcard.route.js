@@ -23,7 +23,7 @@ module.exports = function wildcardRoute(options = {}) {
 	router.get(
 		'*',
 		passport.authenticate('bearer', { session: false }),
-		(req, res) => {
+		(req, res, next) => {
 			if (
 				config &&
 				config.routing &&
@@ -37,7 +37,8 @@ module.exports = function wildcardRoute(options = {}) {
 						}?${queryString.stringify(req.query)}`
 					)
 					.on('error', () => {
-						res.status(500).send('Error connecting to webservice');
+						res.status(500);
+						next(new Error('Error connecting to webservice'));
 					})
 					.on('response', (response) => {
 						if (config.routing.hide === true) {
@@ -58,7 +59,8 @@ module.exports = function wildcardRoute(options = {}) {
 					})
 					.pipe(res);
 			} else {
-				res.status(500).send('Missing server config values');
+				res.status(500);
+				next(new Error('Missing server config values'));
 			}
 		}
 	);
