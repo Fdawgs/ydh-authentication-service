@@ -14,7 +14,7 @@ describe('Wildcard Route', () => {
 		modServerConfig.port = 8315;
 		const path = `http://127.0.0.1:${modServerConfig.port}/test`;
 		delete modServerConfig.routing;
-		console.log('TESTING MISSING VALUES');
+
 		// Stand up server
 		const server = new Server(modServerConfig)
 			.configurePassport()
