@@ -1,3 +1,14 @@
+## <small>3.3.4 (2020-03-27)</small>
+
+-   tests(routes): add wilcard route test ([32e4f5e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/32e4f5e))
+-   tests(server): remove superfluous console log ([3fae28b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3fae28b))
+-   docs(routes): add missing jsdoc tag ([9f2f2bf](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/9f2f2bf))
+-   refactor(routes): remove object init from argument ([8d12674](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8d12674))
+-   refactor(server): use nocache module as helmet.nocache is deprecated ([a0ec8d6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/a0ec8d6))
+-   build(deps-dev): bump jest from 25.1.0 to 25.2.3 ([2ede211](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/2ede211))
+-   fix(routes): pass errors to next function ([6a3203a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6a3203a))
+-   fix(server): remove misuse of json serialization ([15ee8b2](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/15ee8b2))
+
 ## <small>3.3.3 (2020-03-25)</small>
 
 -   fix(server): call nocache function directly due to change in helmet ([6a0663b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/6a0663b))
