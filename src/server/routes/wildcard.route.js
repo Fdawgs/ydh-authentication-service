@@ -14,7 +14,7 @@ const sanitize = require('sanitize-middleware');
  * @param {Object} options
  * @returns {Router} express router instance.
  */
-module.exports = function wildcardRoute(options = {}) {
+module.exports = function wildcardRoute(options) {
 	const { config } = options;
 
 	router.use(sanitize());
