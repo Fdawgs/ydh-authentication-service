@@ -2,7 +2,7 @@
 
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-sider-authentication-service.svg)](https://github.com/Fdawgs/ydh-sider-authentication-service/releases/latest/) [![Build Status](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-sider-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-sider-authentication-service?branch=master) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=178393684)](https://dependabot.com) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-# Intro
+## Intro
 
 [Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and an instance of it is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/). These endpoints are set up to provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
 
@@ -10,15 +10,15 @@ Mirth Connect does not provide SSL/TLS support out of the box, which is a requir
 
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
 
-# Prerequisites
+## Prerequisites
 
 -   [Node.js](https://nodejs.org/en/)
 -   [Mirth Connect](https://github.com/nextgenhealthcare/connect)
 -   [Yarn](https://yarnpkg.com)
 
-# Deployment
+## Deployment
 
-## Standard deployment
+### Standard deployment
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
@@ -43,7 +43,7 @@ curl --request GET \
 
 A FHIR resource should be returned.
 
-## Deploying using PM2
+### Deploying using PM2
 
 It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a process manager such as [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
 
@@ -54,7 +54,7 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 5. Launch application with `pm2 start .pm2.config.js`
 6. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
-### To install as a Windows service:
+#### To install as a Windows service:
 
 Yeovil District Hospital is heavily invested in Microsoft's ecosystem, as such the service can be deployed on Windows as a service.
 
@@ -70,10 +70,10 @@ To uninstall the service run `pm2-service-uninstall`.
 
 **Note:** PM2 has been configured to automatically restart the application if modifications are made to `src/config.js`.
 
-# Contributing
+## Contributing
 
 Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
 
-# License
+## License
 
 `ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
