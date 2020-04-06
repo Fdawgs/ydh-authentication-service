@@ -13,7 +13,9 @@ const winston = require('winston');
 const WinstonRotate = require('winston-daily-rotate-file');
 
 // Import utils
-const bearerTokenAuth = require('./utils/bearer.utils');
+const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
+const errorHandler = require('./utils/error-handler.utils');
+
 
 // Import routes
 const wildcardRoute = require('./routes/wildcard.route');
@@ -38,14 +40,11 @@ class Server {
 
 	/**
 	 * @author Frazer Smith
-	 * @description Sets up basic error handling for server.
+	 * @description Sets up error handling for server.
 	 * @returns {this} self
 	 */
 	configureErrorHandling() {
-		// eslint-disable-next-line no-unused-vars
-		this.app.use((err, req, res, next) => {
-			res.send(err.message);
-		});
+		this.app.use(errorHandler());
 
 		// return self for chaining
 		return this;

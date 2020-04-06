@@ -5,7 +5,7 @@ const Server = require('../server');
 describe('Wildcard Route', () => {
 	serverConfig.https = false; // Only testing for headers
 
-	beforeAll(async () => {
+	beforeAll(() => {
 		jest.setTimeout(60000);
 	});
 
