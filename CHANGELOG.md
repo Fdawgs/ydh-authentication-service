@@ -1,3 +1,15 @@
+## <small>3.3.5 (2020-04-06)</small>
+
+-   tests: remove async flags ([f4532b8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f4532b8))
+-   chore: rename bearer token util ([415a81a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/415a81a))
+-   chore(package): tidy jest config and cli options ([c08abdc](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c08abdc))
+-   refactor(server): move error handler middleware to own util file ([b8a69e7](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b8a69e7))
+-   build(deps-dev): bump eslint-plugin-import from 2.20.1 to 2.20.2 ([ce5bd84](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ce5bd84))
+-   build(deps-dev): bump jest from 25.2.3 to 25.2.4 ([f505aa9](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f505aa9))
+-   build(deps): bump dependencies ([9ac4ada](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/9ac4ada))
+-   docs: grammar and spelling fixes ([212a38f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/212a38f))
+-   docs(readme): correct section sizes ([558fbcd](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/558fbcd))
+
 ## <small>3.3.4 (2020-03-27)</small>
 
 -   tests(routes): add wilcard route test ([32e4f5e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/32e4f5e))
