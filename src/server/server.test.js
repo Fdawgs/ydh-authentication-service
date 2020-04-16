@@ -261,9 +261,7 @@ describe('OPTIONS response headers', () => {
 					expect(res.headers).toHaveProperty(key);
 					// date varies, so only test if key exists, not value of key
 					if (key !== 'date') {
-						expect(res.headers[key]).toEqual(
-							expectedHeaders[key]
-						);
+						expect(res.headers[key]).toEqual(expectedHeaders[key]);
 					}
 				});
 			});
