@@ -33,7 +33,7 @@ describe('Wildcard Route', () => {
 	});
 
 	test('Should return 500 error response if endpoint not responsive', async () => {
-		const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
+		const modServerConfig = { ...serverConfig };
 		modServerConfig.port = 8314;
 		const path = `http://127.0.0.1:${modServerConfig.port}`;
 

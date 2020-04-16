@@ -51,7 +51,6 @@ describe('Request response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
@@ -157,7 +156,9 @@ describe('Request response headers', () => {
 			.set('cache-control', 'no-cache');
 
 		expect(res.statusCode).toBe(200);
-		expect(Object.keys(res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
+		expect(Object.keys(res.headers)).toEqual(
+			expect.not.arrayContaining(unexpectedHeaders)
+		);
 	});
 
 	test('OPTIONS - Should have expected response headers present', async () => {
@@ -187,8 +188,7 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request(path)
-			.options('');
+		const res = await request(path).options('');
 
 		expect(res.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
