@@ -106,13 +106,10 @@ describe('GET response headers', () => {
 
 	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
-			allow: 'GET',
 			'access-control-allow-origin': '*',
-			'access-control-expose-headers': 'Content-Location, Location',
 			'cache-control':
 				'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'keep-alive',
-			'content-length': '2',
 			'content-security-policy':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'content-type': 'application/fhir+json; charset=utf-8',
@@ -143,7 +140,7 @@ describe('GET response headers', () => {
 			.set('cache-control', 'no-cache')
 			.then((res) => {
 				expect(res.statusCode).toBe(200);
-				expect(res.res.headers).toMatchObject(expectedHeaders);
+				expect(res.headers).toMatchObject(expectedHeaders);
 			});
 	});
 
@@ -166,7 +163,7 @@ describe('GET response headers', () => {
 			.set('cache-control', 'no-cache')
 			.then((res) => {
 				expect(res.statusCode).toBe(200);
-				expect(Object.keys(res.res.headers)).toEqual(
+				expect(Object.keys(res.headers)).toEqual(
 					expect.not.arrayContaining(unexpectedHeaders)
 				);
 			});
@@ -238,7 +235,6 @@ describe('OPTIONS response headers', () => {
 			'cache-control':
 				'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'close',
-			'content-length': '0',
 			'content-security-policy':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			date: '',
@@ -262,10 +258,10 @@ describe('OPTIONS response headers', () => {
 			.then((res) => {
 				expect(res.statusCode).toBe(204);
 				Object.keys(expectedHeaders).forEach((key) => {
-					expect(res.res.headers).toHaveProperty(key);
+					expect(res.headers).toHaveProperty(key);
 					// date varies, so only test if key exists, not value of key
 					if (key !== 'date') {
-						expect(res.res.headers[key]).toEqual(
+						expect(res.headers[key]).toEqual(
 							expectedHeaders[key]
 						);
 					}
