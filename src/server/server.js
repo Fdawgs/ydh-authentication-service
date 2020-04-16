@@ -1,5 +1,4 @@
 const compression = require('compression');
-const cors = require('cors');
 const express = require('express');
 const expressWinston = require('express-winston');
 const fs = require('fs');
@@ -15,7 +14,6 @@ const WinstonRotate = require('winston-daily-rotate-file');
 // Import utils
 const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
 const errorHandler = require('./utils/error-handler.utils');
-
 
 // Import routes
 const wildcardRoute = require('./routes/wildcard.route');
@@ -73,9 +71,6 @@ class Server {
 	configureMiddleware() {
 		// Add compression
 		this.app.use(compression({ level: 9 }));
-
-		// Set up CORS
-		this.app.use(cors(this.config.cors));
 
 		// Return self for chaining
 		return this;

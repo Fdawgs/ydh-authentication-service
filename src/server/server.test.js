@@ -106,13 +106,10 @@ describe('GET response headers', () => {
 
 	test('Should have expected response headers present', async () => {
 		const expectedHeaders = {
-			allow: 'GET',
 			'access-control-allow-origin': '*',
-			'access-control-expose-headers': 'Content-Location, Location',
 			'cache-control':
 				'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'keep-alive',
-			'content-length': '2',
 			'content-security-policy':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			'content-type': 'application/fhir+json; charset=utf-8',
@@ -133,17 +130,18 @@ describe('GET response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const response = await request(path)
+		return request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-
-		expect(response.statusCode).toBe(200);
-		expect(response.res.headers).toMatchObject(expectedHeaders);
+			.set('cache-control', 'no-cache')
+			.then((res) => {
+				expect(res.statusCode).toBe(200);
+				expect(res.headers).toMatchObject(expectedHeaders);
+			});
 	});
 
 	test('Should have unexpected response headers removed', async () => {
@@ -154,19 +152,21 @@ describe('GET response headers', () => {
 			'server',
 			'x-powered-by'
 		];
-		const response = await request(path)
+
+		return request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-
-		expect(response.statusCode).toBe(200);
-		expect(Object.keys(response.res.headers)).toEqual(
-			expect.not.arrayContaining(unexpectedHeaders)
-		);
+			.set('cache-control', 'no-cache')
+			.then((res) => {
+				expect(res.statusCode).toBe(200);
+				expect(Object.keys(res.headers)).toEqual(
+					expect.not.arrayContaining(unexpectedHeaders)
+				);
+			});
 	});
 });
 
@@ -235,7 +235,6 @@ describe('OPTIONS response headers', () => {
 			'cache-control':
 				'no-store, no-cache, must-revalidate, proxy-revalidate',
 			connection: 'close',
-			'content-length': '0',
 			'content-security-policy':
 				"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 			date: '',
@@ -254,15 +253,19 @@ describe('OPTIONS response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const response = await request(path).options('');
-
-		expect(response.statusCode).toBe(204);
-		Object.keys(expectedHeaders).forEach((key) => {
-			expect(response.res.headers).toHaveProperty(key);
-			// date varies, so only test if key exists, not value of key
-			if (key !== 'date') {
-				expect(response.res.headers[key]).toEqual(expectedHeaders[key]);
-			}
-		});
+		return request(path)
+			.options('')
+			.then((res) => {
+				expect(res.statusCode).toBe(204);
+				Object.keys(expectedHeaders).forEach((key) => {
+					expect(res.headers).toHaveProperty(key);
+					// date varies, so only test if key exists, not value of key
+					if (key !== 'date') {
+						expect(res.headers[key]).toEqual(
+							expectedHeaders[key]
+						);
+					}
+				});
+			});
 	});
 });

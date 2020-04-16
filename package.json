@@ -52,6 +52,7 @@
 		"typescript": "^3.8.3"
 	},
 	"dependencies": {
+		"axios": "^0.19.2",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
@@ -61,7 +62,6 @@
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
 		"query-string": "^6.12.0",
-		"request": "^2.88.2",
 		"sanitize-middleware": "^2.0.5",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.2"
