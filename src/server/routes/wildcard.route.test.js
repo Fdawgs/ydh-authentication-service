@@ -18,18 +18,17 @@ describe('Wildcard Route', () => {
 			.configureErrorHandling()
 			.listen();
 
-		return request(path)
+		const res = await request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache')
-			.then(async (res) => {
-				expect(res.statusCode).toBe(500);
-				expect(res.text).toBe('Missing server config values');
-				await server.shutdown();
-			});
+			.set('cache-control', 'no-cache');
+
+		expect(res.statusCode).toBe(500);
+		expect(res.text).toBe('Missing server config values');
+		await server.shutdown();
 	});
 });

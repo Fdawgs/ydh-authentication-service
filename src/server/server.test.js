@@ -9,7 +9,6 @@ const {
 const Server = require('./server');
 
 describe('Server deployment', () => {
-
 	test('Should assign default values if none provided', async () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
@@ -52,7 +51,6 @@ describe('GET response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-		jest.setTimeout(60000);
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
@@ -127,18 +125,17 @@ describe('GET response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		return request(path)
+		const res = await request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache')
-			.then((res) => {
-				expect(res.statusCode).toBe(200);
-				expect(res.headers).toMatchObject(expectedHeaders);
-			});
+			.set('cache-control', 'no-cache');
+
+		expect(res.statusCode).toBe(200);
+		expect(res.headers).toMatchObject(expectedHeaders);
 	});
 
 	test('Should have unexpected response headers removed', async () => {
@@ -150,20 +147,17 @@ describe('GET response headers', () => {
 			'x-powered-by'
 		];
 
-		return request(path)
+		const res = await request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache')
-			.then((res) => {
-				expect(res.statusCode).toBe(200);
-				expect(Object.keys(res.headers)).toEqual(
-					expect.not.arrayContaining(unexpectedHeaders)
-				);
-			});
+			.set('cache-control', 'no-cache');
+
+		expect(res.statusCode).toBe(200);
+		expect(Object.keys(res.headers)).toEqual(expect.not.arrayContaining(unexpectedHeaders));
 	});
 });
 
@@ -174,7 +168,6 @@ describe('OPTIONS response headers', () => {
 	serverConfig.https = false; // Only testing for headers
 
 	beforeAll(async () => {
-		jest.setTimeout(60000);
 
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
@@ -250,17 +243,16 @@ describe('OPTIONS response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		return request(path)
-			.options('')
-			.then((res) => {
-				expect(res.statusCode).toBe(204);
-				Object.keys(expectedHeaders).forEach((key) => {
-					expect(res.headers).toHaveProperty(key);
-					// date varies, so only test if key exists, not value of key
-					if (key !== 'date') {
-						expect(res.headers[key]).toEqual(expectedHeaders[key]);
-					}
-				});
-			});
+		const res = await request(path)
+			.options('');
+
+		expect(res.statusCode).toBe(204);
+		Object.keys(expectedHeaders).forEach((key) => {
+			expect(res.headers).toHaveProperty(key);
+			// date varies, so only test if key exists, not value of key
+			if (key !== 'date') {
+				expect(res.headers[key]).toEqual(expectedHeaders[key]);
+			}
+		});
 	});
 });
