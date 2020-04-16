@@ -26,12 +26,7 @@ module.exports = function wildcardRoute(options) {
 		.get(
 			passport.authenticate('bearer', { session: false }),
 			(req, res, next) => {
-				if (
-					config &&
-					config.routing &&
-					config.routing.listenerUrl &&
-					config.routing.hide
-				) {
+				try {
 					request
 						.get(
 							`${
@@ -41,36 +36,28 @@ module.exports = function wildcardRoute(options) {
 								responseType: 'stream'
 							}
 						)
-						.then(
-							(response) => {
-								if (config.routing.hide === true) {
-									// Remove preflight headers
-									delete response.headers[
-										'access-control-allow-methods'
-									];
+						.then((response) => {
+							if (config.routing.hide === true) {
+								// Remove preflight headers
+								delete response.headers[
+									'access-control-allow-methods'
+								];
 
-									// Remove or amend inaccurate headers
-									delete response.headers.etag;
-									delete response.headers['last-modified'];
-									response.headers.allow = 'GET';
+								// Remove or amend inaccurate headers
+								delete response.headers.etag;
+								delete response.headers['last-modified'];
+								response.headers.allow = 'GET';
 
-									// Remove security risk headers
-									delete response.headers.location;
-									delete response.headers.server;
-								}
-								res.set(response.headers);
-								response.data.pipe(res);
-							},
-							() => {
-								res.status(500);
-								next(
-									new Error('Error connecting to webservice')
-								);
+								// Remove security risk headers
+								delete response.headers.location;
+								delete response.headers.server;
 							}
-						);
-				} else {
+							res.set(response.headers);
+							response.data.pipe(res);
+						});
+				} catch (err) {
 					res.status(500);
-					next(new Error('Missing server config values'));
+					next(new Error('Error connecting to webservice'));
 				}
 			}
 		);
