@@ -6,6 +6,7 @@ const queryString = require('query-string');
 const router = new Router();
 
 // Import middleware
+const cors = require('cors');
 const sanitize = require('sanitize-middleware');
 
 /**
@@ -18,7 +19,7 @@ const sanitize = require('sanitize-middleware');
 module.exports = function wildcardRoute(options) {
 	const { config } = options;
 
-	router.use(sanitize());
+	router.use(sanitize(), cors(config.cors));
 
 	router.options('*');
 	router.get(
