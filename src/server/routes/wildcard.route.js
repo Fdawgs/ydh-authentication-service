@@ -36,7 +36,8 @@ module.exports = function wildcardRoute(options) {
 						.get(
 							`${
 								config.routing.listenerUrl + req.baseUrl
-							}?${queryString.stringify(req.query)}`, {
+							}?${queryString.stringify(req.query)}`,
+							{
 								responseType: 'stream'
 							}
 						)

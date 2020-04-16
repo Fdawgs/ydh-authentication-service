@@ -1,3 +1,13 @@
+## <small>3.3.6 (2020-04-16)</small>
+
+-   test(routes): make wildcard route tests async ([8315993](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8315993))
+-   refactor(routes): move cors middleware to route ([d410252](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d410252))
+-   refactor(routes): remove hard coded get route ([fe51f03](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/fe51f03))
+-   refactor(routes): replace deprecated request module with axios ([70974c6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/70974c6))
+-   tests(routes): alter tests to use promises ([122640d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/122640d))
+-   tests(server): alter tests to use promises ([17a122e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/17a122e))
+-   docs(readme): update pm2-windows-service link ([c7b5210](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/c7b5210))
+
 ## <small>3.3.5 (2020-04-06)</small>
 
 -   tests: remove async flags ([f4532b8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f4532b8))
