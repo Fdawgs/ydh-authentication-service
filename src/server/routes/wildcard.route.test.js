@@ -5,10 +5,6 @@ const Server = require('../server');
 describe('Wildcard Route', () => {
 	serverConfig.https = false; // Only testing for headers
 
-	beforeAll(() => {
-		jest.setTimeout(60000);
-	});
-
 	test('Should return 500 error response if routing config missing', async () => {
 		const modServerConfig = { ...serverConfig };
 		modServerConfig.port = 8315;

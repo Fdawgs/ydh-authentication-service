@@ -9,9 +9,6 @@ const {
 const Server = require('./server');
 
 describe('Server deployment', () => {
-	beforeAll(() => {
-		jest.setTimeout(30000);
-	});
 
 	test('Should assign default values if none provided', async () => {
 		const server = new Server()
