@@ -133,17 +133,18 @@ describe('GET response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const response = await request(path)
+		return request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-
-		expect(response.statusCode).toBe(200);
-		expect(response.res.headers).toMatchObject(expectedHeaders);
+			.set('cache-control', 'no-cache')
+			.then((res) => {
+				expect(res.statusCode).toBe(200);
+				expect(res.res.headers).toMatchObject(expectedHeaders);
+			});
 	});
 
 	test('Should have unexpected response headers removed', async () => {
@@ -154,19 +155,21 @@ describe('GET response headers', () => {
 			'server',
 			'x-powered-by'
 		];
-		const response = await request(path)
+
+		return request(path)
 			.get('')
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-
-		expect(response.statusCode).toBe(200);
-		expect(Object.keys(response.res.headers)).toEqual(
-			expect.not.arrayContaining(unexpectedHeaders)
-		);
+			.set('cache-control', 'no-cache')
+			.then((res) => {
+				expect(res.statusCode).toBe(200);
+				expect(Object.keys(res.res.headers)).toEqual(
+					expect.not.arrayContaining(unexpectedHeaders)
+				);
+			});
 	});
 });
 
@@ -254,15 +257,19 @@ describe('OPTIONS response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const response = await request(path).options('');
-
-		expect(response.statusCode).toBe(204);
-		Object.keys(expectedHeaders).forEach((key) => {
-			expect(response.res.headers).toHaveProperty(key);
-			// date varies, so only test if key exists, not value of key
-			if (key !== 'date') {
-				expect(response.res.headers[key]).toEqual(expectedHeaders[key]);
-			}
-		});
+		return request(path)
+			.options('')
+			.then((res) => {
+				expect(res.statusCode).toBe(204);
+				Object.keys(expectedHeaders).forEach((key) => {
+					expect(res.res.headers).toHaveProperty(key);
+					// date varies, so only test if key exists, not value of key
+					if (key !== 'date') {
+						expect(res.res.headers[key]).toEqual(
+							expectedHeaders[key]
+						);
+					}
+				});
+			});
 	});
 });
