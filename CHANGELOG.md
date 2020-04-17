@@ -1,3 +1,12 @@
+## <small>3.3.7 (2020-04-17)</small>
+
+-   style: format tests ([8a7412d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8a7412d))
+-   refactor(routes): remove unreachable path ([7d07c8b](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/7d07c8b))
+-   docs: correct case when referencing express ([b926f5c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/b926f5c))
+-   tests: remove redundant jest timeout setting ([e80bf4e](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e80bf4e))
+-   tests: replace promises with async/await ([e358272](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/e358272))
+-   tests(server): merge request tests to reduce code duplication ([d45a2e5](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d45a2e5))
+
 ## <small>3.3.6 (2020-04-16)</small>
 
 -   test(routes): make wildcard route tests async ([8315993](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8315993))
