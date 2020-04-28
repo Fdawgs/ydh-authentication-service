@@ -61,7 +61,6 @@
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
-		"query-string": "^6.12.1",
 		"sanitize-middleware": "^2.0.5",
 		"winston": "^3.2.1",
 		"winston-daily-rotate-file": "^4.4.2"
