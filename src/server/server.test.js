@@ -4,7 +4,7 @@ const request = require('supertest');
 const {
 	helmetConfig,
 	serverConfig,
-	winstonRotateConfig
+	loggerConfig
 } = require('../config');
 const Server = require('./server');
 
@@ -12,7 +12,7 @@ describe('Server deployment', () => {
 	test('Should assign default values if none provided', async () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
-			.configureWinston(winstonRotateConfig)
+			.configureLogging(loggerConfig)
 			.configurePassport()
 			.configureMiddleware()
 			.configureErrorHandling()
@@ -29,7 +29,7 @@ describe('Server deployment', () => {
 		try {
 			const server = new Server(httpsServerConfig)
 				.configureHelmet(helmetConfig)
-				.configureWinston(winstonRotateConfig)
+				.configureLogging(loggerConfig)
 				.configurePassport()
 				.configureMiddleware()
 				.configureRoutes()
@@ -77,7 +77,7 @@ describe('Request response headers', () => {
 		// Stand up server
 		server = new Server(serverConfig)
 			.configureHelmet(helmetConfig)
-			.configureWinston(winstonRotateConfig)
+			.configureLogging(loggerConfig)
 			.configurePassport()
 			.configureMiddleware()
 			.configureRoutes()
