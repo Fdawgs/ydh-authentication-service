@@ -57,7 +57,7 @@ const helmetConfig = {
 };
 
 // Refer to option documention here: https://github.com/winstonjs/winston-daily-rotate-file/blob/master/README.md#options
-const winstonRotateConfig = {
+const loggerConfig = {
 	auditFile: 'logs/logging-audit.json',
 	datePattern: 'YYYY-MM-DD-HH',
 	dirname: 'logs',
@@ -71,5 +71,5 @@ const winstonRotateConfig = {
 module.exports = {
 	helmetConfig,
 	serverConfig,
-	winstonRotateConfig
+	loggerConfig
 };
