@@ -18,7 +18,7 @@ const serverConfig = {
 		hide: true // If set to true then remove or amend inaccurate response headers
 	},
 	ssl: {
-		cert: './ssl_certs/ydhclientcert.cer', // example path
+		cert: './ssl_certs/ydhclientcert.cer', // Example path
 		key: '',
 		pfx: {
 			passphrase: '',

@@ -193,7 +193,7 @@ describe('Request response headers', () => {
 		expect(res.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
 			expect(res.headers).toHaveProperty(key);
-			// date varies, so only test if key exists, not value of key
+			// Date varies, so only test if key exists, not value of key
 			if (key !== 'date') {
 				expect(res.headers[key]).toEqual(expectedHeaders[key]);
 			}

@@ -43,7 +43,7 @@ class Server {
 	configureErrorHandling() {
 		this.app.use(errorHandler());
 
-		// return self for chaining
+		// Return self for chaining
 		return this;
 	}
 
