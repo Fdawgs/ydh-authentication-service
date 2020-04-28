@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const passport = require('passport');
 const request = require('axios');
-const queryString = require('query-string');
+const queryString = require('querystring');
 
 const router = new Router();
 
