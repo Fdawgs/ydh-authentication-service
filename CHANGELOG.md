@@ -1,3 +1,19 @@
+## <small>3.3.8 (2020-05-01)</small>
+
+-   build(deps-dev): bump coveralls from 3.0.11 to 3.1.0 ([33e130d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/33e130d))
+-   build(deps-dev): bump eslint-config-prettier from 6.10.1 to 6.11.0 ([49e94e1](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/49e94e1))
+-   build(deps-dev): bump jest from 25.3.0 to 25.5.1 ([5c54709](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/5c54709))
+-   build(deps-dev): bump jest from 25.5.1 to 25.5.2 ([1909158](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/1909158))
+-   build(deps-dev): bump jest from 25.5.2 to 25.5.3 ([d74b4eb](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/d74b4eb))
+-   build(deps-dev): bump prettier from 2.0.4 to 2.0.5 ([36407d8](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/36407d8))
+-   build(deps): bump sanitize-middleware from 2.0.5 to 2.0.6 ([9d84396](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/9d84396))
+-   tests: ignore index and config in coverage collection ([dd6720f](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/dd6720f))
+-   tests(package): add runinband option for jest cli ([ceb5f68](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/ceb5f68))
+-   style: capitalise leading character of comments ([14b9cec](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/14b9cec))
+-   refactor: replace query-string module with native module ([0cc2355](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/0cc2355))
+-   refactor(server): rename configureWinston function to configureLogging ([1e44e4a](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/1e44e4a))
+-   refactor(server): replace winston logging modules with pino ([f158106](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/f158106))
+
 ## <small>3.3.7 (2020-04-17)</small>
 
 -   style: format tests ([8a7412d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/8a7412d))

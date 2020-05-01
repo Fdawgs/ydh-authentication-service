@@ -1,11 +1,7 @@
 const express = require('express');
 const http = require('http');
 const request = require('supertest');
-const {
-	helmetConfig,
-	serverConfig,
-	loggerConfig
-} = require('../config');
+const { helmetConfig, serverConfig, loggerConfig } = require('../config');
 const Server = require('./server');
 
 describe('Server deployment', () => {
