@@ -1,6 +1,6 @@
 {
 	"name": "ydh-sider-authentication-service",
-	"version": "3.3.8",
+	"version": "4.0.0",
 	"description": "NodeJS Express Service to provide authentication before routing to REST API.",
 	"main": "src/index.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-sider-authentication-service.git",

@@ -1,3 +1,19 @@
+## 4.0.0 (2020-05-06)
+
+-   docs(readme): add steps on setting cors headers in mirth connect config ([4bf9729](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/4bf9729))
+-   refactor(routes): remove option to hide cors headers ([106fe38](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/106fe38))
+-   chore(package): set minimum engine version ([31a1453](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/31a1453))
+-   tests(server): add test self-signed localhost pfx file ([32874a6](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/32874a6))
+-   tests(server): add test self-signed localhost ssl cert and key ([aea7369](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/aea7369))
+-   tests(server): align modified server config variable name across tests ([41e3562](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/41e3562))
+-   tests(server): replace shallow spread with deep copies ([11e3c1c](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/11e3c1c))
+-   build(deps-dev): bump eslint-plugin-jest from 23.8.2 to 23.9.0 ([48c744d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/48c744d))
+-   build(deps-dev): bump jest from 25.5.3 to 26.0.1 ([3523588](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/3523588))
+
+### BREAKING CHANGE
+
+-   `routing.hide` key in `serverConfig` object in config file removed, follow new readme steps to set cors headers in Mirth Connect config file
+
 ## <small>3.3.8 (2020-05-01)</small>
 
 -   build(deps-dev): bump coveralls from 3.0.11 to 3.1.0 ([33e130d](https://github.com/Fdawgs/ydh-sider-authentication-service/commit/33e130d))
