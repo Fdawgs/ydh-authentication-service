@@ -37,21 +37,14 @@ module.exports = function wildcardRoute(options) {
 							}
 						)
 						.then((response) => {
-							if (config.routing.hide === true) {
-								// Remove preflight headers
-								delete response.headers[
-									'access-control-allow-methods'
-								];
+							// Remove or amend inaccurate headers
+							delete response.headers.etag;
+							delete response.headers['last-modified'];
 
-								// Remove or amend inaccurate headers
-								delete response.headers.etag;
-								delete response.headers['last-modified'];
-								response.headers.allow = 'GET';
+							// Remove security risk headers
+							delete response.headers.location;
+							delete response.headers.server;
 
-								// Remove security risk headers
-								delete response.headers.location;
-								delete response.headers.server;
-							}
 							res.set(response.headers);
 							response.data.pipe(res);
 						});
