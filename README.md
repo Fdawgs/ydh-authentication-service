@@ -23,7 +23,8 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
 3. Configure the application in `src/config.js`, ensuring the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
-4. Run `yarn start`
+4. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
+5. Run `yarn start`
 
 The Express server should now be up and running on the port set in the config. You should see the following output:
 
@@ -50,9 +51,10 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
 3. Configure the application in `src/config.js`
-4. Run `yarn global add pm2` to install pm2 globally
-5. Launch application with `pm2 start .pm2.config.js`
-6. Check the application has been deployed using `pm2 list` or `pm2 monit`
+4. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
+5. Run `yarn global add pm2` to install pm2 globally
+6. Launch application with `pm2 start .pm2.config.js`
+7. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To install as a Windows service:
 
