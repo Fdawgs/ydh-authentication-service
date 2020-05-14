@@ -6,7 +6,7 @@ const { helmetConfig, serverConfig, loggerConfig } = require('../config');
 const Server = require('./server');
 
 describe('Server deployment', () => {
-	test('Should assign default values if none provided', async () => {
+	test('Should assign default values if none provided', () => {
 		const server = new Server()
 			.configureHelmet(helmetConfig)
 			.configureLogging(loggerConfig)
@@ -16,12 +16,13 @@ describe('Server deployment', () => {
 			.listen();
 
 		expect(server.config.protocol).toBe('http');
-		await server.shutdown();
+		server.shutdown();
 	});
 
 	test('Should set protocol to https with cert and key files', async () => {
 		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.https = true;
+		modServerConfig.port = '3690';
 		modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
 		modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
 
@@ -36,14 +37,15 @@ describe('Server deployment', () => {
 				.listen();
 
 			expect(server.config.protocol).toBe('https');
-			await server.shutdown();
+			server.shutdown();
 		} catch (error) {
 			// Do nothing
 		}
 	});
 
-	test('Should set protocol to https with pfx file and passphrase', async () => {
+	test('Should set protocol to https with pfx file and passphrase', () => {
 		const modServerConfig = cloneDeep(serverConfig);
+		modServerConfig.port = '3691';
 		modServerConfig.https = true;
 		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
 		modServerConfig.ssl.pfx.passphrase = 'test';
@@ -59,7 +61,7 @@ describe('Server deployment', () => {
 				.listen();
 
 			expect(server.config.protocol).toBe('https');
-			await server.shutdown();
+			server.shutdown();
 		} catch (error) {
 			// Do nothing
 		}
@@ -68,18 +70,19 @@ describe('Server deployment', () => {
 
 describe('Request response headers', () => {
 	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.port = '3692';
 	const mirthServerConfig = {
 		port: '8206',
 		host: '127.0.0.1'
 	};
-	modServerConfig.routing.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 	let mirthServer;
 
 	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
 	console.log(path);
 
-	beforeAll(async () => {
+	beforeAll(() => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
 		mirthServer = express();
 		mirthServer.get('/test', (req, res) => {
@@ -101,11 +104,15 @@ describe('Request response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-		mirthServer.listen(mirthServerConfig.port, mirthServerConfig.host, () => {
-			console.log(
-				`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
-			);
-		});
+		mirthServer.listen(
+			mirthServerConfig.port,
+			mirthServerConfig.host,
+			() => {
+				console.log(
+					`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
+				);
+			}
+		);
 
 		// Stand up server
 		server = new Server(modServerConfig)
@@ -120,7 +127,7 @@ describe('Request response headers', () => {
 
 	afterAll(async () => {
 		try {
-			await server.shutdown();
+			server.shutdown();
 			await mirthServer.close();
 			setImmediate(() => {
 				mirthServer.emit('close');

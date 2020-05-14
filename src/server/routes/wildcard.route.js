@@ -48,9 +48,16 @@ module.exports = function wildcardRoute(options) {
 							res.set(response.headers);
 							response.data.pipe(res);
 						},
-						() => {
+						(err) => {
 							res.status(500);
-							next(new Error('Error connecting to webservice'));
+							console.log(
+								`Error connecting to webservice: ${err}`
+							);
+							next(
+								new Error(
+									`Error connecting to webservice: ${err}`
+								)
+							);
 						}
 					);
 			}

@@ -29,8 +29,8 @@ describe('Wildcard Route', () => {
 			.set('cache-control', 'no-cache');
 
 		expect(res.statusCode).toBe(500);
-		expect(res.text).toBe('Error connecting to webservice');
-		await server.shutdown();
+		expect(res.text).toMatch('Error connecting to webservice');
+		server.shutdown();
 	});
 
 	test('Should return 500 error response if endpoint not responsive', async () => {
@@ -55,7 +55,7 @@ describe('Wildcard Route', () => {
 			.set('cache-control', 'no-cache');
 
 		expect(res.statusCode).toBe(500);
-		expect(res.text).toBe('Error connecting to webservice');
-		await server.shutdown();
+		expect(res.text).toMatch('Error connecting to webservice');
+		server.shutdown();
 	});
 });
