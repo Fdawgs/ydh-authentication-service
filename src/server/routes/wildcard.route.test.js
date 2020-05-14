@@ -1,3 +1,4 @@
+const cloneDeep = require('lodash/cloneDeep');
 const request = require('supertest');
 const { serverConfig } = require('../../config');
 const Server = require('../server');
@@ -6,10 +7,10 @@ serverConfig.https = false;
 
 describe('Wildcard Route', () => {
 	test('Should return 500 error response if routing config missing', async () => {
-		const modServerConfig = { ...serverConfig };
+		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.port = 8315;
 		const path = `http://127.0.0.1:${modServerConfig.port}`;
-		delete modServerConfig.routing;
+		delete modServerConfig.listenerUrl;
 
 		// Stand up server
 		const server = new Server(modServerConfig)
@@ -33,7 +34,7 @@ describe('Wildcard Route', () => {
 	});
 
 	test('Should return 500 error response if endpoint not responsive', async () => {
-		const modServerConfig = { ...serverConfig };
+		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.port = 8314;
 		const path = `http://127.0.0.1:${modServerConfig.port}`;
 

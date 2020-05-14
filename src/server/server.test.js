@@ -1,3 +1,4 @@
+const cloneDeep = require('lodash/cloneDeep');
 const express = require('express');
 const http = require('http');
 const request = require('supertest');
@@ -19,7 +20,7 @@ describe('Server deployment', () => {
 	});
 
 	test('Should set protocol to https with cert and key files', async () => {
-		const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
+		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.https = true;
 		modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
 		modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
@@ -42,7 +43,7 @@ describe('Server deployment', () => {
 	});
 
 	test('Should set protocol to https with pfx file and passphrase', async () => {
-		const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
+		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.https = true;
 		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
 		modServerConfig.ssl.pfx.passphrase = 'test';
@@ -66,7 +67,7 @@ describe('Server deployment', () => {
 });
 
 describe('Request response headers', () => {
-	const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
+	const modServerConfig = cloneDeep(serverConfig);
 	const mirthServerConfig = {
 		port: '8206',
 		host: '127.0.0.1'
