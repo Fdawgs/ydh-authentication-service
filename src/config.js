@@ -4,7 +4,7 @@ const serverConfig = {
 	https: process.env.USE_HTTPS || false,
 	port: process.env.PORT || 8215,
 	host: process.env.HOST,
-	listenerUrl: process.env.LISTEN_URL,
+	listenerUrl: process.env.LISTENER_URL,
 	auth: {
 		apiKeys: [
 			{
