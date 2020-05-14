@@ -4,6 +4,7 @@ const serverConfig = {
 	https: process.env.USE_HTTPS || false,
 	port: process.env.PORT || 8215,
 	host: process.env.HOST,
+	listenerUrl: process.env.LISTEN_URL,
 	auth: {
 		apiKeys: [
 			{
@@ -15,9 +16,6 @@ const serverConfig = {
 				value: 'Cricket'
 			}
 		]
-	},
-	routing: {
-		listenerUrl: 'http://localhost:8206' // URL and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on
 	},
 	ssl: {
 		cert: process.env.SSL_CERT_PATH,

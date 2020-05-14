@@ -26,17 +26,17 @@ module.exports = function wildcardRoute(options) {
 		.get(
 			passport.authenticate('bearer', { session: false }),
 			(req, res, next) => {
-				try {
-					request
-						.get(
-							`${
-								config.routing.listenerUrl + req.baseUrl
-							}?${queryString.stringify(req.query)}`,
-							{
-								responseType: 'stream'
-							}
-						)
-						.then((response) => {
+				request
+					.get(
+						`${
+							config.listenerUrl + req.baseUrl
+						}?${queryString.stringify(req.query)}`,
+						{
+							responseType: 'stream'
+						}
+					)
+					.then(
+						(response) => {
 							// Remove or amend inaccurate headers
 							delete response.headers.etag;
 							delete response.headers['last-modified'];
@@ -47,11 +47,12 @@ module.exports = function wildcardRoute(options) {
 
 							res.set(response.headers);
 							response.data.pipe(res);
-						});
-				} catch (err) {
-					res.status(500);
-					next(new Error('Error connecting to webservice'));
-				}
+						},
+						() => {
+							res.status(500);
+							next(new Error('Error connecting to webservice'));
+						}
+					);
 			}
 		);
 
