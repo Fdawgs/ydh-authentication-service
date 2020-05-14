@@ -5,101 +5,66 @@ const request = require('supertest');
 const { helmetConfig, serverConfig, loggerConfig } = require('../config');
 const Server = require('./server');
 
-describe('Server deployment', () => {
-	test('Should set protocol to https with cert and key files', async () => {
-		const modServerConfig = cloneDeep(serverConfig);
-		modServerConfig.https = true;
-		modServerConfig.port = '3690';
-		modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
-		modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
+let mirthServer;
+const mirthServerConfig = {
+	port: '8206',
+	host: '127.0.0.1'
+};
 
-		try {
-			const server = new Server(modServerConfig)
-				.configureHelmet(helmetConfig)
-				.configureLogging(loggerConfig)
-				.configurePassport()
-				.configureMiddleware()
-				.configureRoutes()
-				.configureErrorHandling()
-				.listen();
+beforeAll(() => {
+	// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
+	mirthServer = express();
+	mirthServer.get('/test', (req, res) => {
+		res.set({
+			server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+			'access-control-allow-methods':
+				'GET, POST, PUT, DELETE, OPTIONS',
+			'access-control-allow-origin': '*',
+			'access-control-expose-headers': 'Content-Location, Location',
+			etag: 'W/"1"',
+			'content-type': 'application/fhir+json; charset=UTF-8',
+			connection: 'keep-alive',
+			date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+		});
 
-			expect(server.config.protocol).toBe('https');
-			server.shutdown();
-		} catch (error) {
-			// Do nothing
-		}
+		res.removeHeader('x-powered-by');
+		res.removeHeader('connection');
+		return res.status(200).send({});
 	});
 
-	test('Should set protocol to https with pfx file and passphrase', () => {
-		const modServerConfig = cloneDeep(serverConfig);
-		modServerConfig.port = '3691';
-		modServerConfig.https = true;
-		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
-		modServerConfig.ssl.pfx.passphrase = 'test';
-
-		try {
-			const server = new Server(modServerConfig)
-				.configureHelmet(helmetConfig)
-				.configureLogging(loggerConfig)
-				.configurePassport()
-				.configureMiddleware()
-				.configureRoutes()
-				.configureErrorHandling()
-				.listen();
-
-			expect(server.config.protocol).toBe('https');
-			server.shutdown();
-		} catch (error) {
-			// Do nothing
+	mirthServer = http.createServer(mirthServer);
+	mirthServer.listen(
+		mirthServerConfig.port,
+		mirthServerConfig.host,
+		() => {
+			console.log(
+				`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
+			);
 		}
-	});
+	);
 });
+
+afterAll(() => {
+	try {
+		mirthServer.close();
+		setImmediate(() => {
+			mirthServer.emit('close');
+		});
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+})
 
 describe('Request response headers', () => {
 	const modServerConfig = cloneDeep(serverConfig);
 	modServerConfig.port = '3692';
-	const mirthServerConfig = {
-		port: '8206',
-		host: '127.0.0.1'
-	};
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
-	let mirthServer;
 
 	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
-		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
-		mirthServer = express();
-		mirthServer.get('/test', (req, res) => {
-			res.set({
-				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
-				'access-control-allow-methods':
-					'GET, POST, PUT, DELETE, OPTIONS',
-				'access-control-allow-origin': '*',
-				'access-control-expose-headers': 'Content-Location, Location',
-				etag: 'W/"1"',
-				'content-type': 'application/fhir+json; charset=UTF-8',
-				connection: 'keep-alive',
-				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
-			});
-
-			res.removeHeader('x-powered-by');
-			res.removeHeader('connection');
-			return res.status(200).send({});
-		});
-
-		mirthServer = http.createServer(mirthServer);
-		mirthServer.listen(
-			mirthServerConfig.port,
-			mirthServerConfig.host,
-			() => {
-				console.log(
-					`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
-				);
-			}
-		);
-
 		// Stand up server
 		server = new Server(modServerConfig)
 			.configureHelmet(helmetConfig)
@@ -114,10 +79,6 @@ describe('Request response headers', () => {
 	afterAll(() => {
 		try {
 			server.shutdown();
-			mirthServer.close();
-			setImmediate(() => {
-				mirthServer.emit('close');
-			});
 		} catch (error) {
 			console.log(error);
 			throw error;
@@ -224,5 +185,97 @@ describe('Request response headers', () => {
 				expect(res.headers[key]).toEqual(expectedHeaders[key]);
 			}
 		});
+	});
+});
+
+describe('HTTPs connection with cert and key', () => {
+	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.https = true;
+	modServerConfig.port = '3690';
+	modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
+	modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	let server;
+
+	const path = `https://127.0.0.1:${modServerConfig.port}/test`;
+
+	beforeAll(() => {
+		// Stand up server
+		server = new Server(modServerConfig)
+			.configureHelmet(helmetConfig)
+			.configureLogging(loggerConfig)
+			.configurePassport()
+			.configureMiddleware()
+			.configureRoutes()
+			.configureErrorHandling()
+			.listen();
+	});
+
+	afterAll(() => {
+		try {
+			server.shutdown();
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	});
+
+	test('GET - Should have expected response headers present', async () => {
+		const res = await request(path)
+			.get('')
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('Authorization', 'Bearer Jimmini')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache');
+
+		expect(res.statusCode).toBe(200);
+	});
+});
+
+describe('HTTPs connection with PFX file and passphrase', () => {
+	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.https = true;
+		modServerConfig.port = '3691';
+		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
+		modServerConfig.ssl.pfx.passphrase = 'test';
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	let server;
+
+	const path = `https://127.0.0.1:${modServerConfig.port}/test`;
+
+	beforeAll(() => {
+		// Stand up server
+		server = new Server(modServerConfig)
+			.configureHelmet(helmetConfig)
+			.configureLogging(loggerConfig)
+			.configurePassport()
+			.configureMiddleware()
+			.configureRoutes()
+			.configureErrorHandling()
+			.listen();
+	});
+
+	afterAll(() => {
+		try {
+			server.shutdown();
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	});
+
+	test('GET - Should have expected response headers present', async () => {
+		const res = await request(path)
+			.get('')
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('Authorization', 'Bearer Jimmini')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache');
+
+		expect(res.statusCode).toBe(200);
 	});
 });
