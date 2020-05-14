@@ -125,10 +125,10 @@ describe('Request response headers', () => {
 			.listen();
 	});
 
-	afterAll(async () => {
+	afterAll(() => {
 		try {
 			server.shutdown();
-			await mirthServer.close();
+			mirthServer.close();
 			setImmediate(() => {
 				mirthServer.emit('close');
 			});
