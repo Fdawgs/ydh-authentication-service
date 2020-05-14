@@ -22,14 +22,15 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Configure the application in `src/config.js`, ensuring the port of the application is different from the HTTP/FHIR listener channel in Mirth Connect that it is providing SSL connectivity for
-4. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
-5. Run `yarn start`
+3. Make a copy of the `.env.development` file in the root directory and rename to `.env.production`
+4. Configure the application using the global variables in the `.env.production` file
+5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
+6. Run `yarn start`
 
 The Express server should now be up and running on the port set in the config. You should see the following output:
 
 ```
-ydh-sider-authentication-service listening for requests at http://127.0.0.1:8205
+ydh-sider-authentication-service listening for requests at http://0.0.0.0:8215
 ```
 
 To quickly test it open your request builder of choice (i.e. Insomnia or Postman), create, and execute a new GET request.
@@ -37,7 +38,7 @@ An example of the headers used can be found below:
 
 ```
 curl --request GET \
-  --url http://localhost:8205/Encounter/test \
+  --url http://0.0.0.0:8215/Encounter/test \
   --header 'authorization: Bearer Jimmini' \
   --header 'content-type: application/fhir+json' \
 ```
@@ -50,11 +51,12 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Configure the application in `src/config.js`
-4. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
-5. Run `yarn global add pm2` to install pm2 globally
-6. Launch application with `pm2 start .pm2.config.js`
-7. Check the application has been deployed using `pm2 list` or `pm2 monit`
+3. Make a copy of the `.env.development` file in the root directory and rename to `.env.production`
+4. Configure the application using the global variables in the `.env.production` file
+5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
+6. Run `yarn global add pm2` to install pm2 globally
+7. Launch application with `pm2 start .pm2.config.js`
+8. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To install as a Windows service:
 
