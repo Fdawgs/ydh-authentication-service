@@ -1,6 +1,9 @@
+require('custom-env').env();
+
 const serverConfig = {
-	https: false,
-	port: 8215,
+	https: process.env.USE_HTTPS || false,
+	port: process.env.PORT || 8215,
+	host: process.env.HOST,
 	auth: {
 		apiKeys: [
 			{
@@ -17,11 +20,11 @@ const serverConfig = {
 		listenerUrl: 'http://localhost:8206' // URL and port of what the Mirth Connect FHIR/HTTP Listener channel is listening on
 	},
 	ssl: {
-		cert: './ssl_certs/ydhclientcert.cer', // Example path
-		key: '',
+		cert: process.env.SSL_CERT_PATH,
+		key: process.env.SSL_KEY_PATH,
 		pfx: {
-			passphrase: '',
-			pfx: ''
+			passphrase: process.env.PFX_PASSPHRASE,
+			pfx: process.env.PFX_FILE_PATH
 		}
 	},
 	cors: {
