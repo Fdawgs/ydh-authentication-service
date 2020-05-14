@@ -19,8 +19,8 @@ describe('Wildcard Route', () => {
 			.configureErrorHandling()
 			.listen();
 
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
