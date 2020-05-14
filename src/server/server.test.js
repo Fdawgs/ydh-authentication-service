@@ -80,7 +80,6 @@ describe('Request response headers', () => {
 	let mirthServer;
 
 	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
-	console.log(path);
 
 	beforeAll(() => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
