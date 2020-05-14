@@ -66,10 +66,14 @@ describe('Server deployment', () => {
 });
 
 describe('Request response headers', () => {
+	const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
+//	modServerConfig.port = 8207;
+	modServerConfig.routing.listenerUrl = 'http://127.0.0.1:8206';
+
 	let server;
 	let mirthServer;
-	const path = `http://127.0.0.1:${serverConfig.port}/test`;
-	serverConfig.https = false; // Only testing for headers
+	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
+	console.log(path);
 
 	beforeAll(async () => {
 		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
@@ -96,7 +100,7 @@ describe('Request response headers', () => {
 		mirthServer.listen(8206);
 
 		// Stand up server
-		server = new Server(serverConfig)
+		server = new Server(modServerConfig)
 			.configureHelmet(helmetConfig)
 			.configureLogging(loggerConfig)
 			.configurePassport()
