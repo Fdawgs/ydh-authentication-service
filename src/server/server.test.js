@@ -67,11 +67,14 @@ describe('Server deployment', () => {
 
 describe('Request response headers', () => {
 	const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
-//	modServerConfig.port = 8207;
-	modServerConfig.routing.listenerUrl = 'http://127.0.0.1:8206';
-
+	const mirthServerConfig = {
+		port: '8206',
+		host: '127.0.0.1'
+	};
+	modServerConfig.routing.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 	let mirthServer;
+
 	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
 	console.log(path);
 
@@ -97,7 +100,11 @@ describe('Request response headers', () => {
 		});
 
 		mirthServer = http.createServer(mirthServer);
-		mirthServer.listen(8206);
+		mirthServer.listen(mirthServerConfig.port, mirthServerConfig.host, () => {
+			console.log(
+				`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
+			);
+		});
 
 		// Stand up server
 		server = new Server(modServerConfig)
