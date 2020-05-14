@@ -1,5 +1,5 @@
 const cloneDeep = require('lodash/cloneDeep');
-const request = require('supertest');
+const request = require('superagent');
 const { serverConfig } = require('../../config');
 const Server = require('../server');
 
@@ -45,8 +45,8 @@ describe('Wildcard Route', () => {
 			.configureErrorHandling()
 			.listen();
 
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')

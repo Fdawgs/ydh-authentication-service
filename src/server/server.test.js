@@ -1,7 +1,7 @@
 const cloneDeep = require('lodash/cloneDeep');
 const express = require('express');
 const http = require('http');
-const request = require('supertest');
+const request = require('superagent');
 const { helmetConfig, serverConfig, loggerConfig } = require('../config');
 const Server = require('./server');
 
@@ -111,8 +111,7 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request(path)
-			.get('')
+		const res = await request.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
@@ -133,8 +132,8 @@ describe('Request response headers', () => {
 			'x-powered-by'
 		];
 
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
@@ -175,7 +174,7 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request(path).options('');
+		const res = await request.options(path);
 
 		expect(res.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
@@ -221,14 +220,15 @@ describe('HTTPs connection with cert and key', () => {
 	});
 
 	test('GET - Should have expected response headers present', async () => {
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
+			.set('cache-control', 'no-cache')
+			.trustLocalhost();
 
 		expect(res.statusCode).toBe(200);
 	});
@@ -267,14 +267,14 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 	});
 
 	test('GET - Should have expected response headers present', async () => {
-		const res = await request(path)
-			.get('')
+		const res = await request.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
+			.set('cache-control', 'no-cache')
+			.trustLocalhost();
 
 		expect(res.statusCode).toBe(200);
 	});
