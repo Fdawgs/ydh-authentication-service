@@ -6,56 +6,68 @@ const Server = require('../server');
 serverConfig.https = false;
 
 describe('Wildcard Route', () => {
-	test('Should return 500 error response if routing config missing', async () => {
-		const modServerConfig = cloneDeep(serverConfig);
-		modServerConfig.port = 8315;
-		const path = `http://127.0.0.1:${modServerConfig.port}`;
-		delete modServerConfig.listenerUrl;
+	let server;
 
-		// Stand up server
-		const server = new Server(modServerConfig)
-			.configurePassport()
-			.configureRoutes()
-			.configureErrorHandling()
-			.listen();
-
-		const res = await request
-			.get(path)
-			.set('Accept', '*/*')
-			.set('Content-Type', 'application/fhir+json')
-			.set('Authorization', 'Bearer Jimmini')
-			.set('accept-encoding', 'gzip, deflate')
-			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
-
-		expect(res.statusCode).toBe(500);
-		expect(res.text).toMatch('Error connecting to webservice');
+	afterEach(() => {
 		server.shutdown();
 	});
 
 	test('Should return 500 error response if endpoint not responsive', async () => {
 		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.port = 8314;
-		const path = `http://127.0.0.1:${modServerConfig.port}`;
+		const path = `http://0.0.0.0:${modServerConfig.port}`;
 
 		// Stand up server
-		const server = new Server(modServerConfig)
+		server = new Server(modServerConfig)
 			.configurePassport()
+			.configureMiddleware()
 			.configureRoutes()
 			.configureErrorHandling()
 			.listen();
 
-		const res = await request
+		await request
 			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
-			.set('cache-control', 'no-cache');
+			.set('cache-control', 'no-cache')
+			.catch((err) => {
+				expect(err.status).toBe(500);
+				expect(err.response.error.text).toMatch(
+					'Error connecting to webservice'
+				);
+			});
+	});
 
-		expect(res.statusCode).toBe(500);
-		expect(res.text).toMatch('Error connecting to webservice');
-		server.shutdown();
+	test('Should return 500 error response if routing config missing', async () => {
+		const modServerConfig = cloneDeep(serverConfig);
+		modServerConfig.port = 8315;
+		const path = `http://0.0.0.0:${modServerConfig.port}`;
+		delete modServerConfig.listenerUrl;
+
+		// Stand up server
+		server = new Server(modServerConfig)
+			.configurePassport()
+			.configureMiddleware()
+			.configureRoutes()
+			.configureErrorHandling()
+			.listen();
+
+		await request
+			.get(path)
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('Authorization', 'Bearer Jimmini')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache')
+			.catch((err) => {
+				expect(err.status).toBe(500);
+				expect(err.response.error.text).toMatch(
+					'Error connecting to webservice'
+				);
+			});
 	});
 });

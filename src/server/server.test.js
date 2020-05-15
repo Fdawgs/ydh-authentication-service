@@ -17,8 +17,7 @@ beforeAll(() => {
 	mirthServer.get('/test', (req, res) => {
 		res.set({
 			server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
-			'access-control-allow-methods':
-				'GET, POST, PUT, DELETE, OPTIONS',
+			'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
 			'access-control-allow-origin': '*',
 			'access-control-expose-headers': 'Content-Location, Location',
 			etag: 'W/"1"',
@@ -33,15 +32,11 @@ beforeAll(() => {
 	});
 
 	mirthServer = http.createServer(mirthServer);
-	mirthServer.listen(
-		mirthServerConfig.port,
-		mirthServerConfig.host,
-		() => {
-			console.log(
-				`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
-			);
-		}
-	);
+	mirthServer.listen(mirthServerConfig.port, mirthServerConfig.host, () => {
+		console.log(
+			`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
+		);
+	});
 });
 
 afterAll(() => {
@@ -54,7 +49,7 @@ afterAll(() => {
 		console.log(error);
 		throw error;
 	}
-})
+});
 
 describe('Request response headers', () => {
 	const modServerConfig = cloneDeep(serverConfig);
@@ -111,7 +106,8 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request.get(path)
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
@@ -219,7 +215,7 @@ describe('HTTPs connection with cert and key', () => {
 		}
 	});
 
-	test('GET - Should have expected response headers present', async () => {
+	test('GET - Should make a successful connection', async () => {
 		const res = await request
 			.get(path)
 			.set('Accept', '*/*')
@@ -238,9 +234,9 @@ describe('HTTPs connection with cert and key', () => {
 describe('HTTPs connection with PFX file and passphrase', () => {
 	const modServerConfig = cloneDeep(serverConfig);
 	modServerConfig.https = true;
-		modServerConfig.port = '3691';
-		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
-		modServerConfig.ssl.pfx.passphrase = 'test';
+	modServerConfig.port = '3691';
+	modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
+	modServerConfig.ssl.pfx.passphrase = 'test';
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
@@ -267,8 +263,9 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 		}
 	});
 
-	test('GET - Should have expected response headers present', async () => {
-		const res = await request.get(path)
+	test('GET - Should make a successful connection', async () => {
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
