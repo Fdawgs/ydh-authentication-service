@@ -53,7 +53,7 @@ afterAll(() => {
 
 describe('Request response headers', () => {
 	const modServerConfig = cloneDeep(serverConfig);
-	modServerConfig.port = '3692';
+	modServerConfig.port = 3692;
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
@@ -72,12 +72,7 @@ describe('Request response headers', () => {
 	});
 
 	afterAll(() => {
-		try {
-			server.shutdown();
-		} catch (error) {
-			console.log(error);
-			throw error;
-		}
+		server.shutdown();
 	});
 
 	test('GET - Should have expected response headers present', async () => {
@@ -186,7 +181,7 @@ describe('Request response headers', () => {
 describe('HTTPs connection with cert and key', () => {
 	const modServerConfig = cloneDeep(serverConfig);
 	modServerConfig.https = true;
-	modServerConfig.port = '3690';
+	modServerConfig.port = 3690;
 	modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
 	modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
@@ -207,12 +202,7 @@ describe('HTTPs connection with cert and key', () => {
 	});
 
 	afterAll(() => {
-		try {
-			server.shutdown();
-		} catch (error) {
-			console.log(error);
-			throw error;
-		}
+		server.shutdown();
 	});
 
 	test('GET - Should make a successful connection', async () => {
@@ -234,7 +224,7 @@ describe('HTTPs connection with cert and key', () => {
 describe('HTTPs connection with PFX file and passphrase', () => {
 	const modServerConfig = cloneDeep(serverConfig);
 	modServerConfig.https = true;
-	modServerConfig.port = '3691';
+	modServerConfig.port = 3691;
 	modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
 	modServerConfig.ssl.pfx.passphrase = 'test';
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
@@ -255,12 +245,7 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 	});
 
 	afterAll(() => {
-		try {
-			server.shutdown();
-		} catch (error) {
-			console.log(error);
-			throw error;
-		}
+		server.shutdown();
 	});
 
 	test('GET - Should make a successful connection', async () => {
