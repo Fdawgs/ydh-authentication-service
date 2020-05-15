@@ -1,14 +1,15 @@
 # Yeovil District Hospital (YDH) - SIDeR Authentication Service
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-sider-authentication-service.svg)](https://github.com/Fdawgs/ydh-sider-authentication-service/releases/latest/) [![Build Status](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-sider-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-sider-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-sider-authentication-service?branch=master) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=178393684)](https://dependabot.com) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-authentication-service.svg)](https://github.com/Fdawgs/ydh-authentication-service/releases/latest/) [![Build Status](https://travis-ci.org/Fdawgs/ydh-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-authentication-service?branch=master) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&identifier=178393684)](https://dependabot.com) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Intro
 
-[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and an instance of it is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/). These endpoints are set up to provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
-
+[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH and an instance of it is being used to provide RESTful FHIR API endpoints that adhere to NHS Digital's [Care Connect FHIR Profiles](https://nhsconnect.github.io/CareConnectAPI/).
 Mirth Connect does not provide SSL/TLS support out of the box, which is a requirement of the SIDeR programme to secure patient data. As such, this Node.js application using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling bearer authorization API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
 
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
+
+This service was originally written to protect FHIR endpoints that provide patient data for the [SIDeR programme](https://www.somersetccg.nhs.uk/your-health/sharing-your-information/sider/).
 
 ## Prerequisites
 
@@ -30,7 +31,7 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 The Express server should now be up and running on the port set in the config. You should see the following output:
 
 ```
-ydh-sider-authentication-service listening for requests at http://0.0.0.0:8215
+ydh-authentication-service listening for requests at http://0.0.0.0:8215
 ```
 
 To quickly test it open your request builder of choice (i.e. Insomnia or Postman), create, and execute a new GET request.
@@ -84,8 +85,8 @@ To uninstall the service run `pm2-service-uninstall`.
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
+Please see [CONTRIBUTING.md](https://github.com/Fdawgs/ydh-authentication-service/blob/master/CONTRIBUTING.md) for more details regarding contributing to this project.
 
 ## License
 
-`ydh-sider-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-sider-authentication-service/blob/master/LICENSE) license.
+`ydh-authentication-service` is licensed under the [MIT](https://github.com/Fdawgs/ydh-authentication-service/blob/master/LICENSE) license.
