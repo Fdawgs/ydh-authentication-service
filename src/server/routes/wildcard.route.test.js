@@ -36,7 +36,7 @@ describe('Wildcard Route', () => {
 			.catch((err) => {
 				expect(err.status).toBe(500);
 				expect(err.response.error.text).toMatch(
-					'Error connecting to webservice'
+					'Error: connect ECONNREFUSED'
 				);
 			});
 	});
@@ -66,7 +66,7 @@ describe('Wildcard Route', () => {
 			.catch((err) => {
 				expect(err.status).toBe(500);
 				expect(err.response.error.text).toMatch(
-					'Error connecting to webservice'
+					'Error: connect ECONNREFUSED'
 				);
 			});
 	});

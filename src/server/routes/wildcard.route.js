@@ -50,14 +50,7 @@ module.exports = function wildcardRoute(options) {
 						},
 						(err) => {
 							res.status(500);
-							console.log(
-								err
-							);
-							next(
-								new Error(
-									err
-								)
-							);
+							next(new Error(err));
 						}
 					);
 			}
