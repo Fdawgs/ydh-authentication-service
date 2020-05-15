@@ -51,11 +51,11 @@ module.exports = function wildcardRoute(options) {
 						(err) => {
 							res.status(500);
 							console.log(
-								`Error connecting to webservice: ${err}`
+								err
 							);
 							next(
 								new Error(
-									`Error connecting to webservice: ${err}`
+									err
 								)
 							);
 						}
