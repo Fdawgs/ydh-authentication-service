@@ -1,102 +1,67 @@
+const cloneDeep = require('lodash/cloneDeep');
 const express = require('express');
 const http = require('http');
-const request = require('supertest');
+const request = require('superagent');
 const { helmetConfig, serverConfig, loggerConfig } = require('../config');
 const Server = require('./server');
 
-describe('Server deployment', () => {
-	test('Should assign default values if none provided', async () => {
-		const server = new Server()
-			.configureHelmet(helmetConfig)
-			.configureLogging(loggerConfig)
-			.configurePassport()
-			.configureMiddleware()
-			.configureErrorHandling()
-			.listen();
+let mirthServer;
+const mirthServerConfig = {
+	port: '8206',
+	host: '0.0.0.0'
+};
 
-		expect(server.config.protocol).toBe('http');
-		await server.shutdown();
+beforeAll(() => {
+	// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
+	mirthServer = express();
+	mirthServer.get('/test', (req, res) => {
+		res.set({
+			server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
+			'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+			'access-control-allow-origin': '*',
+			'access-control-expose-headers': 'Content-Location, Location',
+			etag: 'W/"1"',
+			'content-type': 'application/fhir+json; charset=UTF-8',
+			connection: 'keep-alive',
+			date: 'Thu, 04 Jul 2019 11:59:41 GMT'
+		});
+
+		res.removeHeader('x-powered-by');
+		res.removeHeader('connection');
+		return res.status(200).send({});
 	});
 
-	test('Should set protocol to https with cert and key files', async () => {
-		const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
-		modServerConfig.https = true;
-		modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
-		modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
-
-		try {
-			const server = new Server(modServerConfig)
-				.configureHelmet(helmetConfig)
-				.configureLogging(loggerConfig)
-				.configurePassport()
-				.configureMiddleware()
-				.configureRoutes()
-				.configureErrorHandling()
-				.listen();
-
-			expect(server.config.protocol).toBe('https');
-			await server.shutdown();
-		} catch (error) {
-			// Do nothing
-		}
-	});
-
-	test('Should set protocol to https with pfx file and passphrase', async () => {
-		const modServerConfig = JSON.parse(JSON.stringify(serverConfig));
-		modServerConfig.https = true;
-		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
-		modServerConfig.ssl.pfx.passphrase = 'test';
-
-		try {
-			const server = new Server(modServerConfig)
-				.configureHelmet(helmetConfig)
-				.configureLogging(loggerConfig)
-				.configurePassport()
-				.configureMiddleware()
-				.configureRoutes()
-				.configureErrorHandling()
-				.listen();
-
-			expect(server.config.protocol).toBe('https');
-			await server.shutdown();
-		} catch (error) {
-			// Do nothing
-		}
+	mirthServer = http.createServer(mirthServer);
+	mirthServer.listen(mirthServerConfig.port, mirthServerConfig.host, () => {
+		console.log(
+			`Mock Mirth Connect server listening for requests at http://${mirthServerConfig.host}:${mirthServerConfig.port}`
+		);
 	});
 });
 
-describe('Request response headers', () => {
-	let server;
-	let mirthServer;
-	const path = `http://127.0.0.1:${serverConfig.port}/test`;
-	serverConfig.https = false; // Only testing for headers
-
-	beforeAll(async () => {
-		// Stand up Express server to mimic responses from Mirth Connect FHIR Listener
-		mirthServer = express();
-		mirthServer.get('/test', (req, res) => {
-			res.set({
-				server: 'Mirth Connect FHIR Server (3.8.0.b1172)',
-				'access-control-allow-methods':
-					'GET, POST, PUT, DELETE, OPTIONS',
-				'access-control-allow-origin': '*',
-				'access-control-expose-headers': 'Content-Location, Location',
-				etag: 'W/"1"',
-				'content-type': 'application/fhir+json; charset=UTF-8',
-				connection: 'keep-alive',
-				date: 'Thu, 04 Jul 2019 11:59:41 GMT'
-			});
-
-			res.removeHeader('x-powered-by');
-			res.removeHeader('connection');
-			return res.status(200).send({});
+afterAll(() => {
+	try {
+		mirthServer.close();
+		setImmediate(() => {
+			mirthServer.emit('close');
 		});
+	} catch (error) {
+		console.log(error);
+		throw error;
+	}
+});
 
-		mirthServer = http.createServer(mirthServer);
-		mirthServer.listen(8206);
+describe('Request response headers', () => {
+	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.port = '3692';
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	let server;
 
+	const path = `http://0.0.0.0:${modServerConfig.port}/test`;
+
+	beforeAll(() => {
 		// Stand up server
-		server = new Server(serverConfig)
+		server = new Server(modServerConfig)
 			.configureHelmet(helmetConfig)
 			.configureLogging(loggerConfig)
 			.configurePassport()
@@ -106,13 +71,9 @@ describe('Request response headers', () => {
 			.listen();
 	});
 
-	afterAll(async () => {
+	afterAll(() => {
 		try {
-			await server.shutdown();
-			await mirthServer.close();
-			setImmediate(() => {
-				mirthServer.emit('close');
-			});
+			server.shutdown();
 		} catch (error) {
 			console.log(error);
 			throw error;
@@ -145,8 +106,8 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
@@ -167,8 +128,8 @@ describe('Request response headers', () => {
 			'x-powered-by'
 		];
 
-		const res = await request(path)
-			.get('')
+		const res = await request
+			.get(path)
 			.set('Accept', '*/*')
 			.set('Content-Type', 'application/fhir+json')
 			.set('Authorization', 'Bearer Jimmini')
@@ -209,7 +170,7 @@ describe('Request response headers', () => {
 			'x-xss-protection': '1; mode=block'
 		};
 
-		const res = await request(path).options('');
+		const res = await request.options(path);
 
 		expect(res.statusCode).toBe(204);
 		Object.keys(expectedHeaders).forEach((key) => {
@@ -219,5 +180,101 @@ describe('Request response headers', () => {
 				expect(res.headers[key]).toEqual(expectedHeaders[key]);
 			}
 		});
+	});
+});
+
+describe('HTTPs connection with cert and key', () => {
+	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.https = true;
+	modServerConfig.port = '3690';
+	modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
+	modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	let server;
+
+	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
+
+	beforeAll(() => {
+		// Stand up server
+		server = new Server(modServerConfig)
+			.configureHelmet(helmetConfig)
+			.configureLogging(loggerConfig)
+			.configurePassport()
+			.configureMiddleware()
+			.configureRoutes()
+			.configureErrorHandling()
+			.listen();
+	});
+
+	afterAll(() => {
+		try {
+			server.shutdown();
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	});
+
+	test('GET - Should make a successful connection', async () => {
+		const res = await request
+			.get(path)
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('Authorization', 'Bearer Jimmini')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache')
+			.disableTLSCerts()
+			.trustLocalhost();
+
+		expect(res.statusCode).toBe(200);
+	});
+});
+
+describe('HTTPs connection with PFX file and passphrase', () => {
+	const modServerConfig = cloneDeep(serverConfig);
+	modServerConfig.https = true;
+	modServerConfig.port = '3691';
+	modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
+	modServerConfig.ssl.pfx.passphrase = 'test';
+	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
+	let server;
+
+	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
+
+	beforeAll(() => {
+		// Stand up server
+		server = new Server(modServerConfig)
+			.configureHelmet(helmetConfig)
+			.configureLogging(loggerConfig)
+			.configurePassport()
+			.configureMiddleware()
+			.configureRoutes()
+			.configureErrorHandling()
+			.listen();
+	});
+
+	afterAll(() => {
+		try {
+			server.shutdown();
+		} catch (error) {
+			console.log(error);
+			throw error;
+		}
+	});
+
+	test('GET - Should make a successful connection', async () => {
+		const res = await request
+			.get(path)
+			.set('Accept', '*/*')
+			.set('Content-Type', 'application/fhir+json')
+			.set('Authorization', 'Bearer Jimmini')
+			.set('accept-encoding', 'gzip, deflate')
+			.set('Connection', 'keep-alive')
+			.set('cache-control', 'no-cache')
+			.disableTLSCerts()
+			.trustLocalhost();
+
+		expect(res.statusCode).toBe(200);
 	});
 });

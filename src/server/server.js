@@ -21,12 +21,8 @@ class Server {
 	/**
 	 * @param {Object} config - Server configuration values.
 	 */
-	constructor(config = {}) {
-		// Define any default settings the server should have to get up and running
-		const defaultConfig = {
-			https: false
-		};
-		this.config = Object.assign(defaultConfig, config);
+	constructor(config) {
+		this.config = config;
 
 		// Setup our Express instance
 		this.app = express();
@@ -122,7 +118,7 @@ class Server {
 	 */
 	listen() {
 		const server = this.config;
-		const port = process.env.PORT;
+
 		// Update the Express app to be an instance of createServer
 		if (server.https === true) {
 			const options = {};
@@ -143,12 +139,11 @@ class Server {
 		}
 
 		// Start the app
-		this.app.listen(port || server.port);
-		console.log(
-			`${process.env.npm_package_name} listening for requests at ${
-				this.config.protocol
-			}://127.0.0.1:${port || server.port}`
-		);
+		this.app.listen(server.port, server.host, () => {
+			console.log(
+				`${process.env.npm_package_name} listening for requests at ${this.config.protocol}://${server.host}:${server.port}`
+			);
+		});
 
 		// Return self for chaining
 		return this;
@@ -157,12 +152,11 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Shut down server (non-gracefully).
-	 * @returns {Promise<this>} self
 	 */
 	shutdown() {
-		return new Promise((resolve) => {
-			this.app.close();
-			resolve(this);
+		this.app.close();
+		setImmediate(() => {
+			this.app.emit('close');
 		});
 	}
 }
