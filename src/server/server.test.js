@@ -8,7 +8,7 @@ const Server = require('./server');
 let mirthServer;
 const mirthServerConfig = {
 	port: '8206',
-	host: '127.0.0.1'
+	host: '0.0.0.0'
 };
 
 beforeAll(() => {
@@ -62,7 +62,7 @@ describe('Request response headers', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `http://127.0.0.1:${modServerConfig.port}/test`;
+	const path = `http://0.0.0.0:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
@@ -196,7 +196,7 @@ describe('HTTPs connection with cert and key', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `https://127.0.0.1:${modServerConfig.port}/test`;
+	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
@@ -228,6 +228,7 @@ describe('HTTPs connection with cert and key', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache')
+			.disableTLSCerts()
 			.trustLocalhost();
 
 		expect(res.statusCode).toBe(200);
@@ -243,7 +244,7 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `https://127.0.0.1:${modServerConfig.port}/test`;
+	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
@@ -274,6 +275,7 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 			.set('accept-encoding', 'gzip, deflate')
 			.set('Connection', 'keep-alive')
 			.set('cache-control', 'no-cache')
+			.disableTLSCerts()
 			.trustLocalhost();
 
 		expect(res.statusCode).toBe(200);
