@@ -22,7 +22,7 @@ To provide further security [Helmet](https://helmetjs.github.io/) is used as par
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Make a copy of the `.env.development` file in the root directory and rename to `.env.production`
+3. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in the `.env.production` file
 5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
 6. Run `yarn start`
@@ -45,13 +45,21 @@ curl --request GET \
 
 A FHIR resource should be returned.
 
+### Deploying using Docker
+
+This requires [Docker](https://www.docker.com/products) installed.
+
+1. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
+2. Configure the application using the global variables in the `.env.production` file
+3. Run `docker-compose up`
+
 ### Deploying using PM2
 
 It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a process manager such as [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Make a copy of the `.env.development` file in the root directory and rename to `.env.production`
+3. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in the `.env.production` file
 5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
 6. Run `yarn global add pm2` to install pm2 globally
