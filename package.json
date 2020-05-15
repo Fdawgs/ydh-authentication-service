@@ -1,9 +1,9 @@
 {
-	"name": "ydh-sider-authentication-service",
-	"version": "4.0.0",
+	"name": "ydh-authentication-service",
+	"version": "5.0.0",
 	"description": "NodeJS Express Service to provide authentication before routing to REST API.",
 	"main": "src/index.js",
-	"repository": "git+https://github.com/Fdawgs/ydh-sider-authentication-service.git",
+	"repository": "git+https://github.com/Fdawgs/ydh-authentication-service.git",
 	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
 	"license": "MIT",
 	"engines": {

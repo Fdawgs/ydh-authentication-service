@@ -18,6 +18,7 @@ Other processes and specifications that are in use in this repository are:
 As noted in the prerequisites section of the readme file, this project requires that you have Node.js and Yarn installed.
 
 With those in place, you can fork the repository, clone it, and then run `yarn install` to install all development dependencies.
+Make a copy of the `.env.test` file in the root directory and rename to `.env.development`.
 
 ### Development Workflow
 
@@ -53,4 +54,4 @@ When cutting a release, the following steps need to be performed:
 
 ## Issues
 
-Please file your issues [here](https://github.com/Fdawgs/ydh-sider-authentication-service/issues) and try to provide as much information in the template as possible/relevant.
+Please file your issues [here](https://github.com/Fdawgs/ydh-authentication-service/issues) and try to provide as much information in the template as possible/relevant.
