@@ -3,7 +3,7 @@ require('custom-env').env();
 const serverConfig = {
 	https: process.env.USE_HTTPS || false,
 	port: process.env.PORT || 8215,
-	host: process.env.HOST || '0.0.0.0',
+	host: process.env.HOST,
 	listenerUrl: process.env.LISTENER_URL,
 	auth: {
 		apiKeys: [
