@@ -57,7 +57,7 @@ describe('Request response headers', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `http://0.0.0.0:${modServerConfig.port}/test`;
+	const path = `http://${process.env.HOST}:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
@@ -187,7 +187,7 @@ describe('HTTPs connection with cert and key', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
+	const path = `https://${process.env.HOST}:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
@@ -230,7 +230,7 @@ describe('HTTPs connection with PFX file and passphrase', () => {
 	modServerConfig.listenerUrl = `http://${mirthServerConfig.host}:${mirthServerConfig.port}`;
 	let server;
 
-	const path = `https://0.0.0.0:${modServerConfig.port}/test`;
+	const path = `https://${process.env.HOST}:${modServerConfig.port}/test`;
 
 	beforeAll(() => {
 		// Stand up server
