@@ -15,7 +15,7 @@ describe('Wildcard Route', () => {
 	test('Should return 500 error response if endpoint not responsive', async () => {
 		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.port = 8314;
-		const path = `http://0.0.0.0:${modServerConfig.port}`;
+		const path = `http://${process.env.HOST}:${modServerConfig.port}`;
 
 		// Stand up server
 		server = new Server(modServerConfig)
@@ -44,7 +44,7 @@ describe('Wildcard Route', () => {
 	test('Should return 500 error response if routing config missing', async () => {
 		const modServerConfig = cloneDeep(serverConfig);
 		modServerConfig.port = 8315;
-		const path = `http://0.0.0.0:${modServerConfig.port}`;
+		const path = `http://${process.env.HOST}:${modServerConfig.port}`;
 		delete modServerConfig.listenerUrl;
 
 		// Stand up server
