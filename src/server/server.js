@@ -19,7 +19,7 @@ const wildcardRoute = require('./routes/wildcard.route');
 
 class Server {
 	/**
-	 * @param {Object} config - Server configuration values.
+	 * @param {object} config - Server configuration values.
 	 */
 	constructor(config) {
 		this.config = config;
@@ -74,7 +74,7 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets Helmet options for server.
-	 * @param {Object} helmetConfig - Helmet configuration values.
+	 * @param {object} helmetConfig - Helmet configuration values.
 	 * @returns {this} self
 	 */
 	configureHelmet(helmetConfig) {
@@ -87,7 +87,7 @@ class Server {
 	}
 
 	configureRoutes() {
-		this.app.use('*', wildcardRoute(this));
+		this.app.use('*', wildcardRoute(this.config));
 
 		// Return self for chaining
 		return this;
@@ -96,7 +96,7 @@ class Server {
 	/**
 	 * @author Frazer Smith
 	 * @description Sets logging options for server.
-	 * @param {Object} loggerConfig - Logger configuration values.
+	 * @param {object} loggerConfig - Logger configuration values.
 	 * @returns {this} self
 	 */
 	configureLogging(loggerConfig) {
