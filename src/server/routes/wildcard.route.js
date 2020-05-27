@@ -24,34 +24,31 @@ module.exports = function wildcardRoute(options) {
 		.route('*')
 		.get(
 			passport.authenticate('bearer', { session: false }),
-			(req, res, next) => {
-				request
-					.get(
+			async (req, res, next) => {
+				try {
+					const response = await request.get(
 						`${
 							config.listenerUrl + req.baseUrl
 						}?${queryString.stringify(req.query)}`,
 						{
 							responseType: 'stream'
 						}
-					)
-					.then(
-						(response) => {
-							// Remove or amend inaccurate headers
-							delete response.headers.etag;
-							delete response.headers['last-modified'];
-
-							// Remove security risk headers
-							delete response.headers.location;
-							delete response.headers.server;
-
-							res.set(response.headers);
-							response.data.pipe(res);
-						},
-						(err) => {
-							res.status(500);
-							next(new Error(err));
-						}
 					);
+
+					// Remove or amend inaccurate headers
+					delete response.headers.etag;
+					delete response.headers['last-modified'];
+
+					// Remove security risk headers
+					delete response.headers.location;
+					delete response.headers.server;
+
+					res.set(response.headers);
+					response.data.pipe(res);
+				} catch (err) {
+					res.status(500);
+					next(new Error(err));
+				}
 			}
 		);
 
