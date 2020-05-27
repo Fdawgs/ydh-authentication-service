@@ -45,15 +45,10 @@ describe('Server deployment', () => {
 	});
 
 	afterAll(() => {
-		try {
-			mirthServer.close();
-			setImmediate(() => {
-				mirthServer.emit('close');
-			});
-		} catch (error) {
-			console.log(error);
-			throw error;
-		}
+		mirthServer.close();
+		setImmediate(() => {
+			mirthServer.emit('close');
+		});
 	});
 
 	describe('Request response headers', () => {
