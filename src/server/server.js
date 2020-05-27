@@ -87,7 +87,7 @@ class Server {
 	}
 
 	configureRoutes() {
-		this.app.use('*', wildcardRoute(this));
+		this.app.use('*', wildcardRoute(this.config));
 
 		// Return self for chaining
 		return this;

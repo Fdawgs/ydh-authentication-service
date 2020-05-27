@@ -12,12 +12,11 @@ const sanitize = require('sanitize-middleware');
 /**
  * @author Frazer Smith
  * @description Sets routing options for server.
- * @param {object} options
- * @param {object} options.config
+ * @param {object} options - Object containing route config objects.
  * @returns {Router} Express router instance.
  */
 module.exports = function wildcardRoute(options) {
-	const { config } = options;
+	const config = options;
 
 	router.use(sanitize(), cors(config.cors));
 
