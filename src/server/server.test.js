@@ -64,7 +64,7 @@ describe('Server deployment', () => {
 
 		const path = `http://${process.env.HOST}:${modServerConfig.port}/test`;
 
-		beforeAll(() => {
+		beforeEach(() => {
 			// Stand up server
 			server = new Server(modServerConfig)
 				.configureHelmet(helmetConfig)
@@ -76,7 +76,7 @@ describe('Server deployment', () => {
 				.listen();
 		});
 
-		afterAll(() => {
+		afterEach(() => {
 			server.shutdown();
 		});
 
@@ -196,7 +196,7 @@ describe('Server deployment', () => {
 
 		const path = `https://${process.env.HOST}:${modServerConfig.port}/test`;
 
-		beforeAll(() => {
+		beforeEach(() => {
 			// Stand up server
 			server = new Server(modServerConfig)
 				.configureHelmet(helmetConfig)
@@ -208,7 +208,7 @@ describe('Server deployment', () => {
 				.listen();
 		});
 
-		afterAll(() => {
+		afterEach(() => {
 			server.shutdown();
 		});
 
@@ -239,7 +239,7 @@ describe('Server deployment', () => {
 
 		const path = `https://${process.env.HOST}:${modServerConfig.port}/test`;
 
-		beforeAll(() => {
+		beforeEach(() => {
 			// Stand up server
 			server = new Server(modServerConfig)
 				.configureHelmet(helmetConfig)
@@ -251,7 +251,7 @@ describe('Server deployment', () => {
 				.listen();
 		});
 
-		afterAll(() => {
+		afterEach(() => {
 			server.shutdown();
 		});
 
