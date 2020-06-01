@@ -1,3 +1,27 @@
+## <small>5.0.1 (2020-06-01)</small>
+
+-   build(deps-dev): add promise and jsdoc eslint plugins; update config ([5b30320](https://github.com/Fdawgs/ydh-authentication-service/commit/5b30320))
+-   build(deps-dev): bump eslint-plugin-jest from 23.11.0 to 23.13.2 ([17b9d16](https://github.com/Fdawgs/ydh-authentication-service/commit/17b9d16))
+-   build(deps-dev): bump eslint-plugin-jsdoc from 25.4.3 to 26.0.1 ([03439d3](https://github.com/Fdawgs/ydh-authentication-service/commit/03439d3))
+-   build(deps-dev): bump typescript from 3.9.2 to 3.9.3 ([2fea9e3](https://github.com/Fdawgs/ydh-authentication-service/commit/2fea9e3))
+-   build(deps): bump sanitize-middleware from 2.0.6 to 2.0.7 ([d80d998](https://github.com/Fdawgs/ydh-authentication-service/commit/d80d998))
+-   build(docker): lint dockerfile ([030f034](https://github.com/Fdawgs/ydh-authentication-service/commit/030f034))
+-   tests: remove host value ([b168a00](https://github.com/Fdawgs/ydh-authentication-service/commit/b168a00))
+-   tests: tidy test structure ([1917c45](https://github.com/Fdawgs/ydh-authentication-service/commit/1917c45))
+-   tests: use pseudo-real data to test input ([6a69ac5](https://github.com/Fdawgs/ydh-authentication-service/commit/6a69ac5))
+-   tests(server): add additional test level ([62e27c0](https://github.com/Fdawgs/ydh-authentication-service/commit/62e27c0))
+-   tests(server): rebuild server for each test ([1e7b7c4](https://github.com/Fdawgs/ydh-authentication-service/commit/1e7b7c4))
+-   tests(server): remove redundant try...catch ([fc36ba7](https://github.com/Fdawgs/ydh-authentication-service/commit/fc36ba7))
+-   refactor(config): remove alt default host value ([daf02c8](https://github.com/Fdawgs/ydh-authentication-service/commit/daf02c8))
+-   refactor(route): replace then() method with async/await ([e483f7b](https://github.com/Fdawgs/ydh-authentication-service/commit/e483f7b))
+-   refactor(route): use options directly ([f2dd004](https://github.com/Fdawgs/ydh-authentication-service/commit/f2dd004))
+-   chore: correct case of type for @param jsdoc tag ([aa9a7bf](https://github.com/Fdawgs/ydh-authentication-service/commit/aa9a7bf))
+-   chore: use @returns jsdoc tag over synonym ([855948a](https://github.com/Fdawgs/ydh-authentication-service/commit/855948a))
+-   chore(dockerignore): add yarn berry inst state ([4c22b66](https://github.com/Fdawgs/ydh-authentication-service/commit/4c22b66))
+-   chore(eslintrc): add multi-line rule ([cf1c9f5](https://github.com/Fdawgs/ydh-authentication-service/commit/cf1c9f5))
+-   chore(gitignore): add dev env variables; add yarn berry inst state ([c882576](https://github.com/Fdawgs/ydh-authentication-service/commit/c882576))
+-   chore(routes): remove console.log ([c19f2fe](https://github.com/Fdawgs/ydh-authentication-service/commit/c19f2fe))
+
 ## 5.0.0 (2020-05-15)
 
 -   chore: rename repo to reflect new purpose ([5a9a0db](https://github.com/Fdawgs/ydh-authentication-service/commit/5a9a0db))
