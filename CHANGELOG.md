@@ -1,3 +1,8 @@
+## <small>5.0.2 (2020-06-02)</small>
+
+-   fix(server): check for string instead of boolean to enable https ([687c8e0](https://github.com/Fdawgs/ydh-authentication-service/commit/687c8e0))
+-   build(deps-dev): bump eslint-plugin-jsdoc from 26.0.1 to 26.0.2 ([51e6fa8](https://github.com/Fdawgs/ydh-authentication-service/commit/51e6fa8))
+
 ## <small>5.0.1 (2020-06-01)</small>
 
 -   build(deps-dev): add promise and jsdoc eslint plugins; update config ([5b30320](https://github.com/Fdawgs/ydh-authentication-service/commit/5b30320))
