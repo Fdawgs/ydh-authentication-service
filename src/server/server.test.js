@@ -182,7 +182,7 @@ describe('Server deployment', () => {
 
 	describe('HTTPs connection with cert and key', () => {
 		const modServerConfig = cloneDeep(serverConfig);
-		modServerConfig.https = true;
+		modServerConfig.https = 'true';
 		modServerConfig.port = 3690;
 		modServerConfig.ssl.cert = `${process.cwd()}/test_ssl_cert/server.cert`;
 		modServerConfig.ssl.key = `${process.cwd()}/test_ssl_cert/server.key`;
@@ -225,7 +225,7 @@ describe('Server deployment', () => {
 
 	describe('HTTPs connection with PFX file and passphrase', () => {
 		const modServerConfig = cloneDeep(serverConfig);
-		modServerConfig.https = true;
+		modServerConfig.https = 'true';
 		modServerConfig.port = 3691;
 		modServerConfig.ssl.pfx.pfx = `${process.cwd()}/test_ssl_cert/server.pfx`;
 		modServerConfig.ssl.pfx.passphrase = 'test';
