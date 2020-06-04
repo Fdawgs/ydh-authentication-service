@@ -1,3 +1,10 @@
+## <small>5.0.3 (2020-06-04)</small>
+
+-   docs(readme): simplify intro section ([d176f7e](https://github.com/Fdawgs/ydh-authentication-service/commit/d176f7e))
+-   chore: watch .env.production file for pm2 restarts ([048b00f](https://github.com/Fdawgs/ydh-authentication-service/commit/048b00f))
+-   build(deps-dev): bump eslint-plugin-jsdoc from 26.0.2 to 27.0.3 ([99e652c](https://github.com/Fdawgs/ydh-authentication-service/commit/99e652c))
+-   build(deps): bump sanitize-middleware from 2.0.7 to 2.0.8 ([71478b9](https://github.com/Fdawgs/ydh-authentication-service/commit/71478b9))
+
 ## <small>5.0.2 (2020-06-02)</small>
 
 -   fix(server): check for string instead of boolean to enable https ([687c8e0](https://github.com/Fdawgs/ydh-authentication-service/commit/687c8e0))
