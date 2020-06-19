@@ -22,8 +22,8 @@ This service was originally written to protect FHIR endpoints that provide patie
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
-4. Configure the application using the global variables in the `.env.production` file
+3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
+4. Configure the application using the global variables in `.env.production`
 5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
 6. Run `yarn start`
 
@@ -49,8 +49,8 @@ A FHIR resource should be returned.
 
 This requires [Docker](https://www.docker.com/products) installed.
 
-1. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
-2. Configure the application using the global variables in the `.env.production` file
+1. Make a copy of `.env.template` in the root directory and rename to `.env.production`
+2. Configure the application using the global variables in `.env.production`
 3. Run `docker-compose up`
 
 ### Deploying using PM2
@@ -59,8 +59,8 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 
 1. Navigate to the repo
 2. Run `yarn install` to install dependencies
-3. Make a copy of the `.env.test` file in the root directory and rename to `.env.production`
-4. Configure the application using the global variables in the `.env.production` file
+3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
+4. Configure the application using the global variables in `.env.production`
 5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
 6. Run `yarn global add pm2` to install pm2 globally
 7. Launch application with `pm2 start .pm2.config.js`
