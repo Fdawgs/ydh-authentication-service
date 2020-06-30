@@ -69,7 +69,7 @@
 		"express": "^4.17.1",
 		"express-pino-logger": "^5.0.0",
 		"file-stream-rotator": "^0.5.7",
-		"helmet": "^3.22.0",
+		"helmet": "^3.23.3",
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
