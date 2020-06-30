@@ -1,3 +1,22 @@
+## <small>5.0.4 (2020-06-30)</small>
+
+-   chore: create code_of_conduct.md ([39018aa](https://github.com/Fdawgs/ydh-authentication-service/commit/39018aa))
+-   chore: rename .env.test to .env.template; add .env.test to gitignore ([3d01dd3](https://github.com/Fdawgs/ydh-authentication-service/commit/3d01dd3))
+-   chore(eslint): convert from json to js file format ([77abb50](https://github.com/Fdawgs/ydh-authentication-service/commit/77abb50))
+-   chore(scripts): expand coverage of eslint and prettier ([94c98a1](https://github.com/Fdawgs/ydh-authentication-service/commit/94c98a1))
+-   build(deps-dev): bump @commitlint/config-conventional ([7bf70a8](https://github.com/Fdawgs/ydh-authentication-service/commit/7bf70a8))
+-   build(deps-dev): bump eslint-plugin-import from 2.20.2 to 2.22.0 ([2c4b14c](https://github.com/Fdawgs/ydh-authentication-service/commit/2c4b14c))
+-   build(deps-dev): bump eslint-plugin-jest from 23.13.2 to 23.17.1 ([02b5d29](https://github.com/Fdawgs/ydh-authentication-service/commit/02b5d29))
+-   build(deps-dev): bump eslint-plugin-jsdoc from 27.0.3 to 28.5.1 ([f1f7cc0](https://github.com/Fdawgs/ydh-authentication-service/commit/f1f7cc0))
+-   build(deps-dev): bump jest from 26.0.1 to 26.1.0 ([cfe4c89](https://github.com/Fdawgs/ydh-authentication-service/commit/cfe4c89))
+-   build(deps-dev): bump superagent from 5.2.2 to 5.3.1 ([5a7ba77](https://github.com/Fdawgs/ydh-authentication-service/commit/5a7ba77))
+-   build(deps-dev): bump typescript from 3.9.3 to 3.9.5 ([23c01de](https://github.com/Fdawgs/ydh-authentication-service/commit/23c01de))
+-   build(deps): bump helmet from 3.22.0 to 3.23.3 ([0125b21](https://github.com/Fdawgs/ydh-authentication-service/commit/0125b21))
+-   build(deps): bump sanitize-middleware from 2.0.8 to 2.0.12 ([6a9cebf](https://github.com/Fdawgs/ydh-authentication-service/commit/6a9cebf))
+-   build(travis): copy template file ([b4e08df](https://github.com/Fdawgs/ydh-authentication-service/commit/b4e08df))
+-   Create Dependabot config file ([6127c98](https://github.com/Fdawgs/ydh-authentication-service/commit/6127c98))
+-   style: tidy whitespace ([1c00436](https://github.com/Fdawgs/ydh-authentication-service/commit/1c00436))
+
 ## <small>5.0.3 (2020-06-04)</small>
 
 -   docs(readme): simplify intro section ([d176f7e](https://github.com/Fdawgs/ydh-authentication-service/commit/d176f7e))

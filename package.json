@@ -1,6 +1,6 @@
 {
 	"name": "ydh-authentication-service",
-	"version": "5.0.3",
+	"version": "5.0.4",
 	"description": "NodeJS Express Service to provide authentication before routing to REST API.",
 	"main": "src/index.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-authentication-service.git",
@@ -43,8 +43,8 @@
 		"conventional-changelog-cli": "^2.0.34",
 		"coveralls": "^3.1.0",
 		"cross-env": "^7.0.2",
-		"eslint": "^6.8.0",
-		"eslint-config-airbnb-base": "^14.1.0",
+		"eslint": "^7.3.1",
+		"eslint-config-airbnb-base": "^14.2.0",
 		"eslint-config-prettier": "^6.11.0",
 		"eslint-plugin-import": "^2.22.0",
 		"eslint-plugin-jest": "^23.17.1",
