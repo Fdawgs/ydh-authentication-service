@@ -1,3 +1,24 @@
+## 6.0.0 (2020-07-14)
+
+-   build(deps-dev): bump @commitlint/config-conventional ([c542374](https://github.com/Fdawgs/ydh-authentication-service/commit/c542374))
+-   build(deps-dev): bump eslint from 7.3.1 to 7.4.0 ([32a7588](https://github.com/Fdawgs/ydh-authentication-service/commit/32a7588))
+-   build(deps-dev): bump eslint-plugin-jest from 23.17.1 to 23.18.0 ([edec577](https://github.com/Fdawgs/ydh-authentication-service/commit/edec577))
+-   build(deps-dev): bump eslint-plugin-jsdoc from 28.5.1 to 29.2.0 ([76df322](https://github.com/Fdawgs/ydh-authentication-service/commit/76df322))
+-   build(deps-dev): bump lodash from 4.17.15 to 4.17.19 ([8001799](https://github.com/Fdawgs/ydh-authentication-service/commit/8001799))
+-   build(deps-dev): bump typescript from 3.9.5 to 3.9.6 ([ce6a3e3](https://github.com/Fdawgs/ydh-authentication-service/commit/ce6a3e3))
+-   build(travis): remove windows and osx os from allowed failures ([dc4fca7](https://github.com/Fdawgs/ydh-authentication-service/commit/dc4fca7))
+-   build(travis): set linux dist ([c00281f](https://github.com/Fdawgs/ydh-authentication-service/commit/c00281f))
+-   build(travis): use lts version of node for jobs ([c4d02cc](https://github.com/Fdawgs/ydh-authentication-service/commit/c4d02cc))
+-   refactor(config): move api tokens to environment variables ([fa54e8f](https://github.com/Fdawgs/ydh-authentication-service/commit/fa54e8f))
+-   chore: update contact email ([92bd773](https://github.com/Fdawgs/ydh-authentication-service/commit/92bd773))
+-   chore(scripts): use gitignore for ignore-path options ([87c49ff](https://github.com/Fdawgs/ydh-authentication-service/commit/87c49ff))
+-   docs(readme): add missing step to pm2 windows service installation ([46799e4](https://github.com/Fdawgs/ydh-authentication-service/commit/46799e4))
+-   docs(readme): remove inactive dependabot badge ([9fe2e3c](https://github.com/Fdawgs/ydh-authentication-service/commit/9fe2e3c))
+
+### BREAKING CHANGE
+
+-   `auth.apiKeys` in `config.js` now uses `api_bearer_token_array` from .env file
+
 ## <small>5.0.4 (2020-06-30)</small>
 
 -   chore: create code_of_conduct.md ([39018aa](https://github.com/Fdawgs/ydh-authentication-service/commit/39018aa))
