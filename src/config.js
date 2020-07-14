@@ -6,16 +6,7 @@ const serverConfig = {
 	host: process.env.HOST,
 	listenerUrl: process.env.LISTENER_URL,
 	auth: {
-		apiKeys: [
-			{
-				service: 'Maternity',
-				value: 'Jimmini'
-			},
-			{
-				service: 'Obstetrics',
-				value: 'Cricket'
-			}
-		]
+		apiKeys: JSON.parse(process.env.API_BEARER_TOKEN_ARRAY)
 	},
 	ssl: {
 		cert: process.env.SSL_CERT_PATH,
