@@ -1,3 +1,16 @@
+## <small>6.0.1 (2020-07-27)</small>
+
+-   build(deps-dev): bump dev dependencies ([7988298](https://github.com/Fdawgs/ydh-authentication-service/commit/7988298))
+-   build(deps-dev): remove typescript ([08cb497](https://github.com/Fdawgs/ydh-authentication-service/commit/08cb497))
+-   build(deps): bump sanitize-middleware from 2.0.12 to 2.0.14 ([0dbec0c](https://github.com/Fdawgs/ydh-authentication-service/commit/0dbec0c))
+-   build(docker): use .env file for config ([0b779c9](https://github.com/Fdawgs/ydh-authentication-service/commit/0b779c9))
+-   build(travis): add test step ([80f9c66](https://github.com/Fdawgs/ydh-authentication-service/commit/80f9c66))
+-   build(travis): make scripts multiline ([f0f74e6](https://github.com/Fdawgs/ydh-authentication-service/commit/f0f74e6))
+-   build(travis): set osx image to latest version ([e5c88e4](https://github.com/Fdawgs/ydh-authentication-service/commit/e5c88e4))
+-   build(travis): suppress git log; structure job stages ([ea5cafe](https://github.com/Fdawgs/ydh-authentication-service/commit/ea5cafe))
+-   build(travis): update linux dist to latest lts ([09b7835](https://github.com/Fdawgs/ydh-authentication-service/commit/09b7835))
+-   chore: update team contact email ([e0ca9a2](https://github.com/Fdawgs/ydh-authentication-service/commit/e0ca9a2))
+
 ## 6.0.0 (2020-07-14)
 
 -   build(deps-dev): bump @commitlint/config-conventional ([c542374](https://github.com/Fdawgs/ydh-authentication-service/commit/c542374))
