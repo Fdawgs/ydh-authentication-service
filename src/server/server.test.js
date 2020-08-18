@@ -82,7 +82,7 @@ describe('Server deployment', () => {
 					'no-store, no-cache, must-revalidate, proxy-revalidate',
 				connection: 'keep-alive',
 				'content-security-policy':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+					"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline'",
 				'content-type': 'application/fhir+json; charset=utf-8',
 				date: 'Thu, 04 Jul 2019 11:59:41 GMT',
 				expires: '0',
@@ -91,15 +91,11 @@ describe('Server deployment', () => {
 					'max-age=15552000; includeSubDomains',
 				'surrogate-control': 'no-store',
 				vary: 'Accept-Encoding',
-				'x-content-security-policy':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 				'x-content-type-options': 'nosniff',
 				'x-dns-prefetch-control': 'off',
 				'x-download-options': 'noopen',
 				'x-frame-options': 'DENY',
-				'x-webkit-csp':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
-				'x-xss-protection': '1; mode=block'
+				'x-xss-protection': '0'
 			};
 
 			const res = await request
@@ -149,22 +145,18 @@ describe('Server deployment', () => {
 					'no-store, no-cache, must-revalidate, proxy-revalidate',
 				connection: 'close',
 				'content-security-policy':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+					"default-src 'self';script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline'",
 				date: '',
 				expires: '0',
 				pragma: 'no-cache',
 				'strict-transport-security':
 					'max-age=15552000; includeSubDomains',
 				'surrogate-control': 'no-store',
-				'x-content-security-policy':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
 				'x-content-type-options': 'nosniff',
 				'x-dns-prefetch-control': 'off',
 				'x-download-options': 'noopen',
 				'x-frame-options': 'DENY',
-				'x-webkit-csp':
-					"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
-				'x-xss-protection': '1; mode=block'
+				'x-xss-protection': '0'
 			};
 
 			const res = await request.options(path);
