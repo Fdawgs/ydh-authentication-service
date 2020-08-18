@@ -1,3 +1,18 @@
+## <small>6.0.2 (2020-08-18)</small>
+
+-   build(deps-dev): bump dev dependencies ([bacd58d](https://github.com/Fdawgs/ydh-authentication-service/commit/bacd58d))
+-   build(deps-dev): bump dev dependencies to resolve security cve ([d73fa0b](https://github.com/Fdawgs/ydh-authentication-service/commit/d73fa0b))
+-   build(deps): bump helmet from 3.23.3 to 4.0.0 ([263595f](https://github.com/Fdawgs/ydh-authentication-service/commit/263595f))
+-   build(deps): bump helmet from 4.0.0 to 4.1.0 ([00cd382](https://github.com/Fdawgs/ydh-authentication-service/commit/00cd382))
+-   build(deps): bump sanitize-middleware from 2.0.14 to 2.0.15 ([244a2b6](https://github.com/Fdawgs/ydh-authentication-service/commit/244a2b6))
+-   build(deps): bump sanitize-middleware from 2.0.15 to 2.0.16 ([10c702a](https://github.com/Fdawgs/ydh-authentication-service/commit/10c702a))
+-   tests(server): fix expected response headers ([36b96b1](https://github.com/Fdawgs/ydh-authentication-service/commit/36b96b1))
+-   chore: reduce minimum nodejs engine version from 12.x to 10.x ([515d580](https://github.com/Fdawgs/ydh-authentication-service/commit/515d580))
+-   chore(github): add issue templates ([1c3898e](https://github.com/Fdawgs/ydh-authentication-service/commit/1c3898e))
+-   fix: remove hidepoweredby config ([8145c88](https://github.com/Fdawgs/ydh-authentication-service/commit/8145c88))
+-   docs(contributing): clarification on env variables ([1323c9e](https://github.com/Fdawgs/ydh-authentication-service/commit/1323c9e))
+-   docs(readme): replace convoluted pm2 windows service deploy steps ([a69f294](https://github.com/Fdawgs/ydh-authentication-service/commit/a69f294))
+
 ## <small>6.0.1 (2020-07-27)</small>
 
 -   build(deps-dev): bump dev dependencies ([7988298](https://github.com/Fdawgs/ydh-authentication-service/commit/7988298))
