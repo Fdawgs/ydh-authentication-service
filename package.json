@@ -7,7 +7,7 @@
 	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
 	"license": "MIT",
 	"engines": {
-		"node": ">=12.16.3"
+		"node": ">=10.22.0"
 	},
 	"scripts": {
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md && prettier CHANGELOG.md --write",
@@ -72,6 +72,6 @@
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
-		"sanitize-middleware": "^2.0.15"
+		"sanitize-middleware": "^2.0.16"
 	}
 }
