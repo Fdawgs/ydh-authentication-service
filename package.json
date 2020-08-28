@@ -1,6 +1,6 @@
 {
 	"name": "ydh-authentication-service",
-	"version": "6.0.2",
+	"version": "6.0.3",
 	"description": "Yeovil District Hospital's authentication service to sit infront of REST API",
 	"main": "src/index.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-authentication-service.git",
@@ -73,6 +73,6 @@
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
-		"sanitize-middleware": "^2.0.16"
+		"sanitize-middleware": "^2.0.17"
 	}
 }

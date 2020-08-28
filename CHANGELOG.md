@@ -1,3 +1,12 @@
+## <small>6.0.3 (2020-08-28)</small>
+
+-   refactor(server): use address() for host and port logging ([777334f](https://github.com/Fdawgs/ydh-authentication-service/commit/777334f))
+-   build(deps-dev): add eslint-plugin-security dev dependency ([8a6b236](https://github.com/Fdawgs/ydh-authentication-service/commit/8a6b236))
+-   build(deps-dev): bump dev dependencies ([2cacf89](https://github.com/Fdawgs/ydh-authentication-service/commit/2cacf89))
+-   build(deps): bump axios from 0.19.2 to 0.20.0 ([d690aac](https://github.com/Fdawgs/ydh-authentication-service/commit/d690aac))
+-   build(deps): bump sanitize-middleware from 2.0.16 to 2.0.17 ([aa08aed](https://github.com/Fdawgs/ydh-authentication-service/commit/aa08aed))
+-   chore(pm2): increase cluster instances from 8 to 16 ([32e3349](https://github.com/Fdawgs/ydh-authentication-service/commit/32e3349))
+
 ## <small>6.0.2 (2020-08-18)</small>
 
 -   build(deps-dev): bump dev dependencies ([bacd58d](https://github.com/Fdawgs/ydh-authentication-service/commit/bacd58d))
