@@ -13,12 +13,27 @@
 		"changelog": "conventional-changelog -p @commitlint/config-conventional -s -i CHANGELOG.md && prettier CHANGELOG.md --write",
 		"dupe-check": "yarn jsinspect ./src",
 		"lint": "eslint . --cache --ext js,jsx,ts,tsx --ignore-path .gitignore",
-		"nodemon": "cross-env NODE_ENV=development nodemon src/index.js",
+		"nodemon": "nodemon",
 		"prettier": "prettier . --write --ignore-path .gitignore",
 		"start": "node src/index.js",
 		"test": "cross-env NODE_ENV=test yarn lint && yarn test-only",
 		"test-coverage": "cross-env NODE_ENV=test jest --coverage --runInBand",
 		"test-only": "cross-env NODE_ENV=test jest --detectOpenHandles --runInBand"
+	},
+	"nodemonConfig": {
+		"env": {
+			"NODE_ENV": "development",
+			"SUPPRESS_SUPPORT": 1
+		},
+		"ignore": [
+			"mocks",
+			"test_ssl_cert"
+		],
+		"verbose": true,
+		"watch": [
+			".env.development",
+			"src"
+		]
 	},
 	"jest": {
 		"clearMocks": true,
@@ -39,16 +54,16 @@
 		"useTabs": true
 	},
 	"devDependencies": {
-		"@commitlint/config-conventional": "^9.1.2",
+		"@commitlint/config-conventional": "^11.0.0",
 		"conventional-changelog-cli": "^2.1.0",
 		"coveralls": "^3.1.0",
 		"cross-env": "^7.0.2",
-		"eslint": "^7.7.0",
+		"eslint": "^7.9.0",
 		"eslint-config-airbnb-base": "^14.2.0",
 		"eslint-config-prettier": "^6.11.0",
 		"eslint-plugin-import": "^2.22.0",
-		"eslint-plugin-jest": "^23.20.0",
-		"eslint-plugin-jsdoc": "^30.3.0",
+		"eslint-plugin-jest": "^24.0.1",
+		"eslint-plugin-jsdoc": "^30.5.1",
 		"eslint-plugin-json": "^2.1.2",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-security": "^1.4.0",
@@ -58,8 +73,8 @@
 		"lodash": "^4.17.20",
 		"node-mocks-http": "^1.9.0",
 		"nodemon": "^2.0.4",
-		"prettier": "2.1.1",
-		"superagent": "^6.0.0"
+		"prettier": "2.1.2",
+		"superagent": "^6.1.0"
 	},
 	"dependencies": {
 		"axios": "^0.20.0",
@@ -69,7 +84,7 @@
 		"express": "^4.17.1",
 		"express-pino-logger": "^5.0.0",
 		"file-stream-rotator": "^0.5.7",
-		"helmet": "^4.1.0",
+		"helmet": "^4.1.1",
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
