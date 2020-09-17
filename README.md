@@ -1,6 +1,6 @@
 # Yeovil District Hospital (YDH) - Authentication Service
 
-[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-authentication-service.svg)](https://github.com/Fdawgs/ydh-authentication-service/releases/latest/) [![Build Status](https://travis-ci.org/Fdawgs/ydh-authentication-service.svg?branch=master)](https://travis-ci.org/Fdawgs/ydh-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-authentication-service?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-authentication-service.svg)](https://github.com/Fdawgs/ydh-authentication-service/releases/latest/) [![Build Status](https://travis-ci.com/Fdawgs/ydh-authentication-service.svg?branch=master)](https://travis-ci.com/Fdawgs/ydh-authentication-service) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-authentication-service?branch=master) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Intro
 
