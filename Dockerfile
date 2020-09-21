@@ -1,10 +1,16 @@
 FROM node:lts-alpine
 
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /usr/app
+RUN mkdir logs && chown -R appuser:appgroup logs
 COPY package.json .
 COPY yarn.lock .
-COPY .env .
+COPY .env.${NODE_ENV} .
 COPY ./src ./src
 
-RUN yarn install
+RUN if [ "${NODE_ENV}" = "production" ] ; then yarn install --production ; else yarn install ; fi && yarn cache clean
+USER appuser
 CMD ["yarn", "start"]
