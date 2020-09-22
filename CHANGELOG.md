@@ -1,3 +1,20 @@
+## <small>6.0.4 (2020-09-22)</small>
+
+-   build(dependabot): remove assignment of pull requests to user ([1fbf92f](https://github.com/Fdawgs/ydh-authentication-service/commit/1fbf92f))
+-   build(deps-dev): bump dev dependencies ([58f7860](https://github.com/Fdawgs/ydh-authentication-service/commit/58f7860))
+-   build(deps): bump helmet from 4.1.0 to 4.1.1 ([b75271f](https://github.com/Fdawgs/ydh-authentication-service/commit/b75271f))
+-   build(deps): bump sanitize-middleware from 2.0.17 to 2.0.18 ([578d14c](https://github.com/Fdawgs/ydh-authentication-service/commit/578d14c))
+-   build(docker): reduce image size; restrict user privileges ([422d3f0](https://github.com/Fdawgs/ydh-authentication-service/commit/422d3f0))
+-   tests: correct test rules ([0f20497](https://github.com/Fdawgs/ydh-authentication-service/commit/0f20497))
+-   style(config): sort allowed headers alphabetically ([53d6f59](https://github.com/Fdawgs/ydh-authentication-service/commit/53d6f59))
+-   fix(routes): correct cors header settings for get requests ([24793de](https://github.com/Fdawgs/ydh-authentication-service/commit/24793de))
+-   docs(readme): add snyk badge ([24376d9](https://github.com/Fdawgs/ydh-authentication-service/commit/24376d9))
+-   docs(readme): repoint travis-ci badge from .org to .com ([7c7a666](https://github.com/Fdawgs/ydh-authentication-service/commit/7c7a666))
+-   chore(eslint): remove unnecessary eslint rules ([f34b588](https://github.com/Fdawgs/ydh-authentication-service/commit/f34b588))
+-   chore(nodemon): configure nodemon to watch dev .env file ([6452961](https://github.com/Fdawgs/ydh-authentication-service/commit/6452961))
+-   chore(pm2): watch .env files for config changes; set instances to max ([a7cc433](https://github.com/Fdawgs/ydh-authentication-service/commit/a7cc433))
+-   chore(scripts): remove nodemon script ([bc883f5](https://github.com/Fdawgs/ydh-authentication-service/commit/bc883f5))
+
 ## <small>6.0.3 (2020-08-28)</small>
 
 -   refactor(server): use address() for host and port logging ([777334f](https://github.com/Fdawgs/ydh-authentication-service/commit/777334f))
