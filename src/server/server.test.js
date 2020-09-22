@@ -138,7 +138,7 @@ describe('Server deployment', () => {
 		test('OPTIONS - Should have expected response headers present', async () => {
 			const expectedHeaders = {
 				'access-control-allow-headers':
-					'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+					'Accept, Authorization, Content-Type, Origin, X-Requested-With',
 				'access-control-allow-methods': 'GET',
 				'access-control-allow-origin': '*',
 				'cache-control':

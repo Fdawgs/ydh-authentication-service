@@ -21,6 +21,7 @@ module.exports = {
 	root: true,
 	rules: {
 		'import/no-extraneous-dependencies': 'error',
+		'jest/no-conditional-expect': 'warn',
 		'no-console': 'off',
 		'no-multiple-empty-lines': [
 			'error',
