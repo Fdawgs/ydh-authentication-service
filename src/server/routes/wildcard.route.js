@@ -35,6 +35,11 @@ module.exports = function wildcardRoute(options) {
 						}
 					);
 
+					// Remove CORS headers
+					delete response.headers['access-control-allow-methods'];
+					delete response.headers['access-control-allow-headers'];
+					delete response.headers['access-control-expose-headers'];
+
 					// Remove or amend inaccurate headers
 					delete response.headers.etag;
 					delete response.headers['last-modified'];

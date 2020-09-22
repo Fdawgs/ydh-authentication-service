@@ -24,8 +24,7 @@ This service was originally written to protect FHIR endpoints that provide patie
 2. Run `yarn install` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in `.env.production`
-5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
-6. Run `yarn start`
+5. Run `yarn start`
 
 The Express server should now be up and running on the port set in the config. You should see the following output:
 
@@ -61,10 +60,9 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 2. Run `yarn install` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in `.env.production`
-5. Set preferred CORS headers in Mirth Connect's install location in `config/mirth.properties`
-6. Run `yarn global add pm2` to install pm2 globally
-7. Launch application with `pm2 start .pm2.config.js`
-8. Check the application has been deployed using `pm2 list` or `pm2 monit`
+5. Run `yarn global add pm2` to install pm2 globally
+6. Launch application with `pm2 start .pm2.config.js`
+7. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
 #### To install as a Windows service:
 
