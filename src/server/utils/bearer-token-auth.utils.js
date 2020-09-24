@@ -59,7 +59,7 @@ module.exports = async function bearerTokenAuthentication(
 				ignoreExpiration: false,
 				maxAge: process.env.JWT_MAX_AGE
 			},
-			(err, decoded) => {
+			(err) => {
 				if (err) {
 					return callback(null, false);
 				}
