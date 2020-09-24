@@ -1,3 +1,8 @@
+## 6.1.0 (2020-09-24)
+
+-   fix(utils): remove unused variable ([ca24255](https://github.com/Fdawgs/ydh-authentication-service/commit/ca24255))
+-   feat(utils): add openid connect jwt verification support ([66b5a63](https://github.com/Fdawgs/ydh-authentication-service/commit/66b5a63))
+
 ## <small>6.0.4 (2020-09-22)</small>
 
 -   build(dependabot): remove assignment of pull requests to user ([1fbf92f](https://github.com/Fdawgs/ydh-authentication-service/commit/1fbf92f))
