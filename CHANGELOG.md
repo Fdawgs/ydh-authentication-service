@@ -1,3 +1,14 @@
+## 6.2.0 (2020-10-01)
+
+-   feat(utils): validate issuer of openid connect jwt ([00cfab1](https://github.com/Fdawgs/ydh-authentication-service/commit/00cfab1))
+-   docs(contributing): correct release step order ([19d14c0](https://github.com/Fdawgs/ydh-authentication-service/commit/19d14c0))
+-   docs(readme): correct pm2 statement ([3abc6d3](https://github.com/Fdawgs/ydh-authentication-service/commit/3abc6d3))
+-   fix(routes): handle patient and identifier query and params as strings ([fbd4ee5](https://github.com/Fdawgs/ydh-authentication-service/commit/fbd4ee5))
+-   fix(routes): handle phone numbers as strings ([f723906](https://github.com/Fdawgs/ydh-authentication-service/commit/f723906))
+-   build(deps-dev): bump dev dependencies ([87f36f3](https://github.com/Fdawgs/ydh-authentication-service/commit/87f36f3))
+-   build(deps): bump jwks-rsa from 1.9.0 to 1.10.1 ([f283661](https://github.com/Fdawgs/ydh-authentication-service/commit/f283661))
+-   build(deps): bump sanitize-middleware from 2.0.18 to 2.0.19 ([f246b5c](https://github.com/Fdawgs/ydh-authentication-service/commit/f246b5c))
+
 ## 6.1.0 (2020-09-24)
 
 -   fix(utils): remove unused variable ([ca24255](https://github.com/Fdawgs/ydh-authentication-service/commit/ca24255))
