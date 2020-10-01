@@ -57,6 +57,7 @@ module.exports = async function bearerTokenAuthentication(
 				audience: process.env.JWT_ALLOWED_AUDIENCE,
 				algorithms: process.env.JWT_ALLOWED_ALGO_ARRAY,
 				ignoreExpiration: false,
+				issuer: process.env.JWT_ALLOWED_ISSUERS,
 				maxAge: process.env.JWT_MAX_AGE
 			},
 			(err) => {
