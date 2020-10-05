@@ -4,7 +4,7 @@
 
 ## Intro
 
-[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engine (TIE)s used at YDH, however it does not provide SSL/TLS support out of the box. As such, this Node.js application using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling bearer authorization API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
+[Mirth Connect](https://github.com/nextgenhealthcare/connect) is one of a few Trust Integration Engines (TIEs) used at YDH, however it does not provide SSL/TLS support out of the box. As such, this Node.js application using the [Express framework](https://expressjs.com/) has been created to provide this functionality whilst at the same time handling bearer authorization API keys in the HTTP header, acting as middleware between the firewall and the targeted FHIR/HTTP listener channel.
 
 To provide further security [Helmet](https://helmetjs.github.io/) is used as part of this application.
 
