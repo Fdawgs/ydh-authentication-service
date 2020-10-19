@@ -19,17 +19,7 @@ module.exports = function wildcardRoute(options) {
 	const config = options;
 
 	router.use(
-		sanitize({
-			params: {
-				id: { type: 'string' },
-				identifier: { type: 'string' }
-			},
-			query: {
-				identifier: { type: 'string' },
-				patient: { type: 'string' },
-				phone: { type: 'string' }
-			}
-		}),
+		sanitize(),
 		cors(config.cors)
 	);
 
