@@ -1,6 +1,6 @@
 {
 	"name": "ydh-authentication-service",
-	"version": "6.2.0",
+	"version": "6.2.1",
 	"description": "Yeovil District Hospital's authentication service to sit infront of REST API",
 	"main": "src/index.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-authentication-service.git",
@@ -57,21 +57,21 @@
 		"conventional-changelog-cli": "^2.1.0",
 		"coveralls": "^3.1.0",
 		"cross-env": "^7.0.2",
-		"eslint": "^7.10.0",
+		"eslint": "^7.11.0",
 		"eslint-config-airbnb-base": "^14.2.0",
-		"eslint-config-prettier": "^6.12.0",
+		"eslint-config-prettier": "^6.13.0",
 		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-jest": "^24.0.2",
-		"eslint-plugin-jsdoc": "^30.6.2",
+		"eslint-plugin-jest": "^24.1.0",
+		"eslint-plugin-jsdoc": "^30.6.5",
 		"eslint-plugin-json": "^2.1.2",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-security": "^1.4.0",
 		"faker": "^5.1.0",
-		"jest": "^26.4.2",
+		"jest": "^26.5.3",
 		"jsinspect": "^0.12.7",
 		"lodash": "^4.17.20",
 		"node-mocks-http": "^1.9.0",
-		"nodemon": "^2.0.4",
+		"nodemon": "^2.0.5",
 		"prettier": "2.1.2",
 		"superagent": "^6.1.0"
 	},
@@ -89,6 +89,6 @@
 		"nocache": "^2.1.0",
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
-		"sanitize-middleware": "^2.0.19"
+		"sanitize-middleware": "^2.0.20"
 	}
 }

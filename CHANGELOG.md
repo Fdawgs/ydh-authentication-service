@@ -1,3 +1,14 @@
+## <small>6.2.1 (2020-10-19)</small>
+
+-   build: create codeql-analysis.yml workflow file ([a3ffddd](https://github.com/Fdawgs/ydh-authentication-service/commit/a3ffddd))
+-   build(deps-dev): bump dev dependencies ([2850ef3](https://github.com/Fdawgs/ydh-authentication-service/commit/2850ef3))
+-   build(deps): bump sanitize-middleware from 2.0.19 to 2.0.20 ([abe8afb](https://github.com/Fdawgs/ydh-authentication-service/commit/abe8afb))
+-   build(docker): restrict mapped ports to localhost ([bda5f29](https://github.com/Fdawgs/ydh-authentication-service/commit/bda5f29))
+-   build(docker): update system and dependencies ([bf3647b](https://github.com/Fdawgs/ydh-authentication-service/commit/bf3647b))
+-   fix(routes): remove sanitize object ([3180402](https://github.com/Fdawgs/ydh-authentication-service/commit/3180402))
+-   docs: spelling and grammar fixes ([8d0c406](https://github.com/Fdawgs/ydh-authentication-service/commit/8d0c406))
+-   docs(contributing): remove reference to replaced jest script ([81cbe20](https://github.com/Fdawgs/ydh-authentication-service/commit/81cbe20))
+
 ## 6.2.0 (2020-10-01)
 
 -   feat(utils): validate issuer of openid connect jwt ([00cfab1](https://github.com/Fdawgs/ydh-authentication-service/commit/00cfab1))
