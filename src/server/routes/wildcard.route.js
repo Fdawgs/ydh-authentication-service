@@ -18,10 +18,7 @@ const sanitize = require('sanitize-middleware');
 module.exports = function wildcardRoute(options) {
 	const config = options;
 
-	router.use(
-		sanitize(),
-		cors(config.cors)
-	);
+	router.use(sanitize(), cors(config.cors));
 
 	router
 		.route('*')

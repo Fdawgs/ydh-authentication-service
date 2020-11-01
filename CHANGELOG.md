@@ -1,3 +1,10 @@
+## <small>6.2.2 (2020-11-01)</small>
+
+-   build(deps-dev): bump dev dependencies ([19da49b](https://github.com/Fdawgs/ydh-authentication-service/commit/19da49b))
+-   build(deps): bump axios from 0.20.0 to 0.21.0 ([d767731](https://github.com/Fdawgs/ydh-authentication-service/commit/d767731))
+-   build(deps): bump jwks-rsa from 1.10.1 to 1.11.0 ([eb1a861](https://github.com/Fdawgs/ydh-authentication-service/commit/eb1a861))
+-   build(deps): bump sanitize-middleware from 2.0.20 to 3.1.0 ([c680b3c](https://github.com/Fdawgs/ydh-authentication-service/commit/c680b3c))
+
 ## <small>6.2.1 (2020-10-19)</small>
 
 -   build: create codeql-analysis.yml workflow file ([a3ffddd](https://github.com/Fdawgs/ydh-authentication-service/commit/a3ffddd))
