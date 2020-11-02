@@ -1,3 +1,9 @@
+## <small>6.2.3 (2020-11-02)</small>
+
+-   build(deps-dev): bump jest from 26.6.1 to 26.6.2 ([1928a6e](https://github.com/Fdawgs/ydh-authentication-service/commit/1928a6e))
+-   build(deps): bump helmet from 4.1.1 to 4.2.0 ([dcd2a90](https://github.com/Fdawgs/ydh-authentication-service/commit/dcd2a90))
+-   build(deps): bump sanitize-middleware from 3.1.0 to 4.0.0 ([2a0d217](https://github.com/Fdawgs/ydh-authentication-service/commit/2a0d217))
+
 ## <small>6.2.2 (2020-11-01)</small>
 
 -   build(deps-dev): bump dev dependencies ([19da49b](https://github.com/Fdawgs/ydh-authentication-service/commit/19da49b))
