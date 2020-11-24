@@ -1,3 +1,13 @@
+## <small>6.2.4 (2020-11-24)</small>
+
+-   build(deps-dev): bump dev dependencies ([2d6b921](https://github.com/Fdawgs/ydh-authentication-service/commit/2d6b921))
+-   fix(routes): protect all request types with bearer token authentication ([1136082](https://github.com/Fdawgs/ydh-authentication-service/commit/1136082))
+-   ci: add aggregate coverage calculations ([a081517](https://github.com/Fdawgs/ydh-authentication-service/commit/a081517))
+-   ci: clean up config ([9d9fbec](https://github.com/Fdawgs/ydh-authentication-service/commit/9d9fbec))
+-   ci: replace travis-ci with github actions ([48facad](https://github.com/Fdawgs/ydh-authentication-service/commit/48facad))
+-   style: fix build name ([6f3011d](https://github.com/Fdawgs/ydh-authentication-service/commit/6f3011d))
+-   style: format codeql.yml ([7f902ee](https://github.com/Fdawgs/ydh-authentication-service/commit/7f902ee))
+
 ## <small>6.2.3 (2020-11-02)</small>
 
 -   build(deps-dev): bump jest from 26.6.1 to 26.6.2 ([1928a6e](https://github.com/Fdawgs/ydh-authentication-service/commit/1928a6e))
