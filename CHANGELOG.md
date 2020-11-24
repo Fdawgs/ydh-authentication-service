@@ -1,3 +1,7 @@
+## <small>6.2.5 (2020-11-24)</small>
+
+-   Revert "fix(routes): protect all request types with bearer token authentication" ([3db6018](https://github.com/Fdawgs/ydh-authentication-service/commit/3db6018))
+
 ## <small>6.2.4 (2020-11-24)</small>
 
 -   build(deps-dev): bump dev dependencies ([2d6b921](https://github.com/Fdawgs/ydh-authentication-service/commit/2d6b921))
