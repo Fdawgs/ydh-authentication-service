@@ -159,7 +159,9 @@ describe('Server deployment', () => {
 				'x-xss-protection': '0'
 			};
 
-			const res = await request.options(path);
+			const res = await request
+				.options(path)
+				.set('Authorization', 'Bearer Jimmini');
 
 			expect(res.statusCode).toBe(204);
 			Object.keys(expectedHeaders).forEach((key) => {
