@@ -1,3 +1,12 @@
+## 6.3.0 (2020-12-02)
+
+-   feat(config): allow log rotation to be customised; tidy env template ([48bbd80](https://github.com/Fdawgs/ydh-authentication-service/commit/48bbd80))
+-   build(deps-dev): bump prettier from 2.2.0 to 2.2.1 ([c468e82](https://github.com/Fdawgs/ydh-authentication-service/commit/c468e82))
+-   build(deps): bump sanitize-middleware from 4.0.0 to 4.0.1 ([16bf711](https://github.com/Fdawgs/ydh-authentication-service/commit/16bf711))
+-   docs: update example env template ([f2046b5](https://github.com/Fdawgs/ydh-authentication-service/commit/f2046b5))
+-   docs(security): remove backticks ([8818677](https://github.com/Fdawgs/ydh-authentication-service/commit/8818677))
+-   chore: add security.md ([a9df235](https://github.com/Fdawgs/ydh-authentication-service/commit/a9df235))
+
 ## <small>6.2.5 (2020-11-24)</small>
 
 -   Revert "fix(routes): protect all request types with bearer token authentication" ([3db6018](https://github.com/Fdawgs/ydh-authentication-service/commit/3db6018))
