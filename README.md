@@ -1,4 +1,4 @@
-# Yeovil District Hospital (YDH) - Authentication Service
+# Yeovil District Hospital NHS Foundation Trust - Authentication Service
 
 [![GitHub Release](https://img.shields.io/github/release/Fdawgs/ydh-authentication-service.svg)](https://github.com/Fdawgs/ydh-authentication-service/releases/latest/) ![Build Status](https://github.com/Fdawgs/ydh-authentication-service/workflows/CI/badge.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/Fdawgs/ydh-authentication-service/badge.svg?branch=master)](https://coveralls.io/github/Fdawgs/ydh-authentication-service?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/Fdawgs/ydh-authentication-service/badge.svg)](https://snyk.io/test/github/Fdawgs/ydh-authentication-service) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
@@ -66,7 +66,7 @@ It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a pr
 
 #### To install as a Windows service:
 
-Yeovil District Hospital is heavily invested in Microsoft's ecosystem; utilise [pm2-installer](https://github.com/jessety/pm2-installer) to easily install PM2 as a Windows service.
+Yeovil District Hospital NHSFT is heavily invested in Microsoft's ecosystem; utilise [pm2-installer](https://github.com/jessety/pm2-installer) to easily install PM2 as a Windows service.
 
 **Note:** PM2 has been configured to automatically restart the application if modifications are made to `.env.development` or `.env.production`.
 
