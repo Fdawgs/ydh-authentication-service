@@ -93,6 +93,6 @@
 		"passport": "^0.4.1",
 		"passport-http-bearer": "^1.0.1",
 		"pino": "^6.9.0",
-		"sanitize-middleware": "^4.0.1"
+		"sanitize-middleware": "^4.0.2"
 	}
 }
