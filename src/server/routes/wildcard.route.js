@@ -1,13 +1,13 @@
-const { Router } = require('express');
-const passport = require('passport');
-const request = require('axios');
-const queryString = require('querystring');
+const { Router } = require("express");
+const passport = require("passport");
+const request = require("axios");
+const queryString = require("querystring");
 
 const router = new Router();
 
 // Import middleware
-const cors = require('cors');
-const sanitize = require('sanitize-middleware');
+const cors = require("cors");
+const sanitize = require("sanitize-middleware");
 
 /**
  * @author Frazer Smith
@@ -21,9 +21,9 @@ module.exports = function wildcardRoute(options) {
 	router.use(sanitize(), cors(config.cors));
 
 	router
-		.route('*')
+		.route("*")
 		.get(
-			passport.authenticate('bearer', { session: false }),
+			passport.authenticate("bearer", { session: false }),
 			async (req, res, next) => {
 				try {
 					const response = await request.get(
@@ -31,18 +31,18 @@ module.exports = function wildcardRoute(options) {
 							config.listenerUrl + req.baseUrl
 						}?${queryString.stringify(req.query)}`,
 						{
-							responseType: 'stream'
+							responseType: "stream",
 						}
 					);
 
 					// Remove CORS headers
-					delete response.headers['access-control-allow-methods'];
-					delete response.headers['access-control-allow-headers'];
-					delete response.headers['access-control-expose-headers'];
+					delete response.headers["access-control-allow-methods"];
+					delete response.headers["access-control-allow-headers"];
+					delete response.headers["access-control-expose-headers"];
 
 					// Remove or amend inaccurate headers
 					delete response.headers.etag;
-					delete response.headers['last-modified'];
+					delete response.headers["last-modified"];
 
 					// Remove security risk headers
 					delete response.headers.location;

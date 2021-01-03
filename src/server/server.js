@@ -1,21 +1,21 @@
-const compression = require('compression');
-const express = require('express');
-const expressPino = require('express-pino-logger');
-const fs = require('fs');
-const helmet = require('helmet');
-const http = require('http');
-const https = require('https');
-const nocache = require('nocache');
-const passport = require('passport');
-const rotatingLogStream = require('file-stream-rotator');
-const { Strategy } = require('passport-http-bearer');
+const compression = require("compression");
+const express = require("express");
+const expressPino = require("express-pino-logger");
+const fs = require("fs");
+const helmet = require("helmet");
+const http = require("http");
+const https = require("https");
+const nocache = require("nocache");
+const passport = require("passport");
+const rotatingLogStream = require("file-stream-rotator");
+const { Strategy } = require("passport-http-bearer");
 
 // Import utils
-const bearerTokenAuth = require('./utils/bearer-token-auth.utils');
-const errorHandler = require('./utils/error-handler.utils');
+const bearerTokenAuth = require("./utils/bearer-token-auth.utils");
+const errorHandler = require("./utils/error-handler.utils");
 
 // Import routes
-const wildcardRoute = require('./routes/wildcard.route');
+const wildcardRoute = require("./routes/wildcard.route");
 
 class Server {
 	/**
@@ -87,7 +87,7 @@ class Server {
 	}
 
 	configureRoutes() {
-		this.app.use('*', wildcardRoute(this.config));
+		this.app.use("*", wildcardRoute(this.config));
 
 		// Return self for chaining
 		return this;
@@ -120,7 +120,7 @@ class Server {
 		const server = this.config;
 
 		// Update the Express app to be an instance of createServer
-		if (server.https === 'true') {
+		if (server.https === "true") {
 			const options = {};
 			// Attempt to use PFX file if present
 			if (server.ssl.pfx.pfx) {
@@ -132,9 +132,9 @@ class Server {
 			}
 
 			this.app = https.createServer(options, this.app);
-			this.config.protocol = 'https';
+			this.config.protocol = "https";
 		} else {
-			this.config.protocol = 'http';
+			this.config.protocol = "http";
 			this.app = http.createServer(this.app);
 		}
 
@@ -158,7 +158,7 @@ class Server {
 	shutdown() {
 		this.app.close();
 		setImmediate(() => {
-			this.app.emit('close');
+			this.app.emit("close");
 		});
 	}
 }

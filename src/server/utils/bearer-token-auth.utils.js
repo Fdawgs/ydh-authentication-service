@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-else-return */
-const jwt = require('jsonwebtoken');
-const jwksClient = require('jwks-rsa');
+const jwt = require("jsonwebtoken");
+const jwksClient = require("jwks-rsa");
 
 /**
  * @author Mark Hunt
@@ -13,7 +13,7 @@ async function getSigningKey(token) {
 	return new Promise((resolve, reject) => {
 		const client = jwksClient({
 			strictSsl: true, // Default value
-			jwksUri: process.env.OPENID_JWKS_ENDPOINT
+			jwksUri: process.env.OPENID_JWKS_ENDPOINT,
 		});
 		const decoded = jwt.decode(token, { complete: true });
 		client.getSigningKey(decoded.header.kid, (err, key) => {
@@ -58,7 +58,7 @@ module.exports = async function bearerTokenAuthentication(
 				algorithms: process.env.JWT_ALLOWED_ALGO_ARRAY,
 				ignoreExpiration: false,
 				issuer: process.env.JWT_ALLOWED_ISSUERS,
-				maxAge: process.env.JWT_MAX_AGE
+				maxAge: process.env.JWT_MAX_AGE,
 			},
 			(err) => {
 				if (err) {

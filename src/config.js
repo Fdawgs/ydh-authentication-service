@@ -1,6 +1,6 @@
-require('custom-env').env();
+require("custom-env").env();
 
-const pino = require('pino');
+const pino = require("pino");
 
 const serverConfig = {
 	https: process.env.USE_HTTPS || false,
@@ -8,21 +8,21 @@ const serverConfig = {
 	host: process.env.HOST,
 	listenerUrl: process.env.LISTENER_URL,
 	auth: {
-		apiKeys: JSON.parse(process.env.API_BEARER_TOKEN_ARRAY)
+		apiKeys: JSON.parse(process.env.API_BEARER_TOKEN_ARRAY),
 	},
 	ssl: {
 		cert: process.env.SSL_CERT_PATH,
 		key: process.env.SSL_KEY_PATH,
 		pfx: {
 			passphrase: process.env.PFX_PASSPHRASE,
-			pfx: process.env.PFX_FILE_PATH
-		}
+			pfx: process.env.PFX_FILE_PATH,
+		},
 	},
 	cors: {
 		allowedHeaders:
-			'Accept, Authorization, Content-Type, Origin, X-Requested-With',
-		methods: ['GET']
-	}
+			"Accept, Authorization, Content-Type, Origin, X-Requested-With",
+		methods: ["GET"],
+	},
 };
 
 /**
@@ -40,12 +40,12 @@ const helmetConfig = {
 		directives: {
 			defaultSrc: ["'self'"],
 			scriptSrc: ["'self'", "'unsafe-inline'"],
-			styleSrc: ["'self'", "'unsafe-inline'"]
-		}
+			styleSrc: ["'self'", "'unsafe-inline'"],
+		},
 	},
 	frameguard: {
-		action: 'deny'
-	}
+		action: "deny",
+	},
 };
 
 const loggerConfig = {
@@ -54,37 +54,37 @@ const loggerConfig = {
 		formatters: {
 			level(label) {
 				return { level: label };
-			}
+			},
 		},
 		// Defaults to `info` if not set in env
-		level: process.env.LOGGER_LEVEL || 'info',
+		level: process.env.LOGGER_LEVEL || "info",
 		serializers: {
 			req(req) {
 				return pino.stdSerializers.req(req);
 			},
 			res(res) {
 				return { statusCode: res.statusCode };
-			}
+			},
 		},
 		timestamp: () => {
 			return pino.stdTimeFunctions.isoTime();
-		}
+		},
 	},
 	// Rotation options: https://github.com/rogerc/file-stream-rotator/#options
 	rotation: {
-		date_format: process.env.LOGGER_ROTATION_DATE_FORMAT || 'YYYY-MM-DD',
+		date_format: process.env.LOGGER_ROTATION_DATE_FORMAT || "YYYY-MM-DD",
 		filename:
 			process.env.LOGGER_ROTATION_FILENAME ||
 			`${process.cwd()}/logs/auth-service-%DATE%.log`,
-		frequency: process.env.LOGGER_ROTATION_FREQUENCY || 'daily',
+		frequency: process.env.LOGGER_ROTATION_FREQUENCY || "daily",
 		max_logs: process.env.LOGGER_ROTATION_MAX_LOG,
 		size: process.env.LOGGER_ROTATION_MAX_SIZE,
-		verbose: false
-	}
+		verbose: false,
+	},
 };
 
 module.exports = {
 	helmetConfig,
 	serverConfig,
-	loggerConfig
+	loggerConfig,
 };
