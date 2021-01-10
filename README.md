@@ -14,7 +14,7 @@ This service was originally written to protect FHIR endpoints that provide patie
 
 -   [Node.js](https://nodejs.org/en/)
 -   [Mirth Connect](https://github.com/nextgenhealthcare/connect)
--   [Yarn](https://yarnpkg.com)
+-   [Yarn](https://classic.yarnpkg.com)
 
 ## Deployment
 
