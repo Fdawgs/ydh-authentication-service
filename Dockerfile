@@ -1,22 +1,16 @@
 FROM node:lts-alpine
 
-ARG NODE_ENV
-ENV NODE_ENV=${NODE_ENV}
+WORKDIR /usr/src/app
+COPY . .
 
-# Update and upgrade packages
-RUN apk -U upgrade
+# Pre-emptively make logs directory if used for logs storage set 
+# by LOG_ROTATION_FILENAME env variable 
+RUN mkdir ./logs/
+RUN chown -R node ./logs/
 
-# Create unprivileged user to run app and prevent
+RUN npm install && npm cache clean --force
+
+# Node images provide 'node' unprivileged user to run apps and prevent
 # privilege escalation attacks
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-WORKDIR /usr/app
-RUN mkdir logs && chown -R appuser:appgroup logs
-COPY package.json .
-COPY yarn.lock .
-COPY .env.${NODE_ENV} .
-COPY ./src ./src
-
-RUN if [ "${NODE_ENV}" = "production" ] ; then yarn install --production ; else yarn install ; fi && yarn cache clean
-USER appuser
-CMD ["yarn", "start"]
+USER node
+CMD ["npm", "start"]
