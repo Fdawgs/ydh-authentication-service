@@ -14,17 +14,16 @@ This service was originally written to protect FHIR endpoints that provide patie
 
 -   [Node.js](https://nodejs.org/en/)
 -   [Mirth Connect](https://github.com/nextgenhealthcare/connect)
--   [Yarn](https://classic.yarnpkg.com)
 
 ## Deployment
 
 ### Standard deployment
 
 1. Navigate to the repo
-2. Run `yarn install --production` to install dependencies
+2. Run `npm install --production` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in `.env.production`
-5. Run `NODE_ENV=production yarn start`
+5. Run `NODE_ENV=production npm start`
 
 The Express server should now be up and running on the port set in the config. You should see the following output:
 
@@ -57,10 +56,10 @@ This requires [Docker](https://www.docker.com/products) installed.
 It is [recommended](https://expressjs.com/en/advanced/pm.html) that you use a process manager such as [PM2](https://pm2.keymetrics.io/) when deploying Express applications like this into production.
 
 1. Navigate to the repo
-2. Run `yarn install --production` to install dependencies
+2. Run `npm install --production` to install dependencies
 3. Make a copy of `.env.template` in the root directory and rename to `.env.production`
 4. Configure the application using the global variables in `.env.production`
-5. Run `yarn global add pm2` to install pm2 globally
+5. Run `npm install -g pm2` to install pm2 globally
 6. Launch application with `pm2 start .pm2.config.js`
 7. Check the application has been deployed using `pm2 list` or `pm2 monit`
 
