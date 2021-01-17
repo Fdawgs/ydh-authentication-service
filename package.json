@@ -4,7 +4,10 @@
 	"description": "Yeovil District Hospital NHSFT's authentication service to sit infront of REST API",
 	"main": "src/index.js",
 	"repository": "git+https://github.com/Fdawgs/ydh-authentication-service.git",
-	"author": "Frazer Smith <frazer.smith@ydh.nhs.uk>",
+	"homepage": "https://github.com/Fdawgs/ydh-authentication-service",
+	"bugs": {
+		"url": "https://github.com/Fdawgs/ydh-authentication-service/issues"
+	},
 	"license": "MIT",
 	"engines": {
 		"node": ">=10.22.0"
